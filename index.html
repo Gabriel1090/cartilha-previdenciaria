@@ -309,7 +309,7 @@
       padding: 0 24px;
     }
     .accordion-item.open .accordion-body {
-      max-height: 600px;
+      max-height: 800px;
       padding: 0 24px 24px;
     }
     .accordion-body p { font-size: 0.95rem; line-height: 1.7; opacity: 0.92; margin-bottom: 12px; }
@@ -536,9 +536,9 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.3s, transform 0.3s;
-      pointer-events: none;
+      pointer-events: none; /* Previne clique quando invisível */
     }
-    #backTop.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+    #backTop.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     #backTop:hover { transform: scale(1.1) translateY(-2px); }
 
     /* ====== ANIMATIONS ====== */
@@ -565,7 +565,6 @@
 </head>
 <body>
 
-<!-- Blob background SVG -->
 <div class="blob-bg">
   <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <rect width="1440" height="900" fill="#3b9ee8"/>
@@ -576,7 +575,6 @@
   </svg>
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="nav-inner">
     <div class="logo-area">
@@ -594,7 +592,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-inner">
     <div class="hero-text fade-in">
@@ -630,7 +627,6 @@
   </div>
 </section>
 
-<!-- QUEM TEM DIREITO -->
 <section class="who-section" id="quem-tem-direito">
   <div class="section-inner">
     <span class="section-badge fade-in">👶 Beneficiárias</span>
@@ -649,6 +645,7 @@
         <h3>🌾 Autônomas, MEI e Rurais</h3>
         <p>Trabalha por conta própria, tem seu próprio negócio ou atua no campo? Você também tem direito, mas com regras diferentes.</p>
         <div class="acc-highlight">📋 Carência: Pagar o carnê do INSS por pelo menos <strong>10 meses</strong> antes do parto.</div>
+        <p style="margin-top: 10px; font-size: 0.85rem;"><em>*Em caso de parto prematuro, essa carência diminui proporcionalmente.</em></p>
         <span class="tag">Quem paga: O Governo (INSS)</span>
       </div>
       <div class="who-card fade-in">
@@ -662,12 +659,11 @@
   </div>
 </section>
 
-<!-- REGRAS DETALHADAS (ACCORDION) -->
 <section class="rules-section" id="regras">
   <div class="section-inner">
     <span class="section-badge fade-in">📋 Detalhes</span>
     <h2 class="section-title fade-in">Conheça as <span>regras</span></h2>
-    <p class="section-desc fade-in">Clique em cada tema para expandir e entender melhor:</p>
+    <p class="section-desc fade-in">Clique em cada tema para expandir e entender melhor os seus direitos:</p>
     <div class="accordion-list">
 
       <div class="accordion-item fade-in" id="acc1">
@@ -678,10 +674,9 @@
         </div>
         <div class="accordion-body">
           <p>O valor do benefício varia conforme a situação de trabalho:</p>
-          <div class="acc-highlight">👷 <strong>CLT:</strong> Valor equivalente ao salário completo que você recebia.</div>
-          <div class="acc-highlight">💼 <strong>MEI/Autônoma:</strong> Com base na média dos últimos salários de contribuição ao INSS.</div>
-          <div class="acc-highlight">🌾 <strong>Trabalhadora Rural (segurada especial):</strong> Um salário mínimo por mês.</div>
-          <p>O benefício é pago mensalmente por 120 dias (4 meses). Em casos de adoção, o prazo pode variar conforme a idade da criança adotada.</p>
+          <div class="acc-highlight">👷 <strong>CLT:</strong> Valor equivalente ao salário completo que você recebia na empresa.</div>
+          <div class="acc-highlight">💼 <strong>MEI/Autônoma:</strong> Com base na média dos últimos salários de contribuição ao INSS (1/12 avos da soma dos 12 últimos meses).</div>
+          <div class="acc-highlight">🌾 <strong>Trabalhadora Rural (Segurada Especial):</strong> Um salário mínimo nacional vigente.</div>
         </div>
       </div>
 
@@ -693,36 +688,36 @@
         </div>
         <div class="accordion-body">
           <p>O salário-maternidade tem duração padrão de <strong>120 dias (4 meses)</strong> contados a partir da data do parto, adoção ou guarda judicial.</p>
-          <div class="acc-highlight">🔰 Empresas com o <strong>Programa Empresa Cidadã</strong> podem prorrogar para <strong>180 dias</strong>!</div>
-          <p>O benefício pode começar até 28 dias antes do parto, mediante atestado médico, especialmente em casos de risco à saúde da mãe ou do bebê.</p>
+          <div class="acc-highlight">🔰 Empresas com o <strong>Programa Empresa Cidadã</strong> podem prorrogar o benefício para <strong>180 dias (6 meses)</strong>!</div>
+          <p>O benefício pode começar até 28 dias antes do parto mediante atestado médico.</p>
         </div>
       </div>
 
       <div class="accordion-item fade-in" id="acc3">
         <div class="accordion-header" onclick="toggleAcc('acc3')">
-          <span class="acc-icon">📃</span>
-          <span>Documentos necessários</span>
+          <span class="acc-icon">🏥</span>
+          <span>E em caso de Aborto ou Natimorto?</span>
           <span class="acc-arrow">▼</span>
         </div>
         <div class="accordion-body">
-          <p>Para solicitar o benefício, você precisará de:</p>
-          <div class="acc-highlight">📋 RG, CPF, Certidão de Nascimento (ou Termo de Adoção/Guarda), Documento de vínculo empregatício e CTPS (para CLT).</div>
-          <p>Para autônomas e MEI: comprovante de pagamento do carnê do INSS dos últimos 10 meses.</p>
-          <p>Para rurais: qualquer documento que comprove atividade rural (contrato de comodato, nota de produtor, declaração do sindicato rural).</p>
+          <p>A lei previdenciária também protege e ampara as famílias nesses casos difíceis:</p>
+          <div class="acc-highlight">💙 <strong>Aborto não criminoso (Espontâneo ou Legal):</strong> A trabalhadora tem direito a <strong>2 semanas</strong> de salário-maternidade para sua recuperação física e mental.</div>
+          <div class="acc-highlight">💙 <strong>Natimorto (Bebê nasce sem vida após 23 semanas):</strong> A mãe tem o direito garantido aos <strong>120 dias</strong> completos de benefício.</div>
+          <p>Para ambas as situações, é exigido o atestado médico que comprove o ocorrido.</p>
         </div>
       </div>
 
       <div class="accordion-item fade-in" id="acc4">
         <div class="accordion-header" onclick="toggleAcc('acc4')">
-          <span class="acc-icon">🏥</span>
-          <span>E em caso de aborto ou natimorto?</span>
+          <span class="acc-icon">📃</span>
+          <span>Documentos necessários para solicitar</span>
           <span class="acc-arrow">▼</span>
         </div>
         <div class="accordion-body">
-          <p>A lei também protege nesses casos difíceis:</p>
-          <div class="acc-highlight">💙 Em caso de aborto não criminoso (espontâneo ou terapêutico), a trabalhadora tem direito a <strong>2 semanas</strong> de repouso remunerado.</div>
-          <div class="acc-highlight">💙 Em caso de natimorto (bebê que nasce sem vida), o direito é de <strong>120 dias</strong> completos de benefício.</div>
-          <p>Para isso, é necessário atestado médico comprovando o ocorrido.</p>
+          <p>Para solicitar o benefício, você precisará de:</p>
+          <div class="acc-highlight">📋 RG, CPF, Certidão de Nascimento (ou Termo de Guarda/Adoção), Documento de vínculo empregatício e CTPS (para CLT).</div>
+          <p><strong>Para autônomas e MEI:</strong> comprovante de pagamento do carnê do INSS dos últimos meses.</p>
+          <p><strong>Para rurais:</strong> documentos que comprovem atividade rural (nota de produtor, declaração do sindicato, etc).</p>
         </div>
       </div>
 
@@ -730,101 +725,99 @@
   </div>
 </section>
 
-<!-- PERÍODO DE GRAÇA -->
 <section class="grace-section" id="periodo-graca">
   <div class="section-inner">
     <span class="section-badge fade-in">⏳ Proteção</span>
     <h2 class="section-title fade-in">O <span>Período de Graça</span></h2>
-    <p class="section-desc fade-in">Se você foi demitida ou parou de pagar o INSS, a proteção não acaba na mesma hora. Entenda os prazos:</p>
+    <p class="section-desc fade-in">O Artigo 15 da Lei 8.213/91 garante que a sua proteção não acaba na mesma hora em que você para de contribuir. Entenda os prazos:</p>
     <div class="grace-timeline fade-in">
       <div class="grace-block">
         <h4>📌 Regra Geral</h4>
         <div class="period">12 meses</div>
-        <p>Após a demissão ou após o último mês pago. Válido para todas.</p>
+        <p>Após a demissão ou após o último mês pago pelo carnê. É a garantia básica do INSS.</p>
       </div>
       <div class="grace-block">
-        <h4>📌 Mais de 10 anos de INSS</h4>
+        <h4>📌 +10 anos de INSS</h4>
         <div class="period">24 meses</div>
-        <p>Se você contribuiu por mais de 10 anos, o prazo dobra para 2 anos de proteção.</p>
+        <p>Se você já contribuiu por mais de 120 meses (10 anos) sem perder a qualidade no passado, o prazo dobra.</p>
       </div>
       <div class="grace-block">
-        <h4>📌 10 anos + desemprego</h4>
+        <h4>📌 10 anos + Desemprego</h4>
         <div class="period">36 meses</div>
-        <p>Com mais de 10 anos de INSS e comprovação de desemprego (ex.: seguro-desemprego), o prazo é de até 3 anos!</p>
+        <p>Com mais de 10 anos de INSS e a comprovação oficial de desemprego involuntário (como o seguro-desemprego).</p>
       </div>
     </div>
-    <p style="margin-top:18px; font-size:0.9rem; opacity:0.8; text-align:center;">⚠️ <em>O prazo se estende até o dia 15 do mês seguinte ao fim da contagem.</em></p>
+    <div class="acc-highlight" style="margin-top:24px; text-align:center;">
+       <strong>O Mês de Lambuja (§ 4º do Art. 15):</strong> A lei estende a sua proteção até o dia 15 do mês seguinte ao término do seu prazo. A proteção máxima pode chegar a incríveis <strong>37 meses e 15 dias!</strong>
+    </div>
   </div>
 </section>
 
-<!-- HOMENS -->
 <section class="men-section" id="homens">
   <div class="section-inner">
     <span class="section-badge fade-in">👨 Pais</span>
     <h2 class="section-title fade-in">Homens também <span>podem receber!</span></h2>
-    <p class="section-desc fade-in">O salário-maternidade não é exclusivo das mães. Veja as duas situações em que o pai tem direito:</p>
+    <p class="section-desc fade-in">O salário-maternidade protege a criança e a nova estrutura familiar. Veja as duas situações em que o pai tem direito:</p>
     <div class="men-grid">
       <div class="men-card fade-in">
         <span class="men-icon">👨‍👧</span>
-        <h3>Adoção por Homem Solteiro</h3>
-        <p>Se um homem solteiro adotar uma criança (ou obtiver guarda judicial para adoção), ele tem direito aos <strong>120 dias</strong> completos de benefício, seguindo as mesmas regras das mulheres.</p>
-        <div class="acc-highlight" style="margin-top:14px;">💑 Em casais adotantes (homo ou heteroafetivos), apenas <strong>um dos parceiros</strong> pode solicitar o benefício.</div>
+        <h3>Adoção e Guarda Judicial</h3>
+        <p>Se um homem adotar uma criança (ou obtiver guarda para adoção), ele tem direito aos <strong>120 dias</strong> de benefício.</p>
+        <div class="acc-highlight" style="margin-top:14px;">💑 Em casais (homo ou heteroafetivos), <strong>apenas um dos parceiros</strong> pode solicitar o benefício. O direito não é cumulativo.</div>
       </div>
       <div class="men-card fade-in">
-        <span class="men-icon">💔</span>
-        <h3>Falecimento da Mãe</h3>
-        <p>Se a mãe da criança falecer durante o parto ou enquanto recebia o salário-maternidade, o pai assume o direito ao benefício (ou o tempo restante), <strong>desde que ele também contribua para o INSS</strong> (ou esteja no período de graça).</p>
+        <span class="men-icon">🖤</span>
+        <h3>Falecimento da Mãe (Art. 71-B)</h3>
+        <p>Se a mãe da criança falecer durante o parto ou enquanto recebia o benefício, <strong>o pai assume o direito de receber o tempo restante</strong> para cuidar do filho.</p>
+        <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.8;"><em>*Para isso, o pai também deve ser contribuinte do INSS ou estar no período de graça.</em></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COMO PEDIR -->
 <section class="how-section" id="como-pedir">
   <div class="section-inner">
     <span class="section-badge fade-in">📱 Passo a Passo</span>
     <h2 class="section-title fade-in">Como <span>solicitar</span>?</h2>
-    <p class="section-desc fade-in">Siga os passos abaixo para fazer seu pedido de forma simples:</p>
+    <p class="section-desc fade-in">Atenção ao Prazo: Você tem até <strong>5 anos</strong> após o nascimento ou adoção para solicitar o benefício!</p>
     <div class="steps-grid">
       <div class="step-card fade-in">
         <div class="step-num">1</div>
-        <h4>Reúna os documentos</h4>
-        <p>RG, CPF, certidão de nascimento (ou termo de adoção) e comprovante de vínculo empregatício.</p>
+        <h4>Para quem é CLT</h4>
+        <p>Peça diretamente no <strong>RH da sua empresa</strong>. Eles cuidarão do processo e do pagamento.</p>
       </div>
       <div class="step-card fade-in">
         <div class="step-num">2</div>
-        <h4>Acesse o Meu INSS</h4>
-        <p>Baixe o app <strong>Meu INSS</strong> na loja do seu celular, crie uma conta e faça login com o gov.br.</p>
+        <h4>Autônomas e Desempregadas</h4>
+        <p>Baixe o aplicativo <strong>Meu INSS</strong> no celular e acesse com a sua senha do portal gov.br.</p>
       </div>
       <div class="step-card fade-in">
         <div class="step-num">3</div>
-        <h4>Busque "Salário-Maternidade"</h4>
-        <p>Na barra de busca do app, digite "Salário-Maternidade" e clique em <em>Agendar/Solicitar</em>.</p>
+        <h4>Busque o Serviço</h4>
+        <p>Na barra de busca do app, digite <em>"Salário-Maternidade"</em> e inicie o requerimento.</p>
       </div>
       <div class="step-card fade-in">
         <div class="step-num">4</div>
-        <h4>Preencha e envie</h4>
-        <p>Complete o formulário com as informações solicitadas, anexe os documentos e envie.</p>
+        <h4>Anexe os Documentos</h4>
+        <p>Tire fotos claras da certidão de nascimento da criança, identidade e carteira de trabalho (se necessário).</p>
       </div>
       <div class="step-card fade-in">
         <div class="step-num">5</div>
-        <h4>Acompanhe o pedido</h4>
-        <p>Pelo próprio app Meu INSS ou pelo telefone <strong>135</strong>, você acompanha o status do seu benefício.</p>
+        <h4>Acompanhe</h4>
+        <p>Você pode acompanhar o status da análise pelo próprio aplicativo ou ligando para o telefone oficial <strong>135</strong>.</p>
       </div>
     </div>
     <div style="margin-top:32px; text-align:center;">
-      <p style="font-size:1rem; opacity:0.9; margin-bottom:14px;">Precisa de ajuda presencial? Vá até a agência mais próxima do INSS com seus documentos.</p>
-      <a href="https://www.gov.br/meuinss" target="_blank" rel="noopener" class="btn-primary">📱 Acessar Meu INSS</a>
+      <a href="https://meu.inss.gov.br" target="_blank" rel="noopener" class="btn-primary">📱 Acessar Meu INSS Oficial</a>
     </div>
   </div>
 </section>
 
-<!-- QUIZ -->
-<section id="quiz">
+<section class="quiz-section" id="quiz">
   <div class="section-inner">
     <span class="section-badge fade-in">🧠 Teste seu conhecimento</span>
     <h2 class="section-title fade-in" style="text-align:center;">Quiz <span>Rápido</span></h2>
-    <p class="section-desc fade-in" style="text-align:center;margin:0 auto 36px;">Veja o quanto você aprendeu sobre salário-maternidade!</p>
+    <p class="section-desc fade-in" style="text-align:center;margin:0 auto 36px;">Veja o quanto você aprendeu sobre os direitos trabalhistas e previdenciários!</p>
     <div class="quiz-box fade-in" id="quizBox">
       <div class="quiz-progress" id="quizDots"></div>
       <div class="quiz-question" id="quizQ"></div>
@@ -835,13 +828,12 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
       <h3>⚖️ Direitos Previdenciários</h3>
-      <p>Material educativo criado pelo Projeto de Extensão do 9º Período de Direito da <strong>UNIFAGOC</strong> — Centro Universitário Governador Ozanam Coelho.</p>
-      <p style="margin-top:10px; font-size:0.8rem; opacity:0.55;">Prof. Orientadora: Drielly Faria de Paula Leão</p>
+      <p>Material educativo e projeto de extensão comunitária criado pelos alunos do <strong>9º Período de Direito (2026)</strong> da <strong>UNIFAGOC</strong> — Centro Universitário Governador Ozanam Coelho.</p>
+      <p style="margin-top:10px; font-size:0.85rem; font-weight: 700; color: var(--yellow);">Profª Orientadora: Drielly Faria de Paula Leão</p>
     </div>
     <div class="footer-col">
       <h4>Desenvolvido por</h4>
@@ -849,23 +841,22 @@
       <a href="#">Gabriel Gomes Dias</a>
       <a href="#">Juliano Quirico de Moura Pacheco</a>
       <a href="#">Pablo Moura de Oliveira</a>
-      <a href="#">Pedro Gabriel Bovalente Marco</a>
     </div>
     <div class="footer-col">
-      <h4>Mais</h4>
+      <h4>&nbsp;</h4>
+      <a href="#">Pedro Gabriel Bovalente Marco</a>
       <a href="#">Rafael José Gomes Ribeiro</a>
       <a href="#">Thaynan Araujo Gonçalves</a>
-      <a href="https://www.gov.br/meuinss" target="_blank">📱 App Meu INSS</a>
-      <a href="tel:135">📞 Ligue 135</a>
-      <a href="https://unifagoc.edu.br" target="_blank">🏛️ UNIFAGOC</a>
+      <div style="margin-top: 15px;">
+        <a href="https://www.gov.br/meuinss" target="_blank" style="color: var(--yellow); font-weight: 700;">📱 App Meu INSS Oficial</a>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 UNIFAGOC – Material educativo. Não substitui orientação jurídica profissional.</p>
+    <p>© 2026 UNIFAGOC – Material educativo. Não substitui consulta jurídica profissional em casos concretos.</p>
   </div>
 </footer>
 
-<!-- Back to Top -->
 <button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
@@ -880,34 +871,34 @@
   // ======== QUIZ ========
   const quizData = [
     {
-      q: "Uma trabalhadora CLT foi contratada hoje. Se tiver bebê amanhã, ela tem direito ao salário-maternidade?",
-      opts: ["Sim, sem exigência de carência", "Não, precisa trabalhar 6 meses antes", "Não, precisa pagar 10 meses de INSS"],
+      q: "Uma trabalhadora CLT foi contratada hoje. Se o bebê nascer amanhã, ela tem direito ao salário-maternidade?",
+      opts: ["Sim, não há carência.", "Não, precisa trabalhar 6 meses.", "Não, precisa pagar 10 meses de INSS."],
       correct: 0,
-      explain: "Correto! Trabalhadora CLT não precisa de carência mínima."
+      explain: "Correto! Para funcionárias CLT, não existe exigência de tempo mínimo (carência) para receber."
     },
     {
-      q: "Quantos dias dura o salário-maternidade padrão?",
-      opts: ["60 dias", "90 dias", "120 dias", "180 dias"],
+      q: "Em caso de demissão (Período de Graça), qual é o prazo MÁXIMO de proteção gratuita garantida pelo INSS?",
+      opts: ["Apenas 6 meses", "Até 24 meses (2 anos)", "Até 36 meses (3 anos)"],
       correct: 2,
-      explain: "120 dias (4 meses) é o prazo padrão! Pode chegar a 180 com o Programa Empresa Cidadã."
+      explain: "Correto! Com 10 anos de contribuição + comprovação de desemprego, a proteção é de até 3 anos."
     },
     {
-      q: "Uma autônoma precisa de quantos meses de contribuição (carência) para ter direito ao benefício?",
-      opts: ["Nenhum", "5 meses", "10 meses", "12 meses"],
+      q: "Uma autônoma/MEI precisa de quantos meses pagos (carência) para ter o direito?",
+      opts: ["Nenhum", "5 meses", "10 meses"],
       correct: 2,
-      explain: "Autônomas, MEI e rurais precisam de 10 meses de contribuição antes do parto."
+      explain: "A regra geral exige 10 meses de contribuição pagos antes do parto."
     },
     {
-      q: "O pai pode receber o salário-maternidade?",
-      opts: ["Nunca", "Sim, sempre que quiser", "Sim, em casos de adoção ou falecimento da mãe"],
-      correct: 2,
-      explain: "Correto! O pai tem direito em adoção (homem solteiro) e se a mãe falecer."
+      q: "Os homens (pais) podem receber o salário-maternidade?",
+      opts: ["Nunca.", "Sim, em casos de adoção ou falecimento da mãe.", "Sim, a qualquer momento."],
+      correct: 1,
+      explain: "Isso mesmo! O direito se estende ao pai adotante (solteiro/casal) ou em caso trágico do falecimento da mãe."
     },
     {
-      q: "Qual é o prazo máximo do Período de Graça para quem tem +10 anos de INSS e comprovação de desemprego?",
-      opts: ["12 meses", "24 meses", "36 meses"],
-      correct: 2,
-      explain: "Até 36 meses (3 anos) de proteção! É a maior duração do período de graça."
+      q: "Em caso de Aborto Espontâneo, a mulher possui algum amparo da lei?",
+      opts: ["Não tem direito.", "Direito a 2 semanas de benefício.", "Direito aos 120 dias normais."],
+      correct: 1,
+      explain: "Correto! A lei garante 2 semanas de salário-maternidade para a recuperação em casos de aborto não criminoso."
     },
   ];
 
@@ -919,7 +910,6 @@
     const q = quizData[current];
     answered = false;
 
-    // dots
     const dots = document.getElementById('quizDots');
     dots.innerHTML = quizData.map((_, i) => `<div class="quiz-dot ${i < current ? 'done' : i === current ? 'current' : ''}"></div>`).join('');
 
@@ -969,9 +959,9 @@
     box.innerHTML = `
       <div class="quiz-score">${score} / ${quizData.length}</div>
       <p style="font-size:1.2rem;font-weight:800;margin-bottom:12px;">
-        ${score === quizData.length ? '🏆 Parabéns! Você acertou tudo!' : score >= 3 ? '🎉 Muito bem! Você conhece bem seus direitos.' : '📚 Que tal reler o conteúdo? Você pode melhorar!'}
+        ${score === quizData.length ? '🏆 Brilhante! Você conhece todos os seus direitos!' : score >= 3 ? '🎉 Muito bem! Você tem uma ótima noção previdenciária.' : '📚 O INSS tem muitos detalhes! O importante é sempre buscar informação.'}
       </p>
-      <p style="opacity:0.8;margin-bottom:24px;">Compartilhe esse conhecimento com quem você ama!</p>
+      <p style="opacity:0.8;margin-bottom:24px;">Compartilhe o QR Code da nossa cartilha para ajudar mais pessoas!</p>
       <button class="btn-primary" onclick="restartQuiz()">🔄 Tentar novamente</button>
     `;
   }
