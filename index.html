@@ -32,12 +32,12 @@
     .blob-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .blob-bg svg { width: 100%; height: 100%; }
 
-    /* ACCESSIBILITY */
-    .a11y-bar { position: fixed; top: 0; right: 0; z-index: 200; display: flex; gap: 4px; padding: 8px 12px; background: rgba(0,0,0,0.38); backdrop-filter: blur(8px); border-bottom-left-radius: 14px; }
+    /* ACESSIBILIDADE BARRA */
+    .a11y-bar { position: fixed; top: 0; right: 0; z-index: 200; display: flex; gap: 4px; padding: 8px 12px; background: rgba(0,0,0,0.38); backdrop-filter: blur(8px); border-bottom-left-radius: 14px; transition: top 0.3s; }
     .a11y-btn { background: rgba(255,255,255,0.18); border: 1.5px solid rgba(255,255,255,0.3); color: #fff; border-radius: 8px; padding: 6px 10px; font-size: 0.78rem; font-weight: 800; cursor: pointer; transition: background 0.2s, transform 0.15s; font-family: 'Nunito', sans-serif; }
     .a11y-btn:hover, .a11y-btn.active { background: var(--yellow); color: var(--text-dark); transform: scale(1.07); }
 
-    /* ALERT */
+    /* ALERT BANNER */
     .alert-banner { position: relative; z-index: 15; background: var(--yellow); color: var(--text-dark); text-align: center; padding: 10px 50px; font-weight: 800; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .alert-close { position: absolute; right: 14px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-dark); font-weight: 900; }
 
@@ -77,7 +77,11 @@
     .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; animation: slideUp 0.9s 0.15s ease both; }
     .hero-card { background: rgba(255,255,255,0.16); border-radius: 20px; padding: 20px 16px; backdrop-filter: blur(8px); border: 1.5px solid rgba(255,255,255,0.26); transition: transform 0.25s, box-shadow 0.25s; }
     .hero-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 14px 32px rgba(0,0,0,0.22); }
-    .hero-card .icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+    
+    /* IMAGENS PHOTOSHOP NOS CARDS */
+    .icon-img { width: 50px; height: 50px; margin-bottom: 12px; display: block; object-fit: contain; }
+    .men-icon-img { width: 56px; height: 56px; margin-bottom: 14px; display: block; object-fit: contain; }
+    
     .hero-card h3 { font-size: 0.92rem; font-weight: 800; margin-bottom: 6px; }
     .hero-card p { font-size: 0.8rem; opacity: 0.88; line-height: 1.5; }
     .hero-card.accent { background: var(--yellow); color: var(--text-dark); border-color: var(--yellow); }
@@ -147,6 +151,17 @@
     .accordion-item.open .accordion-body { max-height: 700px; padding: 0 22px 22px; }
     .accordion-body p { font-size: 0.93rem; line-height: 1.7; opacity: 0.92; margin-bottom: 12px; }
 
+    /* MYTHS & TRUTHS */
+    .myth-section { background: var(--blue-dark); }
+    .myth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .myth-card { background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.18); border-radius: 20px; padding: 26px; transition: transform 0.25s, box-shadow 0.25s; }
+    .myth-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.4); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .myth-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; font-weight: 900; font-size: 0.8rem; margin-bottom: 14px; letter-spacing: 1px; }
+    .myth-badge.myth { background: rgba(239,68,68,0.2); color: #ff8a8a; border: 1px solid var(--red); }
+    .myth-badge.truth { background: rgba(6,214,160,0.2); color: #8affd1; border: 1px solid var(--green); }
+    .myth-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; line-height: 1.45; }
+    .myth-card p { font-size: 0.9rem; line-height: 1.6; opacity: 0.88; }
+
     /* GRACE */
     .grace-timeline { display: flex; border-radius: 22px; overflow: hidden; margin-top: 36px; box-shadow: 0 8px 36px rgba(0,0,0,0.22); flex-wrap: wrap; }
     .grace-block { flex: 1; min-width: 200px; padding: 30px 24px; display: flex; flex-direction: column; gap: 8px; }
@@ -180,7 +195,6 @@
     .men-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
     .men-card { background:rgba(255,255,255,0.14); border-radius:22px; padding:28px 24px; border:2px solid rgba(255,255,255,0.2); transition:transform 0.25s; }
     .men-card:hover { transform:translateY(-5px); }
-    .men-card .men-icon { font-size:2.4rem; margin-bottom:12px; display:block; }
     .men-card h3 { font-size:1.08rem; font-weight:800; margin-bottom:10px; color:var(--yellow); }
     .men-card p { font-size:0.9rem; line-height:1.65; opacity:0.9; }
 
@@ -192,28 +206,6 @@
     .step-num { width:46px; height:46px; background:var(--yellow); color:var(--text-dark); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.2rem; margin:0 auto 12px; }
     .step-card h4 { font-weight:800; font-size:0.95rem; margin-bottom:8px; }
     .step-card p { font-size:0.86rem; opacity:0.88; line-height:1.55; }
-
-    /* FAQ */
-    .faq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
-    .faq-item { background:rgba(255,255,255,0.13); border-radius:16px; overflow:hidden; border:1.5px solid rgba(255,255,255,0.18); }
-    .faq-item.open { border-color:rgba(255,255,255,0.38); }
-    .faq-q { padding:18px 20px; font-weight:800; font-size:0.92rem; cursor:pointer; display:flex; justify-content:space-between; align-items:flex-start; gap:10px; transition:background 0.2s; user-select:none; }
-    .faq-q:hover { background:rgba(255,255,255,0.08); }
-    .faq-q .arrow { flex-shrink:0; font-size:1rem; transition:transform 0.3s; }
-    .faq-item.open .faq-q .arrow { transform:rotate(180deg); }
-    .faq-a { max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.3s; padding:0 20px; font-size:0.88rem; line-height:1.65; opacity:0.88; }
-    .faq-item.open .faq-a { max-height:400px; padding:0 20px 18px; }
-
-    /* MYTHS & TRUTHS (NOVA SEÇÃO ÚTIL) */
-    .myth-section { background: var(--blue-dark); }
-    .myth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .myth-card { background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.18); border-radius: 20px; padding: 26px; transition: transform 0.25s, box-shadow 0.25s; }
-    .myth-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.4); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-    .myth-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; font-weight: 900; font-size: 0.8rem; margin-bottom: 14px; letter-spacing: 1px; }
-    .myth-badge.myth { background: rgba(239,68,68,0.2); color: #ff8a8a; border: 1px solid var(--red); }
-    .myth-badge.truth { background: rgba(6,214,160,0.2); color: #8affd1; border: 1px solid var(--green); }
-    .myth-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; line-height: 1.45; }
-    .myth-card p { font-size: 0.9rem; line-height: 1.6; opacity: 0.88; }
 
     /* QUIZ */
     .quiz-section { }
@@ -244,7 +236,6 @@
     .share-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:50px; font-weight:800; font-size:0.92rem; cursor:pointer; border:none; text-decoration:none; transition:transform 0.2s, box-shadow 0.2s; }
     .share-btn:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(0,0,0,0.22); }
     .share-btn.wa { background:#25D366; color:#fff; }
-    .share-btn.tw { background:#1DA1F2; color:#fff; }
     .share-btn.fb { background:#1877F2; color:#fff; }
     .share-btn.cp { background:rgba(255,255,255,0.2); color:#fff; border:2px solid rgba(255,255,255,0.35); }
 
@@ -265,7 +256,22 @@
 
     /* RESPONSIVE */
     @media(max-width:900px) { nav{display:none;} .hamburger{display:flex;} .stats-inner{grid-template-columns:repeat(2,1fr);} }
-    @media(max-width:768px) { :root{--section-pad:56px;} .hero-inner{grid-template-columns:1fr;} .hero-cards{grid-template-columns:1fr 1fr;} .footer-inner{grid-template-columns:1fr;} .quiz-box,.calc-box{padding:26px 18px;} .grace-block{min-width:100%;} }
+    @media(max-width:768px) { 
+      :root{--section-pad:56px;} 
+      .hero-inner{grid-template-columns:1fr;} 
+      .hero-cards{grid-template-columns:1fr 1fr;} 
+      .footer-inner{grid-template-columns:1fr;} 
+      .quiz-box,.calc-box{padding:26px 18px;} 
+      .grace-block{min-width:100%;} 
+      
+      /* Ajuste da barra de acessibilidade (Vertical no Mobile) */
+      .a11y-bar {
+        top: 75px; 
+        flex-direction: column; 
+        border-top-left-radius: 14px;
+        padding: 10px 8px;
+      }
+    }
     @media(max-width:480px) { .hero-cards{grid-template-columns:1fr;} .stats-inner{grid-template-columns:1fr 1fr;} }
   </style>
 </head>
@@ -335,11 +341,24 @@
         <a href="#calculadora" class="btn-secondary">🧮 Calcular meu prazo</a>
       </div>
     </div>
+    
     <div class="hero-cards">
-      <div class="hero-card accent"><span class="icon">🤱</span><h3>120 dias garantidos</h3><p>Para CLT, sem carência mínima.</p></div>
-      <div class="hero-card"><span class="icon">👨‍👩‍👧</span><h3>Pais também têm direito</h3><p>Em adoção e falecimento da mãe.</p></div>
-      <div class="hero-card"><span class="icon">⏳</span><h3>Período de Graça</h3><p>Proteção por até 36 meses.</p></div>
-      <div class="hero-card"><span class="icon">📱</span><h3>Pelo app Meu INSS</h3><p>Peça online sem sair de casa.</p></div>
+      <div class="hero-card accent">
+        <img src="icone-maternidade.png" alt="Maternidade" class="icon-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%230d2b4e\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z\'/><path d=\'M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z\'/><path d=\'M12 12v9\'/><path d=\'M8 17l4-5 4 5\'/></svg>'">
+        <h3>120 dias garantidos</h3><p>Para CLT, sem carência mínima.</p>
+      </div>
+      <div class="hero-card">
+        <img src="icone-familia.png" alt="Pais e Adoção" class="icon-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\'/><circle cx=\'9\' cy=\'7\' r=\'4\'/><path d=\'M23 21v-2a4 4 0 0 0-3-3.87\'/><path d=\'M16 3.13a4 4 0 0 1 0 7.75\'/></svg>'">
+        <h3>Pais também têm direito</h3><p>Em adoção e falecimento da mãe.</p>
+      </div>
+      <div class="hero-card">
+        <img src="icone-relogio.png" alt="Tempo" class="icon-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M12 6v6l4 2\'/></svg>'">
+        <h3>Período de Graça</h3><p>Proteção por até 36 meses.</p>
+      </div>
+      <div class="hero-card">
+        <img src="icone-celular.png" alt="Celular" class="icon-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><rect x=\'5\' y=\'2\' width=\'14\' height=\'20\' rx=\'2\' ry=\'2\'/><path d=\'M12 18h.01\'/></svg>'">
+        <h3>Pelo app Meu INSS</h3><p>Peça online sem sair de casa.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -513,9 +532,22 @@
     <h2 class="section-title fade-in">Homens também <span>podem receber!</span></h2>
     <p class="section-desc fade-in">O salário-maternidade protege a criança. Veja as situações em que a lei defere o benefício ao pai:</p>
     <div class="men-grid">
-      <div class="men-card fade-in"><span class="men-icon">👨‍👧</span><h3>Adoção (Qualquer Casal)</h3><p>Seja em adoção monoparental ou por casais, a lei garante <strong>120 dias completos</strong> de benefício.</p><div class="acc-highlight" style="margin-top:14px;">💑 A regra é clara: apenas <strong>um dos parceiros</strong> do casal pode solicitar, não acumula.</div></div>
-      <div class="men-card fade-in delay-1"><span class="men-icon">🖤</span><h3>Falecimento da Mãe</h3><p>Se a mãe falecer infelizmente durante o parto ou enquanto recebia o benefício, <strong>o viúvo assume o pagamento</strong> do tempo restante para cuidar do bebê.</p></div>
-      <div class="men-card fade-in delay-2"><span class="men-icon">👔</span><h3>Licença-Paternidade da Empresa</h3><p>Por lei padrão, a licença é de <strong>5 dias</strong> para homens CLT. Em empresas inscritas no <strong>Empresa Cidadã</strong>, sobe para <strong>20 dias</strong> remunerados!</p></div>
+      <div class="men-card fade-in">
+        <img src="icone-adocao.png" alt="Adoção" class="men-icon-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'56\' height=\'56\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\'/><circle cx=\'9\' cy=\'7\' r=\'4\'/><path d=\'M23 21v-2a4 4 0 0 0-3-3.87\'/><path d=\'M16 3.13a4 4 0 0 1 0 7.75\'/></svg>'">
+        <h3>Adoção (Qualquer Casal)</h3>
+        <p>Seja em adoção monoparental ou por casais, a lei garante <strong>120 dias completos</strong> de benefício.</p>
+        <div class="acc-highlight" style="margin-top:14px;">💑 A regra é clara: apenas <strong>um dos parceiros</strong> do casal pode solicitar, não acumula.</div>
+      </div>
+      <div class="men-card fade-in delay-1">
+        <img src="icone-coracao.png" alt="Coração" class="men-icon-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'56\' height=\'56\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\'/></svg>'">
+        <h3>Falecimento da Mãe</h3>
+        <p>Se a mãe falecer infelizmente durante o parto ou enquanto recebia o benefício, <strong>o viúvo assume o pagamento</strong> do tempo restante para cuidar do bebê.</p>
+      </div>
+      <div class="men-card fade-in delay-2">
+        <img src="icone-trabalho.png" alt="Empresa" class="men-icon-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'56\' height=\'56\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><rect x=\'2\' y=\'7\' width=\'20\' height=\'14\' rx=\'2\' ry=\'2\'/><path d=\'M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\'/></svg>'">
+        <h3>Licença-Paternidade da Empresa</h3>
+        <p>Por lei padrão, a licença é de <strong>5 dias</strong> para homens CLT. Em empresas inscritas no <strong>Empresa Cidadã</strong>, sobe para <strong>20 dias</strong> remunerados!</p>
+      </div>
     </div>
   </div>
 </section>
@@ -545,9 +577,8 @@
     <p class="section-desc fade-in">As respostas rápidas que a nossa turma mais costuma ouvir:</p>
     <div class="faq-grid">
       <div class="faq-item fade-in" id="faq1"><div class="faq-q" onclick="toggleFaq('faq1')">O benefício é descontado no Imposto de Renda?<span class="arrow">▼</span></div><div class="faq-a">Sim. A Receita Federal entende que o salário-maternidade compõe a sua renda tributável anual, portanto ele entra no cálculo do seu IR normal.</div></div>
-      <div class="faq-item fade-in delay-1" id="faq2"><div class="faq-q" onclick="toggleFaq('faq2')">Posso receber seguro-desemprego junto?<span class="arrow">▼</span></div><div class="faq-a">Não. Os dois benefícios não podem ser pagos no mesmo mês. O INSS pausa o seguro, paga os 120 dias da maternidade e depois retoma as parcelas do seguro que sobraram.</div></div>
-      <div class="faq-item fade-in delay-2" id="faq3"><div class="faq-q" onclick="toggleFaq('faq3')">A empresa está negando ou enrolando para pagar, e agora?<span class="arrow">▼</span></div><div class="faq-a">O pagamento para CLT é uma obrigação imposta à empresa, que depois abate nos impostos dela. Negar o repasse é crime. A denúncia pode ser feita no Ministério do Trabalho ou via sindicato/advogado.</div></div>
-      <div class="faq-item fade-in" id="faq4"><div class="faq-q" onclick="toggleFaq('faq4')">Dona de casa (facultativa) pode pagar e receber?<span class="arrow">▼</span></div><div class="faq-a">Sim! Desde que faça a contribuição via carnê do INSS (código facultativo) por, no mínimo, 10 meses antes do parto da criança.</div></div>
+      <div class="faq-item fade-in delay-1" id="faq2"><div class="faq-q" onclick="toggleFaq('faq2')">A empresa está negando ou enrolando para pagar, e agora?<span class="arrow">▼</span></div><div class="faq-a">O pagamento para CLT é uma obrigação imposta à empresa, que depois abate nos impostos dela. Negar o repasse é crime. A denúncia pode ser feita no Ministério do Trabalho ou via sindicato/advogado.</div></div>
+      <div class="faq-item fade-in delay-2" id="faq3"><div class="faq-q" onclick="toggleFaq('faq3')">Dona de casa (facultativa) pode pagar e receber?<span class="arrow">▼</span></div><div class="faq-a">Sim! Desde que faça a contribuição via carnê do INSS (código facultativo) por, no mínimo, 10 meses antes do parto da criança.</div></div>
     </div>
   </div>
 </section>
