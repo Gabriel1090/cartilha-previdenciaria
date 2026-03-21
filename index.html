@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIREITOS PREVIDENCIÁRIOS • Salário-Maternidade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap');
+        
+        :root {
+            --azul-principal: #00A8E8;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #003366; /* Cor de segurança caso a imagem demore a carregar */
+            background-image: url('fundo liso.png'); /* Nome do arquivo exatamente como você enviou */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
+        .wave-bg {
+            background: linear-gradient(180deg, #00A8E8 0%, #0077B6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wave-bg::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1440 120%22><path fill=%22%23ffffff%22 fill-opacity=%220.15%22 d=%22M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,80C672,64,768,64,864,80C960,96,1056,128,1152,128C1248,128,1344,96,1392,80L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z%22/></svg>') repeat-x;
+            background-size: 200% 100%;
+            animation: wave 15s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: -400px; }
+        }
+        
+        .cartilha-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .cartilha-card:hover {
+            transform: scale(1.05) translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgb(0 168 232 / 0.4);
+        }
+        
+        .titulo-cartilha {
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 3px 3px 0 #003366;
+        }
+        
+        .ilustracao {
+            filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.3));
+        }
+        
+        .tab-button {
+            transition: all 0.3s;
+        }
+        
+        .tab-button.active {
+            background-color: #ffffff;
+            color: #003366;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+        }
+        
+        .qr-container {
+            animation: qr-pulse 2s infinite alternate;
+        }
+        
+        @keyframes qr-pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.08); }
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen">
+    <nav class="bg-[#003366] border-b border-[#00A8E8]/30 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://i.imgur.com/0vO8v3F.png" alt="UNIFAGOC" class="h-10" onerror="this.src='https://via.placeholder.com/120x50/003366/ffffff?text=UNIFAGOC'">
+                <div>
+                    <h1 class="titulo-cartilha text-2xl font-bold tracking-wider hidden sm:block">DIREITOS PREVIDENCIÁRIOS</h1>
+                    <p class="text-sm text-[#00A8E8] font-bold">Salário-Maternidade</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#inicio" class="hover:text-[#00A8E8] transition">Início</a>
+                <a href="#regras" class="hover:text-[#00A8E8] transition">Regras por situação</a>
+                <a href="#como-solicitar" class="hover:text-[#00A8E8] transition">Como solicitar</a>
+            </div>
+            
+            <button onclick="document.getElementById('como-solicitar').scrollIntoView({ behavior: 'smooth' })" 
+                    class="bg-white text-[#003366] px-4 py-2 md:px-6 md:py-2 rounded-full font-bold flex items-center gap-2 hover:bg-[#00A8E8] hover:text-white transition shadow-md">
+                <i class="fas fa-mobile-alt"></i>
+                <span class="hidden sm:inline">Meu INSS</span>
+            </button>
+        </div>
+    </nav>
+
+    <section id="inicio" class="wave-bg py-20 relative">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-3 flex justify-center">
+                <img src="image_4f10e0.jpg" alt="Mulher com celular" 
+                     class="ilustracao w-64 md:w-80 h-auto drop-shadow-2xl rounded-3xl" onerror="this.style.display='none'">
+            </div>
+
+            <div class="md:col-span-6 text-center">
+                <h1 class="titulo-cartilha text-5xl md:text-7xl font-black leading-tight mb-4">
+                    DIREITOS<br>PREVIDENCIÁRIOS
+                </h1>
+                <p class="text-2xl md:text-3xl font-medium text-[#FFDD00] tracking-widest mb-8">
+                    DESCUBRA SEU DIREITO AO<br>SALÁRIO-MATERNIDADE
+                </p>
+                
+                <div class="qr-container mx-auto w-48 bg-white p-3 rounded-3xl shadow-2xl mb-8 inline-block">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://meu.inss.gov.br" alt="QR Code" 
+                         class="w-full h-auto rounded-xl">
+                    <p class="text-[#003366] text-[10px] font-black mt-2 tracking-widest">ACESSE O APP AQUI</p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="document.getElementById('regras').scrollIntoView({ behavior: 'smooth' })" 
+                            class="bg-white text-[#003366] px-8 py-4 rounded-3xl font-bold text-lg flex items-center justify-center gap-3 hover:scale-105 transition shadow-lg">
+                        <i class="fas fa-book-open"></i>
+                        VER REGRAS
+                    </button>
+                </div>
+            </div>
+
+            <div class="md:col-span-3 flex justify-center hidden md:flex">
+                <img src="PARTE INTERNA cartilha.jpg" alt="Família" 
+                     class="ilustracao w-64 md:w-80 h-auto drop-shadow-2xl rounded-3xl object-cover opacity-80" onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-12 bg-white/10 backdrop-blur-md rounded-3xl mx-4 md:mx-auto -mt-10 relative z-10 border border-white/20 shadow-2xl">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h2 class="titulo-cartilha text-4xl font-bold text-[#FFDD00] mb-6">O PROJETO</h2>
+                <div class="space-y-4 text-lg text-gray-100">
+                    <p>
+                        Este material foi criado para informar trabalhadores e famílias sobre as regras do <strong>salário-maternidade</strong> e a importante <strong>Manutenção da Qualidade de Segurado</strong>.
+                    </p>
+                    <p>
+                        Nosso foco é garantir que todas as mulheres (empregadas, autônomas ou desempregadas) e também os pais conheçam seus direitos previdenciários e não percam benefícios por falta de informação.
+                    </p>
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="inline-flex flex-col items-center gap-4 bg-gradient-to-br from-[#003366] to-[#00A8E8] border border-[#00A8E8] p-8 rounded-3xl shadow-xl w-full max-w-sm">
+                    <i class="fas fa-shield-halved text-6xl text-[#FFDD00]"></i>
+                    <div>
+                        <p class="font-bold text-2xl tracking-widest text-white">PROTEÇÃO</p>
+                        <p class="text-sm text-[#00A8E8] font-semibold mt-1">À maternidade e à infância</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-6 py-12 text-center">
+        <p class="uppercase tracking-widest text-xs mb-4 text-[#FFDD00] font-bold">Desenvolvido por</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm max-w-4xl mx-auto font-medium bg-white/5 p-6 rounded-2xl">
+            <div>Felipe Gonçalves da Silva</div>
+            <div>Gabriel Gomes Dias</div>
+            <div>Juliano Quirico de M. Pacheco</div>
+            <div>Pablo Moura de Oliveira</div>
+            <div>Pedro Gabriel B. Marco</div>
+            <div>Rafael José Gomes Ribeiro</div>
+            <div>Thaynan Araújo Gonçalves</div>
+            <div class="text-[#00A8E8] font-bold">9º Período • Direito</div>
+        </div>
+    </div>
+
+    <section id="regras" class="py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="titulo-cartilha text-center text-4xl md:text-5xl font-black mb-4">COM LICENÇA,<br>VOCÊ CONHECE AS REGRAS?</h2>
+            <p class="text-center text-lg max-w-2xl mx-auto mb-10 text-gray-200">Escolha a sua situação atual de trabalho abaixo e descubra os seus direitos na prática.</p>
+            
+            <div class="flex flex-wrap justify-center gap-2 mb-10 bg-[#003366]/50 p-2 rounded-3xl border border-[#00A8E8]/30">
+                <button onclick="mudarTab(0)" class="tab-button active px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-sm md:text-base flex-grow sm:flex-grow-0" id="tab-0">CLT</button>
+                <button onclick="mudarTab(1)" class="tab-button px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-sm md:text-base flex-grow sm:flex-grow-0" id="tab-1">Autônomas / MEI</button>
+                <button onclick="mudarTab(2)" class="tab-button px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-sm md:text-base flex-grow sm:flex-grow-0 border border-[#FFDD00]" id="tab-2">Desempregada</button>
+                <button onclick="mudarTab(3)" class="tab-button px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-sm md:text-base flex-grow sm:flex-grow-0" id="tab-3">Casos Especiais</button>
+            </div>
+
+            <div id="conteudo-tabs" class="min-h-[400px]">
+                
+                <div id="tab-content-0" class="tab-content">
+                    <div class="bg-gradient-to-br from-white/10 to-transparent backdrop-blur-md border border-white/20 rounded-3xl p-6 md:p-10 text-lg shadow-2xl">
+                        <div class="flex items-center gap-4 mb-6 border-b border-white/20 pb-4">
+                            <i class="fas fa-briefcase text-4xl text-[#00A8E8]"></i>
+                            <h3 class="text-3xl font-bold text-white">Carteira Assinada (CLT)</h3>
+                        </div>
+                        <p class="mb-6">Se você está empregada formalmente, tem direito ao benefício integral por <strong>120 dias</strong>.</p>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-[#003366]/50 p-6 rounded-2xl">
+                                <h4 class="font-bold text-[#FFDD00] text-xl mb-2"><i class="fas fa-hourglass-start mr-2"></i>Carência (Tempo Mínimo)</h4>
+                                <p class="text-base text-gray-200">Não exige tempo mínimo de INSS. Se você foi contratada num dia e a criança nascer no outro, você já tem o direito garantido.</p>
+                            </div>
+                            <div class="bg-[#003366]/50 p-6 rounded-2xl">
+                                <h4 class="font-bold text-[#FFDD00] text-xl mb-2"><i class="fas fa-building mr-2"></i>Quem paga?</h4>
+                                <p class="text-base text-gray-200">A própria empresa onde você trabalha (que depois compensa esse valor nos impostos). O pedido é feito direto no RH, não no INSS.</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 border-l-4 border-[#FFDD00] bg-white/5 p-4 rounded-r-xl">
+                            <p class="text-base"><strong>ESTABILIDADE PROVISÓRIA:</strong> A gestante não pode ser demitida sem justa causa desde a confirmação da gravidez até 5 meses após o parto.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-content-1" class="tab-content hidden">
+                    <div class="bg-gradient-to-br from-white/10 to-transparent backdrop-blur-md border border-white/20 rounded-3xl p-6 md:p-10 text-lg shadow-2xl">
+                        <div class="flex items-center gap-4 mb-6 border-b border-white/20 pb-4">
+                            <i class="fas fa-store text-4xl text-[#00A8E8]"></i>
+                            <h3 class="text-3xl font-bold text-white">Conta Própria, MEI e Rurais</h3>
+                        </div>
+                        <p class="mb-6">Quem trabalha por conta própria tem direito, mas precisa cumprir algumas exigências da lei:</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-[#003366]/50 p-6 rounded-2xl">
+                                <h4 class="font-bold text-[#FFDD00] text-xl mb-2">A Regra dos 10 Meses</h4>
+                                <p class="text-base text-gray-200">É obrigatório ter pago o carnê do INSS (ou comprovado o trabalho rural) por pelo menos <strong>10 meses</strong> antes do parto.</p>
+                            </div>
+                            <div class="bg-[#003366]/50 p-6 rounded-2xl">
+                                <h4 class="font-bold text-[#FFDD00] text-xl mb-2">Parto Prematuro</h4>
+                                <p class="text-base text-gray-200">A lei é justa: a carência de 10 meses é reduzida na mesma proporção em que o parto foi antecipado. Ninguém sai prejudicado!</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 border-l-4 border-red-400 bg-white/5 p-4 rounded-r-xl">
+                            <p class="text-base"><strong>Cuidado ao parar de pagar!</strong> Se você perder o vínculo com o INSS, ao voltar a pagar, precisará cumprir metade da carência (5 meses) antes do parto para ter o direito de novo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-content-2" class="tab-content hidden">
+                    <div class="bg-gradient-to-br from-[#00A8E8]/20 to-[#003366]/80 backdrop-blur-md border border-[#FFDD00]/50 rounded-3xl p-6 md:p-10 text-lg shadow-[0_0_30px_rgba(255,221,0,0.15)]">
+                        <div class="flex items-center gap-4 mb-6 border-b border-white/20 pb-4">
+                            <i class="fas fa-umbrella text-4xl text-[#FFDD00]"></i>
+                            <h3 class="text-3xl md:text-4xl font-black text-white">O Período de Graça</h3>
+                        </div>
+                        <p class="text-xl font-medium text-[#FFDD00] mb-4">É aqui que muita gente perde dinheiro!</p>
+                        <p class="mb-6 text-gray-100">Se você foi demitida ou parou de pagar o carnê, você <strong>NÃO PERDE</strong> seus direitos na mesma hora. A lei garante um tempo de proteção 100% gratuita.</p>
+                        
+                        <div class="bg-[#003366] p-6 rounded-2xl border border-[#00A8E8]/30 mb-6">
+                            <h4 class="font-bold text-white text-xl mb-4 border-b border-white/10 pb-2">Como calcular o seu prazo (Art. 15, Lei 8.213/91):</h4>
+                            <ul class="space-y-3 text-base text-gray-200">
+                                <li class="flex items-start gap-3"><i class="fas fa-check text-[#00A8E8] mt-1"></i> <span><strong>Regra Geral:</strong> Proteção de 12 meses após sair do emprego.</span></li>
+                                <li class="flex items-start gap-3"><i class="fas fa-plus text-[#FFDD00] mt-1"></i> <span><strong>Prorrogação 1 (+12 meses):</strong> Se você já teve mais de 10 anos de contribuição ao INSS na vida.</span></li>
+                                <li class="flex items-start gap-3"><i class="fas fa-plus text-[#FFDD00] mt-1"></i> <span><strong>Prorrogação 2 (+12 meses):</strong> Se comprovar que está em situação de desemprego involuntário (ex: Seguro-Desemprego/Sine).</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-[#FFDD00] text-[#003366] p-5 rounded-xl font-bold text-center">
+                            O Mês de Lambuja (§ 4º do Art. 15): O prazo ainda se estende até o dia 15 do mês seguinte ao fim da contagem. A proteção pode chegar a 37 meses e 15 dias!
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-content-3" class="tab-content hidden">
+                    <div class="bg-gradient-to-br from-white/10 to-transparent backdrop-blur-md border border-white/20 rounded-3xl p-6 md:p-10 text-lg shadow-2xl">
+                        <div class="flex items-center gap-4 mb-8 border-b border-white/20 pb-4">
+                            <i class="fas fa-users text-4xl text-[#00A8E8]"></i>
+                            <h3 class="text-3xl font-bold text-white">Pais e Situações Especiais</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-[#003366]/50 p-6 rounded-2xl border-l-4 border-[#00A8E8]">
+                                <h4 class="text-[#FFDD00] text-xl font-bold mb-2">Adoção</h4>
+                                <p class="text-sm text-gray-200">Homem solteiro que adota ou obtém guarda judicial tem direito aos 120 dias. Em casais adotantes (homo ou heteroafetivos), apenas um dos parceiros pode requerer o benefício.</p>
+                            </div>
+                            
+                            <div class="bg-[#003366]/50 p-6 rounded-2xl border-l-4 border-[#00A8E8]">
+                                <h4 class="text-[#FFDD00] text-xl font-bold mb-2">Falecimento da Mãe</h4>
+                                <p class="text-sm text-gray-200">Se a mãe falecer durante o parto ou enquanto recebia o benefício, o pai (cônjuge) tem direito de receber o tempo restante, desde que ele também possua qualidade de segurado.</p>
+                            </div>
+
+                            <div class="bg-[#003366]/50 p-6 rounded-2xl border-l-4 border-purple-400">
+                                <h4 class="text-[#FFDD00] text-xl font-bold mb-2">Aborto Espontâneo</h4>
+                                <p class="text-sm text-gray-200">Em caso de aborto não criminoso (ou legal), a mulher tem direito a receber o salário-maternidade correspondente a <strong>2 semanas</strong> para sua recuperação física e mental.</p>
+                            </div>
+
+                            <div class="bg-[#003366]/50 p-6 rounded-2xl border-l-4 border-purple-400">
+                                <h4 class="text-[#FFDD00] text-xl font-bold mb-2">Natimorto</h4>
+                                <p class="text-sm text-gray-200">Se a criança nascer sem vida a partir do 6º mês de gestação (23 semanas), a mãe tem direito ao benefício integral de <strong>120 dias</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="como-solicitar" class="py-16 max-w-5xl mx-auto px-6">
+        <div class="bg-white text-[#003366] rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-[#00A8E8] rounded-bl-full opacity-10"></div>
+            
+            <h2 class="text-3xl md:text-4xl font-black text-center mb-10">Qual é o próximo passo?</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 relative z-10">
+                <div class="text-center p-4">
+                    <div class="w-16 h-16 mx-auto bg-[#00A8E8] text-white rounded-2xl rotate-3 flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">1</div>
+                    <h3 class="font-bold text-xl mb-3">Reúna os Documentos</h3>
+                    <p class="text-sm text-gray-600">Tenha em mãos RG, CPF, Carteira de Trabalho e a Certidão de Nascimento da criança (ou atestado médico/guarda).</p>
+                </div>
+                <div class="text-center p-4">
+                    <div class="w-16 h-16 mx-auto bg-[#003366] text-[#FFDD00] rounded-2xl -rotate-3 flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">2</div>
+                    <h3 class="font-bold text-xl mb-3">Fique Atenta ao Prazo</h3>
+                    <p class="text-sm text-gray-600">Você não perde o direito logo após o parto. A lei permite solicitar o benefício até <strong>5 anos</strong> após o nascimento!</p>
+                </div>
+                <div class="text-center p-4">
+                    <div class="w-16 h-16 mx-auto bg-[#00A8E8] text-white rounded-2xl rotate-3 flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">3</div>
+                    <h3 class="font-bold text-xl mb-3">Peça sem Burocracia</h3>
+                    <p class="text-sm text-gray-600">Se for CLT, peça na empresa. Se for Autônoma ou Desempregada, peça tudo pelo celular, sem sair de casa.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://meu.inss.gov.br" target="_blank" 
+                   class="inline-flex items-center justify-center gap-3 bg-[#003366] text-white px-8 py-5 md:px-12 md:py-6 rounded-full text-lg md:text-xl font-bold hover:bg-[#00A8E8] transition-all hover:scale-105 shadow-[0_10px_20px_rgba(0,51,102,0.3)] w-full md:w-auto">
+                    <i class="fas fa-fingerprint text-2xl"></i>
+                    ACESSAR MEU INSS OFICIAL
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#001a33] py-10 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-xl font-bold tracking-widest text-[#00A8E8] mb-2">UNIFAGOC</h2>
+            <p class="text-sm text-gray-400 font-medium">Centro Universitário Governador Ozanam Coelho</p>
+            <p class="text-xs text-[#FFDD00] mt-2 tracking-widest">PROJETO DE EXTENSÃO • DIREITO • 2026</p>
+            
+            <div class="mt-8 pt-6 border-t border-white/5 text-[11px] text-gray-500 max-w-2xl mx-auto">
+                <p>Este site foi criado como ferramenta de conscientização social em complemento à cartilha física do grupo.</p>
+                <p class="mt-1">Página otimizada para conexões móveis e responsiva para todas as idades.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind script (apenas inicialização básica para garantir)
+        function initTailwind() {
+            tailwind.config = {
+                content: [],
+                theme: { extend: {} }
+            }
+        }
+        initTailwind();
+
+        // Sistema de Tabs otimizado
+        let tabAtual = 0;
+        function mudarTab(n) {
+            // Remove active dos botões
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('opacity-80');
+            });
+            // Adiciona active no clicado
+            const btnClicado = document.getElementById('tab-' + n);
+            btnClicado.classList.add('active');
+            btnClicado.classList.remove('opacity-80');
+            
+            // Esconde conteúdos suavemente
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Mostra o selecionado
+            const contentSelecionado = document.getElementById('tab-content-' + n);
+            contentSelecionado.classList.remove('hidden');
+            
+            // Se estiver no celular, rola suavemente para baixo para mostrar o texto que abriu
+            if (window.innerWidth < 768) {
+                setTimeout(() => {
+                    contentSelecionado.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        // Inicializa primeira tab
+        window.onload = function() {
+            mudarTab(0);
+            
+            // Animação suave no scroll para os links do menu
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            // Subtrai 80px para não ficar embaixo da navbar fixa
+                            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 80;
+                            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
