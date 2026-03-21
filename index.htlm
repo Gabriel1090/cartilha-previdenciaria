@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Completo: Salário-Maternidade e Período de Graça</title>
+    <style>
+        :root {
+            --azul-claro: #5eb1f5;
+            --azul-medio: #3a8ee6;
+            --azul-escuro: #1d65c0;
+            --texto-claro: #f8f9fa;
+            --destaque: #ffd54f;
+            --texto-escuro: #333333;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--azul-medio);
+            background-image: linear-gradient(135deg, var(--azul-claro) 0%, var(--azul-medio) 50%, var(--azul-escuro) 100%);
+            color: var(--texto-claro);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .wave-header {
+            background-color: var(--azul-escuro);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .wave-header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            color: var(--destaque);
+            text-transform: uppercase;
+        }
+
+        .wave-header p {
+            font-size: 1.1rem;
+            margin-top: 15px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--texto-escuro);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: var(--azul-escuro);
+            margin-top: 0;
+            border-bottom: 3px solid var(--destaque);
+            padding-bottom: 10px;
+            font-size: 1.6rem;
+        }
+
+        .card h3 {
+            color: var(--azul-medio);
+            font-size: 1.2rem;
+            margin-top: 25px;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .card ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .card li {
+            margin-bottom: 12px;
+        }
+
+        .destaque-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #856404;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--azul-escuro);
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--azul-medio);
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            background-color: var(--azul-escuro);
+            margin-top: 50px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (min-width: 768px) {
+            .btn-container {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .btn {
+                flex: 1;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="wave-header">
+        <h1>Guia do Salário-Maternidade</h1>
+        <p>Um material completo de conscientização previdenciária. Entenda a fundo os seus direitos, prazos, exceções da lei e como funciona a Manutenção da Qualidade de Segurado.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card">
+            <h2>1. Empregadas com Carteira Assinada (CLT)</h2>
+            <p>Para a trabalhadora formal, a proteção à maternidade é ampla e imediata. O benefício tem duração padrão de <strong>120 dias</strong>, podendo ter início até 28 dias antes do parto ou a partir da data do nascimento.</p>
+            <ul>
+                <li><strong>Carência (Tempo Mínimo):</strong> Não há exigência de carência. Se a trabalhadora for registrada no primeiro dia do mês e o parto ocorrer no dia seguinte, ela já tem direito integral ao benefício.</li>
+                <li><strong>Quem paga:</strong> O pagamento é feito diretamente pela <strong>empresa</strong>, juntamente com a folha de pagamento normal. Posteriormente, a empresa compensa esse valor repassando menos impostos ao INSS.</li>
+                <li><strong>Estabilidade Provisória:</strong> A Constituição Federal garante que a gestante não pode ser demitida sem justa causa desde a confirmação da gravidez até 5 meses após o parto. Se for demitida grávida de forma indevida, tem direito à reintegração ou indenização substitutiva.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>2. Autônomas, MEI, Facultativas e Rurais</h2>
+            <p>Quem trabalha por conta própria, tem seu negócio ou paga o INSS como dona de casa/estudante também tem o direito garantido, mas está sujeito à regra de <strong>carência</strong>.</p>
+            <ul>
+                <li><strong>A Regra dos 10 Meses:</strong> É obrigatório ter contribuído para o INSS (ou comprovado atividade rural, no caso da Segurada Especial) por pelo menos 10 meses antes do parto.</li>
+                <li><strong>Exceção - Parto Prematuro:</strong> A lei é justa. Se o parto for prematuro, a carência de 10 meses é reduzida na mesma proporção em que o parto foi antecipado.</li>
+                <li><strong>Perda da Qualidade de Segurado:</strong> Se a autônoma parou de pagar e perdeu o vínculo com o INSS, ao voltar a pagar, ela precisará cumprir metade da carência (5 meses) antes do parto para ter o direito novamente.</li>
+                <li><strong>Quem paga:</strong> O pagamento é feito diretamente pelo <strong>INSS</strong>. O pedido deve ser feito via aplicativo Meu INSS ou telefone 135.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>3. Desempregadas e a "Qualidade de Segurado"</h2>
+            <p>Este é o ponto onde mais ocorrem perdas de direitos por desinformação. A interrupção das contribuições (demissão ou parada no pagamento do carnê) <strong>não encerra imediatamente</strong> a proteção do INSS.</p>
+            <p>O Artigo 15 da Lei 8.213/91 garante o <strong>Período de Graça</strong>, que é a manutenção gratuita dos direitos previdenciários. Se o parto ou adoção ocorrer dentro deste período, o Salário-Maternidade é devido e será pago pelo INSS.</p>
+            
+            <h3>Como calcular o seu Período de Graça:</h3>
+            <ul>
+                <li><strong>Regra Básica:</strong> 12 meses após a cessação das contribuições para trabalhadores obrigatórios (CLT, Autônomos) e 6 meses para segurados facultativos.</li>
+                <li><strong>1ª Prorrogação (+12 meses):</strong> Se a trabalhadora tiver mais de 120 contribuições (10 anos) ininterruptas ou sem perder a qualidade de segurado no passado, ela ganha mais 12 meses.</li>
+                <li><strong>2ª Prorrogação (+12 meses):</strong> Se a trabalhadora comprovar que está em situação de desemprego involuntário (ex: registro no Ministério do Trabalho / recebimento de Seguro-Desemprego), ganha mais 12 meses.</li>
+            </ul>
+            
+            <div class="destaque-box">
+                <strong>O Mês de Extensão (§ 4º do Art. 15):</strong> Na prática, a lei estende essa proteção até o dia 15 do mês seguinte ao término do seu prazo. Ou seja, uma pessoa pode ficar até <strong>37 meses e 15 dias</strong> protegida pelo INSS sem pagar absolutamente nada!
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>4. Situações Especiais e Direitos dos Homens</h2>
+            <p>O Salário-Maternidade evoluiu para proteger a criança e a nova estrutura familiar, não se limitando apenas ao evento biológico do parto.</p>
+            <ul>
+                <li><strong>Adoção e Guarda Judicial:</strong> Homens e mulheres que adotarem ou obtiverem guarda judicial para fins de adoção de criança de até 12 anos têm direito aos 120 dias de benefício. Em casais adotantes (homoafetivos ou heteroafetivos), apenas um dos cônjuges pode requerer o benefício.</li>
+                <li><strong>Falecimento da Mãe (Art. 71-B):</strong> Caso a mãe (segurada do INSS) venha a falecer durante o parto ou durante a licença, o cônjuge ou companheiro sobrevivente tem o direito de receber o Salário-Maternidade pelo período que faltava, desde que ele também possua qualidade de segurado.</li>
+                <li><strong>Aborto Não Criminoso (Espontâneo):</strong> Em caso de aborto espontâneo ou previsto em lei (antes das 23 semanas de gestação), a segurada tem direito a receber o Salário-Maternidade correspondente a <strong>2 semanas</strong>, para sua recuperação física e psicológica.</li>
+                <li><strong>Natimorto:</strong> Se a criança nascer sem vida a partir do 6º mês de gestação (23 semanas), a mãe tem direito ao benefício integral de 120 dias.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Como Solicitar o Benefício?</h2>
+            <p>Exceto para empregadas com carteira assinada (que pedem na empresa), o benefício deve ser solicitado diretamente ao Governo. O prazo máximo para dar entrada é de <strong>5 anos</strong> após a data do parto ou adoção.</p>
+            <p>Tenha em mãos os documentos pessoais e a Certidão de Nascimento (ou Termo de Guarda, ou atestado médico em caso de aborto/natimorto) e acesse os canais oficiais:</p>
+            
+            <div class="btn-container">
+                <a href="https://meu.inss.gov.br/" target="_blank" class="btn">Acessar Meu INSS (Site)</a>
+                <a href="https://play.google.com/store/apps/details?id=br.gov.dataprev.meuinss" target="_blank" class="btn">Baixar App Android</a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p><strong>Projeto de Extensão Universitária</strong></p>
+        <p>UNIFAGOC - Centro Universitário Governador Ozanam Coelho<br>
+        Curso de Direito - Reta Final</p>
+        <p>Desenvolvido por: Felipe, Gabriel, Juliano, Pablo, Pedro, Rafael e Thaynan.<br>
+        Professor Orientador: Drielly Faria de Paula Leão</p>
+    </footer>
+
+</body>
+</html>
