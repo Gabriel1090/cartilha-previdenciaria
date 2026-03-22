@@ -92,12 +92,12 @@
 /* Mobile: barra compacta, horizontal no canto inferior direito */
 @media (max-width: 768px) {
   .a11y-bar {
-    top: auto;
+    top: 50%;
     bottom: 20px;
     right: 12px;
     left: auto;
-    transform: none;
-    flex-direction: row; /* horizontal para ocupar menos altura */
+    transform: translateY(-50%);
+    flex-direction: column; /* horizontal para ocupar menos altura */
     gap: 6px;
     padding: 6px 10px;
     border-radius: 40px;
@@ -578,7 +578,7 @@
 <header id="mainHeader">
   <div class="nav-inner">
     <div class="logo-area" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-      <span class="logo-title">⚖️ DIREITOS PREVIDENCIÁRIOS</span>
+      <span class="logo-title">DIREITOS PREVIDENCIÁRIOS</span>
       <span class="logo-sub">Salário-Maternidade — UNIFAGOC</span>
     </div>
     <nav>
@@ -938,7 +938,7 @@
     <p class="section-desc fade-in" style="text-align:center;margin:0 auto 10px;">Muitas pessoas perdem benefícios por falta de informação. Compartilhe com amigos e familiares!</p>
     <div class="share-btns fade-in">
       <a class="share-btn wa" href="https://wa.me/?text=Descubra+seus+direitos+ao+Sal%C3%A1rio-Maternidade!+%F0%9F%A4%B1" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      <a class="share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=https://seusite.github.io" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+      <a class="share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=https://gabriel1090.github.io/cartilha-previdenciaria/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
       <a class="share-btn tw" href="https://twitter.com/intent/tweet?text=Descubra+seus+direitos+ao+Sal%C3%A1rio-Maternidade!" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> Twitter/X</a>
       <button type="button" class="share-btn cp" onclick="copyLink()"><i class="fas fa-link"></i> Copiar link</button>
       <button type="button" class="pdf-btn" onclick="savePDF()"><i class="fas fa-file-pdf"></i> Salvar como PDF</button>
@@ -950,15 +950,15 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <h3>⚖️ Direitos Previdenciários</h3>
-      <p>Material educativo criado pelo Projeto de Extensão do 9º Período de Direito da <strong>UNIFAGOC</strong> — Centro Universitário Governador Ozanam Coelho.</p>
-      <p style="margin-top:10px;font-size:0.8rem;opacity:0.52;">Prof.ª Orientadora: Drielly Faria de Paula Leão</p>
+      <h3>DIREITOS PREVIDENCIÁRIOS</h3>
+      <p>“Este material educativo foi elaborado pelos alunos do 9º período do curso de Direito da <strong>UNIFAGOC</strong> — Centro Universitário Governador Ozanam Coelho.</p>
+      <p style="margin-top:10px;font-size:0.8rem;opacity:0.52;"><strong>Prof.ª Orientadora</strong>: Drielly Faria de Paula Leão</p>
       <a href="https://unifagoc.edu.br" target="_blank" class="footer-logo-link">
         <img class="footer-logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='%233b9ee8'/%3E%3Ctext x='10' y='40' font-family='Montserrat' font-weight='bold' fill='white' font-size='20'%3EUNIFAGOC%3C/text%3E%3C/svg%3E" alt="UNIFAGOC" style="background: white; border-radius: 12px; padding: 8px 16px;">
       </a>
       <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
         <a href="tel:135" style="background:var(--yellow);color:var(--text-dark);padding:8px 16px;border-radius:50px;font-weight:900;font-size:0.85rem;text-decoration:none;"><i class="fas fa-phone-alt"></i> Ligue 135</a>
-        <a href="https://www.gov.br/meuinss" target="_blank" style="background:rgba(255,255,255,0.15);color:#fff;padding:8px 16px;border-radius:50px;font-weight:800;font-size:0.85rem;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);"><i class="fas fa-mobile-alt"></i> Meu INSS</a>
+        <a href="https://meu.inss.gov.br/#/login" target="_blank" style="background:rgba(255,255,255,0.15);color:#fff;padding:8px 16px;border-radius:50px;font-weight:800;font-size:0.85rem;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);"><i class="fas fa-mobile-alt"></i> Meu INSS</a>
       </div>
     </div>
     <div class="footer-col">
