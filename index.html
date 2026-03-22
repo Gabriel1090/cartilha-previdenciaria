@@ -235,9 +235,16 @@
     .hero-card .icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
     .hero-card h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; }
     .hero-card p { font-size: 0.82rem; opacity: 0.88; line-height: 1.5; }
-    .hero-card.accent { background: var(--yellow); color: var(--text-dark); border-color: var(--yellow); }
-    .hero-card.accent::after { background: rgba(0,0,0,0.15); }
-    .hero-card.accent p { opacity: 0.72; }
+    .hero-card.accent {
+      background: rgba(255, 209, 102, 0.45);
+      color: var(--white);
+      border-color: rgba(255, 209, 102, 0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+    }
+    .hero-card.accent::after { background: rgba(255,209,102,0.4); }
+    .hero-card.accent p { opacity: 0.92; }
 
     /* ===== STATS ===== */
     .stats-bar { position: relative; z-index: 5; background: var(--blue-deeper); padding: 28px 5vw; }
@@ -1818,10 +1825,23 @@ function calcProxEtapa(etapaAtual) {
     calcAtualizarIndicador(2);
   } else if (etapaAtual === 2) {
     if (!calcValidarEtapa2()) return;
-    calcEstado.etapa = 3;
-    calcMontarEtapa3();
-    calcMostrarEtapa(3);
-    calcAtualizarIndicador(3);
+    // CLT empregada e rural com atividade confirmada: pular etapa 3, ir direto ao resultado
+    const pulaEtapa3 = (calcEstado.perfil === 'clt' && calcEstado.clt_empregada === 'sim') ||
+                       (calcEstado.perfil === 'rural' && calcEstado.rural_atividade === 'sim') ||
+                       (calcEstado.perfil === 'rural' && calcEstado.rural_atividade === 'nao') ||
+                       (calcEstado.perfil === 'autonoma' && calcEstado.auto_carencia === '10mais' && calcEstado.auto_contribuindo === 'sim') ||
+                       (calcEstado.perfil === 'autonoma' && calcEstado.auto_carencia === 'menos10' && calcEstado.auto_contribuindo === 'sim');
+    if (pulaEtapa3) {
+      calcEstado.etapa = 3;
+      calcAtualizarIndicador(3);
+      const resultado = calcLogica();
+      calcExibirResultado(resultado);
+    } else {
+      calcEstado.etapa = 3;
+      calcMontarEtapa3();
+      calcMostrarEtapa(3);
+      calcAtualizarIndicador(3);
+    }
   }
 }
 
@@ -2069,7 +2089,7 @@ function calcMontarEtapa3() {
       </div>
       <div class="calc-group">
         <label>Você tem algum documento que comprove que está desempregada ou sem renda?</label>
-        <span class="calc-hint">Exemplos: baixa na carteira de trabalho, seguro-desemprego, recisão de contrato assinada.</span>
+        <span class="calc-hint">Exemplos: baixa na carteira de trabalho, seguro-desemprego, rescisão de contrato assinada.</span>
         <div class="calc-radio-group" style="flex-direction:column;gap:10px;">
           <label class="calc-radio calc-radio-full"><input type="radio" name="e3_des_comp" value="sim"><strong>✅ Sim, tenho documentos de demissão ou desemprego</strong></label>
           <label class="calc-radio calc-radio-full"><input type="radio" name="e3_des_comp" value="nao"><strong>❌ Não tenho / saí voluntariamente</strong></label>
@@ -2126,14 +2146,16 @@ function calcLogica() {
         emoji: '✅',
         titulo: 'Você TEM direito ao Salário-Maternidade!',
         desc: 'Como empregada com carteira assinada, você tem direito garantido aos <strong>120 dias de benefício</strong>, sem precisar de carência mínima de INSS.',
-        detalhe: '💡 O benefício é pago pela sua empresa. Avise o RH e entregue a certidão de nascimento. Pergunte também se a empresa participa do Programa Empresa Cidadã (180 dias). Em caso de dúvida, ligue ao INSS pelo 135.'
+        detalhe: '💡 O benefício é pago pela sua empresa — avise o RH assim que tiver a certidão de nascimento ou antes do parto. Pergunte também se a empresa participa do <strong>Programa Empresa Cidadã</strong> (até 180 dias). Documentos necessários: RG, CPF, certidão de nascimento e carteira de trabalho.'
       };
     }
-    // CLT demitida — verificar período de graça
+    // CLT demitida
     const temDezAnos = calcEstado.clt_dez_anos === 'sim';
+    const naoSabeDez = calcEstado.clt_dez_anos === 'nao_sei';
     const comprova = calcEstado.clt_comprova_desemprego === 'sim';
     const tempo = calcEstado.clt_tempo_desempregada;
 
+    // nao_sei: tratar como "não" para ser conservador — não prometer prazo que pode não existir
     let prazoMax = 12;
     if (temDezAnos) prazoMax = 24;
     if (temDezAnos && comprova) prazoMax = 36;
@@ -2147,77 +2169,86 @@ function calcLogica() {
         tipo: 'periodo-graca',
         emoji: '⏳',
         titulo: 'Você pode ter direito — está no Período de Graça!',
-        desc: `Mesmo demitida, você ainda está protegida! Seu período de graça é de até <strong>${prazoMax} meses</strong> após a demissão. Se o bebê nascer dentro desse prazo, o <strong>INSS paga o benefício</strong>.`,
-        detalhe: `📞 Ligue para o 135 ou acesse o app Meu INSS para solicitar. Leve sua carteira de trabalho com a baixa e a certidão de nascimento do bebê. ${!comprova ? '⚠️ Tente reunir documentos da demissão (rescisão, seguro-desemprego) — eles podem ampliar sua proteção.' : ''}`
-      };
-    } else {
-      return {
-        tipo: 'nao-tem-direito',
-        emoji: '❌',
-        titulo: 'Infelizmente você pode ter perdido o prazo de proteção.',
-        desc: 'Com base nas informações fornecidas, o período de graça pode ter expirado. Mas <strong>não desista sem consultar um especialista!</strong>',
-        detalhe: '👩‍⚖️ Procure um advogado previdenciário ou o INSS — há situações especiais que podem ampliar o prazo. O INSS pode verificar seu histórico completo. Ligue para o 135 gratuitamente.'
-      };
-    }
-  }
-
-  // ==== AUTÔNOMA / MEI ====
-  if (p === 'autonoma') {
-    if (calcEstado.auto_carencia === 'menos10' && calcEstado.auto_contribuindo === 'sim') {
-      return {
-        tipo: 'nao-tem-direito',
-        emoji: '⚠️',
-        titulo: 'Ainda não — você precisa completar 10 meses de contribuição.',
-        desc: 'Autônomas e MEI precisam ter pago o carnê do INSS por <strong>pelo menos 10 meses</strong> antes do parto para ter direito ao benefício.',
-        detalhe: '💡 Continue pagando o DAS todo mês! Se ainda estiver planejando a gravidez, organize os pagamentos em dia. Cada mês pago conta. Não pule meses — o INSS conta apenas os meses efetivamente pagos. Ligue para o 135 para verificar sua situação exata.'
-      };
-    }
-    if (calcEstado.auto_carencia === '10mais' && calcEstado.auto_contribuindo === 'sim') {
-      return {
-        tipo: 'tem-direito',
-        emoji: '✅',
-        titulo: 'Você TEM direito ao Salário-Maternidade!',
-        desc: 'Você completou os 10 meses de carência e está contribuindo ativamente. Você tem direito ao benefício por <strong>120 dias</strong>, calculado com base nas suas contribuições.',
-        detalhe: '📱 Solicite pelo app Meu INSS ou ligue para o 135. Separe os comprovantes de pagamento do DAS e a certidão de nascimento. O INSS pagará o benefício diretamente para você.'
-      };
-    }
-    // Parou de contribuir
-    const carencia = calcEstado.auto_carencia;
-    const tempoPar = calcEstado.auto_tempo_parada;
-    const dezAnos = calcEstado.auto_dez_anos === 'sim';
-
-    if (carencia === 'menos10') {
-      return {
-        tipo: 'nao-tem-direito',
-        emoji: '❌',
-        titulo: 'Infelizmente você não tem direito no momento.',
-        desc: 'Você não completou os 10 meses de carência necessários e parou de contribuir. Para ter direito, precisaria pagar ao menos 10 meses do carnê do INSS.',
-        detalhe: '💡 Para gravidez futura: comece a pagar o DAS o quanto antes e mantenha os pagamentos em dia por 10 meses. Consulte o INSS pelo 135 para verificar se há alternativas.'
-      };
-    }
-
-    // Tem carência, mas parou — verificar período de graça
-    let prazoMax = 12;
-    if (dezAnos) prazoMax = 24;
-
-    const dentroDoGraça = (tempoPar === 'menos12') ||
-                          (tempoPar === 'entre12_24' && prazoMax >= 24);
-
-    if (dentroDoGraça) {
-      return {
-        tipo: 'periodo-graca',
-        emoji: '⏳',
-        titulo: 'Você pode ter direito — está no Período de Graça!',
-        desc: `Mesmo sem contribuir no momento, você ainda está protegida por até <strong>${prazoMax} meses</strong> após a última contribuição. Se o parto ocorrer dentro desse prazo, você tem direito ao benefício.`,
-        detalhe: '📱 Solicite pelo app Meu INSS ou ligue para o 135. Tenha em mãos os comprovantes dos pagamentos anteriores do DAS e a certidão de nascimento.'
+        desc: `Mesmo demitida, você ainda está protegida. Seu período de graça é de até <strong>${prazoMax} meses</strong> após a demissão. Se o bebê nascer dentro desse prazo, o <strong>INSS paga o benefício</strong>.`,
+        detalhe: `📞 Ligue para o 135 ou acesse o app Meu INSS para solicitar. Documentos necessários: carteira de trabalho com a baixa, rescisão de contrato e certidão de nascimento.${naoSabeDez ? ' 💡 Verifique seus anos de contribuição pelo app Meu INSS (extrato CNIS) — mais de 10 anos podem ampliar sua proteção.' : ''}${!comprova ? ' ⚠️ Tente reunir documentos da demissão — podem ampliar sua proteção para até 36 meses.' : ''}`
       };
     } else {
       return {
         tipo: 'nao-tem-direito',
         emoji: '❌',
         titulo: 'O prazo de proteção pode ter expirado.',
-        desc: 'Com base nas informações fornecidas, seu período de graça pode ter acabado. Mas <strong>consulte o INSS para confirmar</strong> — há cálculos específicos que podem alterar essa análise.',
-        detalhe: '📞 Ligue para o 135 ou vá a uma agência do INSS para verificar seu histórico completo. Não desista sem checar com um especialista!'
+        desc: 'Com base nas informações fornecidas, o período de graça pode ter se encerrado. Mas <strong>não desista sem confirmar com o INSS</strong> — o cálculo exato depende do seu histórico completo.',
+        detalhe: `👩‍⚖️ Ligue gratuitamente para o <strong>135</strong> ou vá a uma agência do INSS com sua carteira de trabalho e rescisão. ${naoSabeDez ? 'Se tiver mais de 10 anos de contribuição, o prazo pode ser maior do que estimamos.' : ''} Um advogado previdenciário pode analisar casos específicos.`
+      };
+    }
+  }
+
+  // ==== AUTÔNOMA / MEI ====
+  if (p === 'autonoma') {
+    // Ainda contribuindo, mas sem carência suficiente
+    if (calcEstado.auto_carencia === 'menos10' && calcEstado.auto_contribuindo === 'sim') {
+      return {
+        tipo: 'nao-tem-direito',
+        emoji: '⚠️',
+        titulo: 'Ainda não — faltam meses de contribuição.',
+        desc: 'MEI e autônomas precisam ter pago o carnê do INSS por <strong>pelo menos 10 meses</strong> antes do parto para ter direito.',
+        detalhe: '💡 Continue pagando o DAS mensalmente e sem pular meses — só meses efetivamente pagos contam. Se ainda está planejando a gravidez, organize os pagamentos o quanto antes. Ligue para o 135 para verificar quantos meses já foram reconhecidos.'
+      };
+    }
+    // Contribuindo e com carência completa
+    if (calcEstado.auto_carencia === '10mais' && calcEstado.auto_contribuindo === 'sim') {
+      return {
+        tipo: 'tem-direito',
+        emoji: '✅',
+        titulo: 'Você TEM direito ao Salário-Maternidade!',
+        desc: 'Você completou os 10 meses de carência e está contribuindo. Você tem direito a <strong>120 dias de benefício</strong>, calculado com base na média das suas contribuições ao INSS.',
+        detalhe: '📱 Solicite pelo app Meu INSS ou ligue para o 135. Documentos necessários: RG, CPF, certidão de nascimento e comprovantes de pagamento do DAS dos últimos 10 meses. O INSS pagará o benefício diretamente a você.'
+      };
+    }
+
+    // Parou de contribuir
+    const carencia = calcEstado.auto_carencia;
+    const tempoPar = calcEstado.auto_tempo_parada;
+    const dezAnos = calcEstado.auto_dez_anos === 'sim';
+    const naoSabeDez = calcEstado.auto_dez_anos === 'nao_sei';
+
+    // Sem carência E parou: sem direito
+    if (carencia === 'menos10') {
+      return {
+        tipo: 'nao-tem-direito',
+        emoji: '❌',
+        titulo: 'Infelizmente não há direito no momento.',
+        desc: 'Você não completou os 10 meses de carência necessários e também parou de contribuir. Para ter direito, precisaria ter pago ao menos 10 meses do carnê do INSS.',
+        detalhe: '💡 Para gestação futura: comece a pagar o DAS o quanto antes e mantenha os pagamentos em dia por 10 meses consecutivos. Ligue para o 135 para verificar se há alternativas no seu caso específico.'
+      };
+    }
+
+    // Tem carência mas parou — período de graça
+    // Autônoma também pode chegar a 36 meses se tiver 10+ anos e comprovar desemprego
+    let prazoMax = 12;
+    if (dezAnos) prazoMax = 24;
+    // Nota: autônoma/MEI que para de contribuir pode comprovar ausência de renda, equiparável ao desemprego
+    if (dezAnos) prazoMax = 36; // com 10+ anos, prazo máximo é 36 se puder comprovar
+
+    const dentroDoGraça = (tempoPar === 'menos12') ||
+                          (tempoPar === 'entre12_24' && prazoMax >= 24) ||
+                          (tempoPar === 'mais24' && prazoMax >= 36);
+
+    if (dentroDoGraça) {
+      return {
+        tipo: 'periodo-graca',
+        emoji: '⏳',
+        titulo: 'Você pode ter direito — está no Período de Graça!',
+        desc: `Mesmo sem contribuir atualmente, você ainda pode estar protegida por até <strong>${prazoMax} meses</strong> após a última contribuição. Se o parto ocorrer dentro desse prazo, você tem direito.`,
+        detalhe: `📱 Solicite pelo app Meu INSS ou ligue para o 135. Documentos necessários: RG, CPF, certidão de nascimento e comprovantes dos pagamentos anteriores do DAS.${naoSabeDez ? ' 💡 Verifique seu histórico de contribuições no app Meu INSS (extrato CNIS) — pode ampliar sua proteção.' : ''}`
+      };
+    } else {
+      return {
+        tipo: 'nao-tem-direito',
+        emoji: '❌',
+        titulo: 'O prazo de proteção pode ter expirado.',
+        desc: 'Com base nas informações, seu período de graça pode ter se encerrado. <strong>Confirme com o INSS antes de desistir</strong> — o cálculo exato depende do seu histórico.',
+        detalhe: `📞 Ligue gratuitamente para o <strong>135</strong> ou vá a uma agência do INSS com seus comprovantes de pagamento do DAS. ${naoSabeDez ? 'Se tiver mais de 10 anos de contribuição no total, o prazo pode ser maior.' : ''}`
       };
     }
   }
@@ -2225,10 +2256,11 @@ function calcLogica() {
   // ==== DESEMPREGADA ====
   if (p === 'desempregada') {
     const tempo = calcEstado.des_tempo_parada;
-    const dezAnos = calcEstado.des_dez_anos === 'sim' || calcEstado.des_dez_anos === 'nao_sei';
     const temDezExato = calcEstado.des_dez_anos === 'sim';
+    const naoSabeDez = calcEstado.des_dez_anos === 'nao_sei';
     const comprova = calcEstado.des_comprova === 'sim';
 
+    // nao_sei: tratamos conservadoramente como "não" — não prometemos prazo que pode não existir
     let prazoMax = 12;
     if (temDezExato) prazoMax = 24;
     if (temDezExato && comprova) prazoMax = 36;
@@ -2243,7 +2275,7 @@ function calcLogica() {
         emoji: '⏳',
         titulo: 'Você pode ter direito — está no Período de Graça!',
         desc: `Você ainda está dentro do prazo de proteção (Período de Graça) de <strong>${prazoMax} meses</strong>. Se o parto acontecer antes desse prazo vencer, o <strong>INSS paga o benefício</strong>.`,
-        detalhe: `📞 Acesse o app Meu INSS ou ligue para o 135 para solicitar. ${calcEstado.des_dez_anos === 'nao_sei' ? '💡 Para verificar seus anos de contribuição, acesse o app Meu INSS com seu CPF — lá você encontra o extrato do CNIS gratuitamente.' : ''} ${!comprova ? '⚠️ Tente reunir documentos de demissão — podem ampliar sua proteção para até 36 meses.' : ''}`
+        detalhe: `📞 Acesse o app Meu INSS ou ligue para o 135 para solicitar. Documentos necessários: RG, CPF, certidão de nascimento, carteira de trabalho com a baixa e rescisão de contrato.${naoSabeDez ? ' 💡 Verifique quantos anos de contribuição você tem pelo app Meu INSS (extrato CNIS) — mais de 10 anos ampliam sua proteção.' : ''}${!comprova ? ' ⚠️ Reúna documentos de demissão — eles podem ampliar sua proteção para até 36 meses.' : ''}`
       };
     } else {
       return {
@@ -2251,7 +2283,7 @@ function calcLogica() {
         emoji: '❌',
         titulo: 'O prazo de proteção pode ter expirado.',
         desc: 'Com base nas suas respostas, o período de graça pode ter encerrado. Porém, <strong>confirme com o INSS antes de desistir</strong> — o cálculo exato depende do seu histórico completo.',
-        detalhe: '📞 Ligue gratuitamente para o 135 ou vá a uma agência do INSS. Você pode também verificar seu extrato no app Meu INSS. Um advogado previdenciário pode analisar seu caso com mais detalhes.'
+        detalhe: `📞 Ligue gratuitamente para o <strong>135</strong> ou vá a uma agência do INSS com seus documentos. ${naoSabeDez ? 'Se tiver mais de 10 anos de contribuição, o prazo pode ser maior do que estimamos.' : ''} Um advogado previdenciário pode analisar seu caso com mais detalhes.`
       };
     }
   }
@@ -2264,15 +2296,15 @@ function calcLogica() {
         emoji: '✅',
         titulo: 'Você TEM direito ao Salário-Maternidade!',
         desc: 'Como <strong>trabalhadora rural segurada especial</strong>, você tem direito ao salário-maternidade de <strong>1 salário mínimo por mês durante 120 dias</strong>, sem precisar pagar contribuição mensal ao INSS.',
-        detalhe: '📋 Você precisa comprovar a atividade rural com documentos como: declaração do sindicato de trabalhadores rurais, nota de produtor rural, contrato de arrendamento, ou carteira da associação. Ligue para o 135 ou acesse o app Meu INSS para solicitar.'
+        detalhe: '📋 Documentos necessários: RG, CPF, certidão de nascimento e <strong>comprovação da atividade rural</strong> (declaração do sindicato dos trabalhadores rurais, nota de produtor rural, contrato de arrendamento ou comprovante de residência rural). Solicite pelo app Meu INSS ou ligue para o 135.'
       };
     } else {
       return {
         tipo: 'nao-tem-direito',
         emoji: '❌',
         titulo: 'Não é possível confirmar o direito como segurada especial.',
-        desc: 'Para ter direito como trabalhadora rural (segurada especial), é necessário comprovar o exercício de atividade rural para subsistência da família.',
-        detalhe: '💡 Se você trabalha informalmente na roça mas não tem documentos, tente obter uma declaração do sindicato de trabalhadores rurais do seu município. Se sua situação for diferente (emprego formal, MEI, etc.), volte e escolha a categoria correta. Em caso de dúvida, ligue para o 135.'
+        desc: 'Para ter direito como trabalhadora rural segurada especial, é necessário comprovar o exercício de atividade rural para subsistência da família.',
+        detalhe: '💡 Se você trabalha informalmente na roça mas não tem documentos, procure o sindicato de trabalhadores rurais do seu município — ele pode emitir uma declaração gratuitamente. Se sua situação for CLT, MEI ou outra, volte e selecione a categoria correta. Dúvidas: ligue para o 135.'
       };
     }
   }
@@ -2302,14 +2334,27 @@ function calcReiniciar() {
     des_tempo_parada: null, des_dez_anos: null, des_comprova: null,
     rural_atividade: null
   };
+  // Limpa resultado
   document.getElementById('calcResultadoFinal').classList.remove('show');
+  document.getElementById('calcResultadoFinal').className = 'calc-result-box';
+  // Restaura indicador de etapas
   document.getElementById('calcStepsIndicator').style.display = 'flex';
-
-  // Limpar seleções da etapa 1
+  // Limpa seleções da etapa 1
   document.querySelectorAll('input[name="e1_perfil"]').forEach(r => r.checked = false);
-
+  // Limpa conteúdo gerado das etapas 2 e 3
+  const e2 = document.getElementById('etapa2-conteudo');
+  const e3 = document.getElementById('etapa3-conteudo');
+  if (e2) e2.innerHTML = '';
+  if (e3) e3.innerHTML = '';
+  // Limpa erros
+  calcLimparErro('etapa-1');
+  calcLimparErro('etapa-2');
+  calcLimparErro('etapa-3');
+  // Volta para etapa 1
   calcMostrarEtapa(1);
   calcAtualizarIndicador(1);
+  // Scroll suave ao topo da calculadora
+  document.getElementById('calculadora')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 /* ========== COMPARTILHAR ========== */
@@ -2453,60 +2498,58 @@ const CHECKLIST_KEY = 'salmat_checklist_v2';
 
 // Itens comuns a todos os perfis
 const itensComuns = [
-  { id: 'c0', label: '🪪 RG e CPF em mãos (originais ou foto nítida)' },
-  { id: 'c1', label: '📄 Certidão de Nascimento do bebê (ou Termo de Adoção / Guarda Judicial)' },
-  { id: 'c2', label: '📱 App Meu INSS instalado e conta gov.br criada' },
-  { id: 'c3', label: '📋 Calculadora preenchida — sei se tenho direito e meu prazo' },
-  { id: 'c4', label: '📞 Confirmei minha situação pelo 135 ou app Meu INSS' },
-  { id: 'c5', label: '✅ Protocolo de solicitação gerado e salvo no celular ou impresso' },
+  { id: 'c0', label: '🪪 RG e CPF em mãos (originais e uma cópia)' },
+  { id: 'c1', label: '📄 Certidão de Nascimento do bebê — necessária após o parto (ou Termo de Adoção / Guarda para adoção)' },
+  { id: 'c2', label: '📱 App Meu INSS instalado e login com conta gov.br funcionando' },
+  { id: 'c3', label: '🧮 Calculadora desta página preenchida — sei se tenho direito e meu prazo' },
+  { id: 'c4', label: '📞 Confirmei minha situação pelo 135 ou pelo app Meu INSS' },
+  { id: 'c5', label: '🗂️ Protocolo de solicitação gerado e salvo (printscreen ou impressão)' },
 ];
 
 // Itens específicos por perfil
 const itensPorPerfil = {
   clt: {
-    desc: '✅ Mostrando itens para <strong>empregada CLT</strong> — sem carência, benefício pago pela empresa.',
+    desc: '✅ Mostrando checklist para <strong>empregada CLT</strong> — sem carência, benefício pago pela empresa. Itens exclusivos para CLT + itens comuns abaixo.',
     itens: [
-      { id: 'clt0', label: '👩‍💼 Carteira de Trabalho (CTPS) com dados do emprego atual' },
-      { id: 'clt1', label: '📃 Último contracheque ou holerite para comprovar salário' },
-      { id: 'clt2', label: '🏢 Avisei o RH da empresa sobre a licença-maternidade' },
-      { id: 'clt3', label: '🔰 Consultei o RH se a empresa participa do Programa Empresa Cidadã (180 dias)' },
+      { id: 'clt0', label: '👩‍💼 Carteira de Trabalho (CTPS) — original e cópia' },
+      { id: 'clt1', label: '📃 Último contracheque ou holerite (comprova o salário que você vai receber)' },
+      { id: 'clt2', label: '🏢 Avisei o RH da empresa sobre a licença-maternidade antes ou logo após o parto' },
     ]
   },
   mei: {
-    desc: '✅ Mostrando itens para <strong>MEI / Autônoma</strong> — carência de 10 meses, benefício pago pelo INSS.',
+    desc: '✅ Mostrando checklist para <strong>MEI / Autônoma</strong> — carência de 10 meses obrigatória, benefício pago pelo INSS. Itens exclusivos para MEI + itens comuns abaixo.',
     itens: [
-      { id: 'mei0', label: '🧾 Comprovantes de pagamento do DAS/INSS dos últimos 10 meses' },
-      { id: 'mei1', label: '📊 Verifiquei no app Meu INSS se todos os meses estão quitados (sem débito)' },
-      { id: 'mei2', label: '💳 CNPJ MEI ativo e regularizado (sem pendências)' },
-      { id: 'mei3', label: '📈 Calculei o valor médio das contribuições para saber quanto vou receber' },
+      { id: 'mei0', label: '🧾 Comprovantes de pagamento do DAS dos últimos 10 meses (todos sem débito)' },
+      { id: 'mei1', label: '📊 Extrato CNIS no app Meu INSS confirma os 10 meses reconhecidos pelo INSS' },
+      { id: 'mei2', label: '💳 CNPJ MEI ativo e sem pendências (verificar no Portal do Empreendedor)' },
     ]
   },
   rural: {
-    desc: '✅ Mostrando itens para <strong>trabalhadora rural</strong> — sem carência mensal, benefício de 1 salário mínimo.',
+    desc: '✅ Mostrando checklist para <strong>trabalhadora rural (segurada especial)</strong> — sem carência mensal, benefício de 1 salário mínimo. Itens exclusivos para rural + itens comuns abaixo.',
     itens: [
-      { id: 'rur0', label: '🌾 Declaração de atividade rural emitida pelo Sindicato dos Trabalhadores Rurais' },
-      { id: 'rur1', label: '📋 Nota fiscal de produtor rural, contrato de arrendamento ou documento equivalente' },
-      { id: 'rur2', label: '🏡 Comprovante de residência na zona rural (conta de luz, água ou similar)' },
-      { id: 'rur3', label: '✅ Confirmei que minha atividade se enquadra como segurada especial (subsistência/familiar)' },
+      { id: 'rur0', label: '🌾 Declaração de atividade rural emitida pelo Sindicato dos Trabalhadores Rurais (gratuita)' },
+      { id: 'rur1', label: '📋 Nota fiscal de produtor rural, contrato de arrendamento ou comprovante de vínculo rural (qualquer um que comprove a atividade)' },
+      { id: 'rur2', label: '🏡 Comprovante de endereço rural (conta de luz, água ou declaração de residência)' },
     ]
   },
   desempregada: {
-    desc: '✅ Mostrando itens para <strong>desempregada / período de graça</strong> — verificar prazo antes de solicitar.',
+    desc: '✅ Mostrando checklist para <strong>desempregada (período de graça)</strong> — verifique seu prazo antes de solicitar. Itens exclusivos + itens comuns abaixo.',
     itens: [
-      { id: 'des0', label: '📅 Verifiquei meu prazo de período de graça pela calculadora desta página' },
-      { id: 'des1', label: '📃 Tenho a rescisão de contrato ou a baixa na Carteira de Trabalho (CTPS)' },
-      { id: 'des2', label: '💰 Documentos do seguro-desemprego (se houver) — ampliam o período de graça' },
-      { id: 'des3', label: '📊 Extrato CNIS do INSS em mãos para comprovar histórico de contribuições' },
+      { id: 'des0', label: '📅 Calculadora preenchida — confirmei que ainda estou dentro do período de graça' },
+      { id: 'des1', label: '📃 Carteira de Trabalho (CTPS) com a baixa (anotação da demissão) — obrigatória' },
+      { id: 'des2', label: '📝 Rescisão de contrato assinada (Termo de Rescisão ou TRCT) — obrigatória' },
+      { id: 'des3', label: '💰 Documentos do Seguro-Desemprego, se tiver recebido (ampliam o período de graça para 36 meses)' },
+      { id: 'des4', label: '📊 Extrato CNIS no app Meu INSS — comprova o histórico de contribuições para o INSS calcular o prazo correto' },
     ]
   },
   adocao: {
-    desc: '✅ Mostrando itens para <strong>adoção</strong> — válido para qualquer configuração familiar.',
+    desc: '✅ Mostrando checklist para <strong>adoção / guarda judicial</strong> — válido para qualquer configuração familiar. Itens exclusivos + itens comuns abaixo.',
     itens: [
-      { id: 'ado0', label: '⚖️ Termo de Guarda Judicial ou Termo de Adoção emitido pela Vara da Infância' },
-      { id: 'ado1', label: '📄 Certidão de nascimento do(a) adotado(a) com novo registro (se já houver)' },
-      { id: 'ado2', label: '🏛️ Decisão judicial que concedeu a guarda para fins de adoção' },
-      { id: 'ado3', label: '👨‍👧 Em casal: definimos qual dos responsáveis vai solicitar o benefício de 120 dias' },
-      { id: 'ado4', label: '🏳️‍🌈 Em caso de casal homoafetivo ou trans: verifiquei meus direitos na seção acima e com a Defensoria Pública se necessário' },
+      { id: 'ado0', label: '⚖️ Termo de Guarda Judicial para fins de adoção OU Termo de Adoção — emitido pela Vara da Infância e Juventude (obrigatório)' },
+      { id: 'ado1', label: '🏛️ Decisão/Sentença judicial que concedeu a guarda (geralmente acompanha o Termo)' },
+      { id: 'ado2', label: '📄 Certidão de nascimento do(a) adotado(a) (original ou cópia autenticada)' },
+      { id: 'ado3', label: '👨‍👧 Em casal (qualquer configuração): decidimos qual dos responsáveis vai solicitar os 120 dias — apenas um pode pedir' },
+      { id: 'ado4', label: '🏳️‍🌈 Em casal homoafetivo ou família trans: consultei a Defensoria Pública ou advogado em caso de dificuldades com o INSS' },
     ]
   }
 };
@@ -2536,13 +2579,23 @@ function renderChecklist() {
   try { saved = JSON.parse(localStorage.getItem(CHECKLIST_KEY + '_' + perfilChecklist) || '[]'); } catch(e) {}
 
   const todosItens = [...cfg.itens, ...itensComuns];
-  container.innerHTML = todosItens.map(item => {
-    const checked = saved.includes(item.id);
-    return `<div class="check-item${checked ? ' checked' : ''}" data-id="${item.id}" onclick="toggleCheck(this)">
-      <div class="check-box">${checked ? '✓' : ''}</div>
-      <span class="check-label">${item.label}</span>
-    </div>`;
-  }).join('');
+  container.innerHTML =
+    '<p style="font-size:0.78rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:0.55;margin-bottom:8px;">📌 Documentos específicos do seu perfil</p>' +
+    cfg.itens.map(item => {
+      const checked = saved.includes(item.id);
+      return `<div class="check-item${checked ? ' checked' : ''}" data-id="${item.id}" onclick="toggleCheck(this)">
+        <div class="check-box">${checked ? '✓' : ''}</div>
+        <span class="check-label">${item.label}</span>
+      </div>`;
+    }).join('') +
+    '<p style="font-size:0.78rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;opacity:0.55;margin:16px 0 8px;">📋 Documentos comuns a todos os perfis</p>' +
+    itensComuns.map(item => {
+      const checked = saved.includes(item.id);
+      return `<div class="check-item${checked ? ' checked' : ''}" data-id="${item.id}" onclick="toggleCheck(this)">
+        <div class="check-box">${checked ? '✓' : ''}</div>
+        <span class="check-label">${item.label}</span>
+      </div>`;
+    }).join('');
 
   atualizarProgressoChecklist();
 }
