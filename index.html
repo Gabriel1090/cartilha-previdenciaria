@@ -622,8 +622,37 @@
     }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ===== VLIBRAS override - posição para não conflitar com a11y-bar ===== */
-    [vw] .vw-access-button { bottom: 80px !important; left: 20px !important; }
+    /* ===== VLIBRAS — força posição inferior esquerda, longe da a11y-bar ===== */
+    [vw] { position: fixed !important; z-index: 300 !important; }
+    [vw-access-button],
+    [vw] .vw-access-button,
+    .vw-access-button {
+      position: fixed !important;
+      bottom: 24px !important;
+      left: 24px !important;
+      right: auto !important;
+      top: auto !important;
+      z-index: 300 !important;
+    }
+    [vw-plugin-wrapper],
+    .vw-plugin-wrapper {
+      position: fixed !important;
+      bottom: 90px !important;
+      left: 24px !important;
+      right: auto !important;
+      top: auto !important;
+      z-index: 300 !important;
+    }
+    @media (max-width: 480px) {
+      [vw-access-button], [vw] .vw-access-button, .vw-access-button {
+        bottom: 16px !important;
+        left: 16px !important;
+      }
+      [vw-plugin-wrapper], .vw-plugin-wrapper {
+        bottom: 80px !important;
+        left: 16px !important;
+      }
+    }
 
     /* ===== RESPONSIVO ===== */
     @media(max-width:900px) { nav{display:none;} .hamburger{display:flex;} .stats-inner{grid-template-columns:repeat(2,1fr);} }
