@@ -573,6 +573,58 @@
     /* ===== SCROLL SPY ===== */
     nav a.active { background: var(--yellow) !important; color: var(--text-dark) !important; }
 
+    /* ===== BARRA DE PROGRESSO DE LEITURA ===== */
+    #reading-progress {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, var(--yellow), var(--green));
+      z-index: 9999; width: 0%; transition: width 0.1s linear;
+      border-radius: 0 3px 3px 0;
+    }
+
+    /* ===== BANNER LGPD ===== */
+    #lgpd-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+      background: var(--blue-deeper);
+      border-top: 2px solid rgba(255,255,255,0.15);
+      padding: 16px 5vw;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 20px; flex-wrap: wrap;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
+      animation: slideUpBanner 0.6s 1s ease both;
+    }
+    @keyframes slideUpBanner { from{transform:translateY(100%);opacity:0} to{transform:translateY(0);opacity:1} }
+    #lgpd-banner p { font-size: 0.85rem; opacity: 0.88; line-height: 1.55; flex: 1; min-width: 220px; }
+    #lgpd-banner p a { color: var(--yellow); text-decoration: underline; }
+    .lgpd-btns { display: flex; gap: 10px; flex-shrink: 0; }
+    .lgpd-accept {
+      background: var(--green); color: white; border: none; border-radius: 50px;
+      padding: 10px 22px; font-weight: 900; font-size: 0.88rem; cursor: pointer;
+      font-family: 'Nunito', sans-serif; transition: all 0.2s;
+    }
+    .lgpd-accept:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(6,214,160,0.4); }
+    .lgpd-dismiss {
+      background: transparent; color: rgba(255,255,255,0.6);
+      border: 1.5px solid rgba(255,255,255,0.25); border-radius: 50px;
+      padding: 10px 18px; font-weight: 700; font-size: 0.85rem;
+      cursor: pointer; font-family: 'Nunito', sans-serif; transition: all 0.2s;
+    }
+    .lgpd-dismiss:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+    /* ===== TOAST ===== */
+    #toast {
+      position: fixed; bottom: 90px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--blue-deeper); border: 1.5px solid rgba(255,255,255,0.2);
+      color: white; padding: 12px 24px; border-radius: 50px;
+      font-size: 0.9rem; font-weight: 700; box-shadow: var(--shadow-md);
+      opacity: 0; transition: all 0.35s ease; z-index: 400;
+      pointer-events: none; white-space: nowrap;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ===== VLIBRAS override - posição para não conflitar com a11y-bar ===== */
+    [vw] .vw-access-button { bottom: 80px !important; left: 20px !important; }
+
     /* ===== RESPONSIVO ===== */
     @media(max-width:900px) { nav{display:none;} .hamburger{display:flex;} .stats-inner{grid-template-columns:repeat(2,1fr);} }
     @media(max-width:768px) {
@@ -583,12 +635,15 @@
       .quiz-box,.calc-box{padding:26px 18px;}
       .grace-block{min-width:100%;}
       .hero { background-image: none; background-color: var(--blue-main); }
+      #lgpd-banner { flex-direction: column; gap: 14px; }
+      .lgpd-btns { width: 100%; }
+      .lgpd-accept, .lgpd-dismiss { flex: 1; text-align: center; }
     }
     @media(max-width:480px) { .hero-cards{grid-template-columns:1fr 1fr;gap:10px;} .stats-inner{grid-template-columns:1fr 1fr;} }
 
     /* ===== IMPRESSÃO / PDF ===== */
     @media print {
-      .a11y-bar, .alert-banner, header, .hamburger, .mobile-menu, #backTop, .share-btns, .hero-cta, .quiz-nav, .pdf-btn, .btn-primary, .btn-secondary, .inss-links a, .footer-logo-link, .tts-btn { display: none !important; }
+      .a11y-bar, .alert-banner, header, .hamburger, .mobile-menu, #backTop, .share-btns, .hero-cta, .quiz-nav, .pdf-btn, .btn-primary, .btn-secondary, .inss-links a, .footer-logo-link, .tts-btn, [vw], #lgpd-banner, #reading-progress, #toast { display: none !important; }
       body, section, .hero, .stats-bar, .who-section, .rules-section, .calc-section, .how-section, .glossary-section, .myths-section, .quiz-section, footer { background: white !important; color: black !important; box-shadow: none !important; backdrop-filter: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .hero { background-image: none !important; background-color: white !important; }
       .hero::before { background: none !important; }
@@ -618,6 +673,31 @@
 </head>
 <body>
 
+<!-- Barra de progresso de leitura -->
+<div id="reading-progress" role="progressbar" aria-label="Progresso de leitura"></div>
+
+<!-- Toast de notificação -->
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- VLibras – Tradutor de Libras (acessibilidade para surdos) -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+<!-- Banner LGPD -->
+<div id="lgpd-banner" role="complementary" aria-label="Aviso de privacidade">
+  <p>🔒 Este site utiliza tecnologias para melhorar sua experiência. Ao continuar navegando, você concorda com nossa política de uso conforme a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>. Nenhum dado pessoal é coletado ou vendido.</p>
+  <div class="lgpd-btns">
+    <button type="button" class="lgpd-accept" onclick="fecharLGPD(true)">✅ Entendido</button>
+    <button type="button" class="lgpd-dismiss" onclick="fecharLGPD(false)">Fechar</button>
+  </div>
+</div>
+
 <div class="blob-bg">
   <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <rect width="1440" height="900" fill="#3b9ee8"/>
@@ -635,6 +715,7 @@
   <button type="button" class="a11y-btn" onclick="changeFontSize(1)" title="Aumentar fonte" aria-label="Aumentar fonte">A+</button>
   <button type="button" class="a11y-btn" id="contrastBtn" onclick="toggleContrast()" title="Alto contraste" aria-label="Alto contraste">◑</button>
   <button type="button" class="a11y-btn" id="ttsGlobalBtn" onclick="toggleTTSGlobal()" title="Narrar página" aria-label="Narrar página">🔊</button>
+  <button type="button" class="a11y-btn" onclick="ativarVLibras()" title="Ativar Libras (VLibras)" aria-label="Ativar Libras">🤟</button>
 </div>
 
 <div class="alert-banner" id="alertBanner" role="alert">
@@ -2042,6 +2123,7 @@ function copyLink() {
     el.value = url; document.body.appendChild(el); el.select();
     document.execCommand('copy'); document.body.removeChild(el);
   }
+  mostrarToast('🔗 Link copiado com sucesso!');
   const confirm = document.getElementById('copyConfirm');
   if (confirm) { confirm.style.display = 'block'; setTimeout(() => confirm.style.display = 'none', 3000); }
 }
@@ -2124,6 +2206,62 @@ setTimeout(() => {
 updateShareLinks();
 initQuiz();
 renderQuiz();
+
+/* ========== BARRA DE PROGRESSO DE LEITURA ========== */
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop || document.body.scrollTop;
+  const total = doc.scrollHeight - doc.clientHeight;
+  const pct = total > 0 ? (scrolled / total) * 100 : 0;
+  const bar = document.getElementById('reading-progress');
+  if (bar) bar.style.width = pct + '%';
+});
+
+/* ========== LGPD ========== */
+function fecharLGPD(aceito) {
+  const banner = document.getElementById('lgpd-banner');
+  if (banner) {
+    banner.style.animation = 'none';
+    banner.style.transition = 'opacity 0.4s, transform 0.4s';
+    banner.style.opacity = '0';
+    banner.style.transform = 'translateY(100%)';
+    setTimeout(() => banner.remove(), 400);
+  }
+  if (aceito) mostrarToast('✅ Preferências salvas. Obrigado!');
+  try { localStorage.setItem('lgpd_ok', '1'); } catch(e) {}
+}
+
+/* Oculta banner se já aceito */
+(function() {
+  try {
+    if (localStorage.getItem('lgpd_ok')) {
+      const b = document.getElementById('lgpd-banner');
+      if (b) b.remove();
+    }
+  } catch(e) {}
+})();
+
+/* ========== TOAST ========== */
+let toastTimer = null;
+function mostrarToast(msg, dur = 3000) {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), dur);
+}
+
+/* ========== VLIBRAS ========== */
+function ativarVLibras() {
+  const btn = document.querySelector('[vw-access-button]');
+  if (btn) {
+    btn.click();
+    mostrarToast('🤟 VLibras ativado! Clique no ícone no canto inferior esquerdo.');
+  } else {
+    mostrarToast('⚠️ VLibras ainda carregando. Tente em instantes.');
+  }
+}
 </script>
 </body>
 </html>
