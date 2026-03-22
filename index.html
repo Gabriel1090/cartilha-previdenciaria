@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Guia completo sobre Salário-Maternidade e Direitos Previdenciários. Saiba quem tem direito, como solicitar e proteja seu futuro.">
+  <!-- Open Graph – visual rico ao compartilhar no WhatsApp, Facebook, etc. -->
+  <meta property="og:title" content="Salário-Maternidade — Guia Completo de Direitos Previdenciários">
+  <meta property="og:description" content="Descubra se você tem direito ao salário-maternidade, quanto vai receber e como solicitar. Quiz, calculadora e glossário jurídico gratuitos.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="theme-color" content="#2176ae">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://unifagoc.edu.br">
   <title>Direitos Previdenciários – Salário-Maternidade</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -570,6 +578,102 @@
     .inss-text p { font-size: 0.92rem; opacity: 0.88; line-height: 1.65; margin-bottom: 18px; }
     .inss-links { display: flex; gap: 12px; flex-wrap: wrap; }
 
+    /* ===== TEMPO DE LEITURA ===== */
+    .reading-time-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px; padding: 5px 14px; font-size: 0.78rem; font-weight: 700;
+      margin-top: 16px; opacity: 0.85;
+    }
+
+    /* ===== BOTÃO WHATSAPP FLUTUANTE ===== */
+    #wa-float {
+      position: fixed; bottom: 92px; left: 24px;
+      width: 50px; height: 50px;
+      background: #25D366; color: white;
+      border-radius: 50%; border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.45);
+      z-index: 299; transition: all 0.3s;
+      text-decoration: none;
+      opacity: 0; transform: scale(0.7);
+      pointer-events: none;
+    }
+    #wa-float.visible { opacity: 1; transform: scale(1); pointer-events: all; }
+    #wa-float:hover { transform: scale(1.12); box-shadow: 0 6px 22px rgba(37,211,102,0.6); }
+    #wa-float .wa-tooltip {
+      position: absolute; right: 58px; top: 50%; transform: translateY(-50%);
+      background: var(--blue-deeper); color: white;
+      padding: 6px 14px; border-radius: 50px; font-size: 0.78rem; font-weight: 700;
+      white-space: nowrap; opacity: 0; transition: opacity 0.2s;
+      pointer-events: none; border: 1px solid rgba(255,255,255,0.2);
+    }
+    #wa-float:hover .wa-tooltip { opacity: 1; }
+
+    /* ===== CHECKLIST ===== */
+    .checklist-section { background: var(--blue-main); }
+    .checklist-box {
+      background: rgba(255,255,255,0.12);
+      border-radius: 24px; padding: 36px;
+      border: 2px solid rgba(255,255,255,0.2);
+      max-width: 800px; margin: 0 auto;
+    }
+    .checklist-box h3 { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
+    .checklist-box > p { font-size: 0.9rem; opacity: 0.82; margin-bottom: 24px; line-height: 1.6; }
+    .checklist-items { display: flex; flex-direction: column; gap: 10px; }
+    .check-item {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 14px; padding: 14px 18px;
+      cursor: pointer; transition: all 0.2s;
+      user-select: none;
+    }
+    .check-item:hover { background: rgba(255,255,255,0.18); }
+    .check-item.checked {
+      background: rgba(6,214,160,0.18);
+      border-color: var(--green);
+    }
+    .check-box {
+      width: 24px; height: 24px; flex-shrink: 0;
+      border-radius: 6px; border: 2.5px solid rgba(255,255,255,0.4);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; background: transparent; font-size: 0.9rem;
+    }
+    .check-item.checked .check-box {
+      background: var(--green); border-color: var(--green);
+    }
+    .check-label { font-size: 0.92rem; font-weight: 700; line-height: 1.4; }
+    .check-item.checked .check-label { text-decoration: line-through; opacity: 0.65; }
+    .checklist-progress {
+      margin-top: 20px; display: flex; align-items: center; gap: 14px;
+    }
+    .checklist-bar-wrap {
+      flex: 1; height: 8px; background: rgba(255,255,255,0.15);
+      border-radius: 4px; overflow: hidden;
+    }
+    .checklist-bar-fill {
+      height: 100%; background: var(--green);
+      border-radius: 4px; transition: width 0.4s ease;
+      width: 0%;
+    }
+    .checklist-pct { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 0.9rem; color: var(--green); min-width: 36px; }
+    .checklist-reset {
+      margin-top: 16px; background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.6);
+      border-radius: 50px; padding: 8px 18px; font-size: 0.82rem; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; font-family: 'Nunito', sans-serif;
+    }
+    .checklist-reset:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+    /* ===== DIVISOR DE SEÇÕES ===== */
+    .section-divider {
+      position: relative; z-index: 5;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+    }
+
     /* ===== SCROLL SPY ===== */
     nav a.active { background: var(--yellow) !important; color: var(--text-dark) !important; }
 
@@ -672,7 +776,7 @@
 
     /* ===== IMPRESSÃO / PDF ===== */
     @media print {
-      .a11y-bar, .alert-banner, header, .hamburger, .mobile-menu, #backTop, .share-btns, .hero-cta, .quiz-nav, .pdf-btn, .btn-primary, .btn-secondary, .inss-links a, .footer-logo-link, .tts-btn, [vw], #lgpd-banner, #reading-progress, #toast { display: none !important; }
+      .a11y-bar, .alert-banner, header, .hamburger, .mobile-menu, #backTop, .share-btns, .hero-cta, .quiz-nav, .pdf-btn, .btn-primary, .btn-secondary, .inss-links a, .footer-logo-link, .tts-btn, [vw], #lgpd-banner, #reading-progress, #toast, #wa-float, .checklist-reset { display: none !important; }
       body, section, .hero, .stats-bar, .who-section, .rules-section, .calc-section, .how-section, .glossary-section, .myths-section, .quiz-section, footer { background: white !important; color: black !important; box-shadow: none !important; backdrop-filter: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .hero { background-image: none !important; background-color: white !important; }
       .hero::before { background: none !important; }
@@ -726,6 +830,12 @@
     <button type="button" class="lgpd-dismiss" onclick="fecharLGPD(false)">Fechar</button>
   </div>
 </div>
+
+<!-- Botão WhatsApp flutuante (aparece ao rolar) -->
+<a id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="wa-tooltip">Compartilhar</span>
+</a>
 
 <div class="blob-bg">
   <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -802,6 +912,9 @@
       <div class="hero-cta">
         <a href="#quem-tem-direito" class="btn-primary"><i class="fas fa-search"></i> Ver meus direitos</a>
         <a href="#calculadora" class="btn-secondary"><i class="fas fa-calculator"></i> Calcular meu prazo</a>
+      </div>
+      <div class="reading-time-badge" aria-label="Tempo estimado de leitura">
+        📖 Leitura completa: ~10 min &nbsp;|&nbsp; 🎯 Quiz + Calculadora incluídos
       </div>
     </div>
     <!-- 4 CARDS -->
@@ -1142,6 +1255,40 @@
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
+
+<!-- CHECKLIST -->
+<section class="checklist-section" id="checklist">
+  <div class="section-inner">
+    <span class="section-badge fade-in"><i class="fas fa-check-double"></i> Preparação</span>
+    <h2 class="section-title fade-in">Checklist antes de <span>solicitar</span></h2>
+    <p class="section-desc fade-in">Marque cada item conforme for se preparando. Isso garante que você não esqueça nada na hora de pedir o benefício.</p>
+    <div class="checklist-box fade-in">
+      <h3>📋 Documentos e etapas essenciais</h3>
+      <p>Clique em cada item para marcar como concluído. Seu progresso é salvo automaticamente.</p>
+      <div class="checklist-items" id="checklistItems">
+        <div class="check-item" data-id="0" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">🪪 RG e CPF em mãos (originais ou foto nítida)</span></div>
+        <div class="check-item" data-id="1" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">📄 Certidão de Nascimento do bebê (ou Termo de Adoção / Guarda)</span></div>
+        <div class="check-item" data-id="2" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">👩‍💼 Carteira de Trabalho com dados do emprego atual (para CLT)</span></div>
+        <div class="check-item" data-id="3" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">🧾 Comprovantes do pagamento do INSS dos últimos 10 meses (MEI/Autônoma)</span></div>
+        <div class="check-item" data-id="4" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">🌾 Declaração de atividade rural ou nota de produtor (Trabalhadora Rural)</span></div>
+        <div class="check-item" data-id="5" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">📱 App Meu INSS instalado e conta gov.br criada</span></div>
+        <div class="check-item" data-id="6" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">📋 Calculadora preenchida — sei se tenho direito e meu prazo</span></div>
+        <div class="check-item" data-id="7" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">🏢 Avisei o RH da empresa sobre a licença (se CLT)</span></div>
+        <div class="check-item" data-id="8" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">📞 Confirmei minha situação pelo 135 ou app Meu INSS</span></div>
+        <div class="check-item" data-id="9" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">✅ Protocolo de solicitação gerado e salvo</span></div>
+      </div>
+      <div class="checklist-progress">
+        <div class="checklist-bar-wrap"><div class="checklist-bar-fill" id="checklistBar"></div></div>
+        <span class="checklist-pct" id="checklistPct">0%</span>
+      </div>
+      <button type="button" class="checklist-reset" onclick="resetChecklist()">↺ Limpar checklist</button>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
 
 <!-- FAQ -->
 <section id="faq">
@@ -1530,11 +1677,29 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
 });
 
 /* ========== HEADER + SCROLL SPY ========== */
+/* ========== SCROLL (unificado — sem duplicar) ========== */
 window.addEventListener('scroll', () => {
+  // Header scroll
   const header = document.getElementById('mainHeader');
   if (header) header.classList.toggle('scrolled', window.scrollY > 50);
+
+  // Botão back to top
   const backTop = document.getElementById('backTop');
   if (backTop) backTop.classList.toggle('visible', window.scrollY > 400);
+
+  // Botão WhatsApp flutuante
+  const waFloat = document.getElementById('wa-float');
+  if (waFloat) waFloat.classList.toggle('visible', window.scrollY > 300);
+
+  // Barra de progresso de leitura
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop || document.body.scrollTop;
+  const total = doc.scrollHeight - doc.clientHeight;
+  const pct = total > 0 ? (scrolled / total) * 100 : 0;
+  const bar = document.getElementById('reading-progress');
+  if (bar) bar.style.width = pct + '%';
+
+  // Scroll spy
   updateScrollSpy();
 });
 function updateScrollSpy() {
@@ -2236,16 +2401,6 @@ updateShareLinks();
 initQuiz();
 renderQuiz();
 
-/* ========== BARRA DE PROGRESSO DE LEITURA ========== */
-window.addEventListener('scroll', () => {
-  const doc = document.documentElement;
-  const scrolled = doc.scrollTop || document.body.scrollTop;
-  const total = doc.scrollHeight - doc.clientHeight;
-  const pct = total > 0 ? (scrolled / total) * 100 : 0;
-  const bar = document.getElementById('reading-progress');
-  if (bar) bar.style.width = pct + '%';
-});
-
 /* ========== LGPD ========== */
 function fecharLGPD(aceito) {
   const banner = document.getElementById('lgpd-banner');
@@ -2281,7 +2436,62 @@ function mostrarToast(msg, dur = 3000) {
   toastTimer = setTimeout(() => t.classList.remove('show'), dur);
 }
 
-/* ========== VLIBRAS ========== */
+/* ========== CHECKLIST ========== */
+const CHECKLIST_KEY = 'salmat_checklist';
+function carregarChecklist() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(CHECKLIST_KEY) || '[]');
+    saved.forEach(id => {
+      const el = document.querySelector(`.check-item[data-id="${id}"]`);
+      if (el) el.classList.add('checked');
+    });
+  } catch(e) {}
+  atualizarProgressoChecklist();
+}
+function salvarChecklist() {
+  try {
+    const checked = [...document.querySelectorAll('.check-item.checked')].map(el => el.dataset.id);
+    localStorage.setItem(CHECKLIST_KEY, JSON.stringify(checked));
+  } catch(e) {}
+}
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  const cb = el.querySelector('.check-box');
+  if (cb) cb.textContent = el.classList.contains('checked') ? '✓' : '';
+  salvarChecklist();
+  atualizarProgressoChecklist();
+}
+function atualizarProgressoChecklist() {
+  const total = document.querySelectorAll('.check-item').length;
+  const done = document.querySelectorAll('.check-item.checked').length;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  const bar = document.getElementById('checklistBar');
+  const pctEl = document.getElementById('checklistPct');
+  if (bar) bar.style.width = pct + '%';
+  if (pctEl) pctEl.textContent = pct + '%';
+  if (pct === 100) mostrarToast('🎉 Checklist completo! Você está pronta para solicitar!', 4000);
+}
+function resetChecklist() {
+  document.querySelectorAll('.check-item').forEach(el => {
+    el.classList.remove('checked');
+    const cb = el.querySelector('.check-box');
+    if (cb) cb.textContent = '';
+  });
+  try { localStorage.removeItem(CHECKLIST_KEY); } catch(e) {}
+  atualizarProgressoChecklist();
+  mostrarToast('↺ Checklist reiniciado.');
+}
+carregarChecklist();
+
+/* ========== WHATSAPP FLUTUANTE — link dinâmico ========== */
+(function() {
+  const waFloat = document.getElementById('wa-float');
+  if (waFloat) {
+    const url = encodeURIComponent(window.location.href);
+    const txt = encodeURIComponent('👶 Veja este guia gratuito sobre Salário-Maternidade — direitos, calculadora e quiz! ');
+    waFloat.href = `https://wa.me/?text=${txt}${url}`;
+  }
+})();
 function ativarVLibras() {
   const btn = document.querySelector('[vw-access-button]');
   if (btn) {
