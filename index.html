@@ -1,21 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Guia completo sobre Salário-Maternidade e Direitos Previdenciários. Saiba quem tem direito, como solicitar e proteja seu futuro.">
-  
-  <meta property="og:title" content="Direitos Previdenciários – Salário-Maternidade" />
-  <meta property="og:description" content="Guia completo: Saiba quem tem direito ao Salário-Maternidade, como solicitar e conheça as regras do Período de Graça." />
-  <meta property="og:image" content="https://seusite.com/caminho-para-sua-imagem.jpg" /> <meta property="og:url" content="https://seusite.com" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="pt_BR" />
-
   <title>Direitos Previdenciários – Salário-Maternidade</title>
-  
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 (ícones vetoriais) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  
   <style>
     :root {
       --blue-main: #3b9ee8;
@@ -46,22 +40,98 @@
     .blob-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .blob-bg svg { width: 100%; height: 100%; }
 
-    /* Barra de acessibilidade */
+    /* Barra de acessibilidade - sempre vertical no lado direito, consistente */
     .a11y-bar {
-      position: fixed; bottom: 20px; left: 20px; z-index: 1000;
-      display: flex; flex-direction: column; gap: 8px;
-      background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
-      padding: 10px 8px; border-radius: 30px; transition: var(--transition);
-      border: 1px solid rgba(255,255,255,0.2); box-shadow: var(--shadow-sm);
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      padding: 10px 8px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0.8;
+    }
+    .a11y-bar:hover {
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
     }
     .a11y-btn {
-      background: rgba(255,255,255,0.2); border: none; color: #fff;
-      border-radius: 40px; padding: 8px 12px; font-size: 0.85rem;
-      font-weight: 800; cursor: pointer; transition: var(--transition);
-      font-family: 'Nunito', sans-serif; min-width: 44px; min-height: 44px;
-      display: flex; align-items: center; justify-content: center;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #fff;
+      border-radius: 40px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Nunito', sans-serif;
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
-    .a11y-btn:hover, .a11y-btn.active { background: var(--yellow); color: var(--text-dark); transform: scale(1.05); }
+    .a11y-btn:hover,
+    .a11y-btn.active {
+      background: var(--yellow);
+      color: var(--text-dark);
+      transform: scale(1.05);
+    }
+
+    /* Mobile: apenas ajusta tamanho dos botões, mantém posição à direita */
+    @media (max-width: 768px) {
+      .a11y-bar {
+        right: 20px;
+        left: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px 8px;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+      }
+      .a11y-btn {
+        min-width: 36px;
+        min-height: 36px;
+        padding: 4px 8px;
+        font-size: 0.75rem;
+      }
+      #backTop {
+        bottom: 80px;
+        right: 20px;
+      }
+    }
+
+    /* Telas muito pequenas – só ajusta espaçamento */
+    @media (max-width: 480px) {
+      .a11y-bar {
+        gap: 6px;
+        padding: 8px 6px;
+        right: 15px;
+      }
+      .a11y-btn {
+        min-width: 32px;
+        min-height: 32px;
+        padding: 4px 6px;
+        font-size: 0.7rem;
+      }
+      #backTop {
+        bottom: 70px;
+        right: 15px;
+      }
+    }
 
     /* Alerta superior */
     .alert-banner { position: relative; z-index: 15; background: var(--yellow); color: var(--text-dark); text-align: center; padding: 10px 50px; font-weight: 800; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
@@ -88,19 +158,42 @@
     .mobile-menu a:hover { background: var(--yellow); color: var(--text-dark); }
     .mobile-menu .pdf-btn { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: 800; margin-top: 6px; cursor: pointer; }
 
-    /* Hero */
+    /* Hero com imagem ajustada */
     .hero {
-      position: relative; z-index: 5; min-height: 90vh; display: flex;
-      align-items: center; justify-content: center; padding: 80px 5vw;
-      overflow: hidden; background-color: var(--blue-main);
-      background-image: url('fundo.png'); background-repeat: no-repeat;
-      background-position: right center; background-size: cover;
+      position: relative;
+      z-index: 5;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 5vw;
+      overflow: hidden;
+      background-color: var(--blue-main);
+      background-image: url('fundo.png');
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: cover;
     }
     .hero::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%); z-index: 1;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%);
+      z-index: 1;
     }
-    .hero-inner { position: relative; z-index: 2; max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
     .hero-text { animation: slideUp 0.8s ease both; }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.18); border-radius: 50px; padding: 8px 18px; font-size: 0.82rem; font-weight: 800; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.28); animation: pulse 3s ease infinite; }
     .hero-badge .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: blink 1.5s ease infinite; }
@@ -243,73 +336,51 @@
     .faq-a { max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.3s; padding:0 20px; font-size:0.88rem; line-height:1.65; opacity:0.88; }
     .faq-item.open .faq-a { max-height:400px; padding:0 20px 18px; }
 
-    /* =========================================
-       Mitos e Verdades - NOVO EFEITO 3D
-       ========================================= */
+    /* Mitos e Verdades */
     .myths-section { background: var(--blue-dark); }
     .myths-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-    
     .myth-card {
-      perspective: 1000px; /* Cria a perspectiva 3D */
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      min-height: 260px;
-    }
-    
-    .myth-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
-      transform-style: preserve-3d; /* Mantém os filhos no espaço 3D */
-    }
-    
-    .myth-card.revealed .myth-inner {
-      transform: rotateY(180deg); /* Faz o flip completo */
-    }
-    
-    .myth-front, .myth-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden; /* Esconde o verso quando virado */
-      border-radius: 22px;
-      padding: 28px 24px;
+      border-radius: 22px; padding: 28px 24px;
       border: 2px solid rgba(255,255,255,0.15);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      background: rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative; overflow: hidden;
     }
-    
-    /* Frente */
-    .myth-front { background: rgba(255,255,255,0.1); }
-    .myth-card:hover .myth-front { transform: scale(1.02); box-shadow: var(--shadow-md); transition: 0.3s; }
-    
-    /* Verso */
-    .myth-back {
-      transform: rotateY(180deg); /* O verso já começa "virado" */
-      align-items: center;
-      text-align: center;
-    }
-    .myth-card.mito-card .myth-back { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); }
-    .myth-card.verdade-card .myth-back { background: rgba(6,214,160,0.15); border-color: rgba(6,214,160,0.4); }
-    
-    /* Textos dos Mitos */
+    .myth-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
     .myth-label {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 0.72rem; font-weight: 900; letter-spacing: 1.5px;
       text-transform: uppercase; padding: 4px 12px;
       border-radius: 50px; margin-bottom: 14px;
-      width: fit-content;
+      background: rgba(255,255,255,0.2);
     }
     .myth-label.mito { background: rgba(239,68,68,0.25); color: #fca5a5; }
     .myth-label.verdade { background: rgba(6,214,160,0.25); color: #6ee7b7; }
-    
-    .myth-statement { font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 900; line-height: 1.4; margin-bottom: 14px; }
-    .myth-flip-hint { font-size: 0.78rem; opacity: 0.6; font-weight: 700; display: flex; align-items: center; gap: 5px; margin-top: auto; }
-    .myth-explanation { font-size: 0.95rem; line-height: 1.65; font-weight: 600; }
-    
+    .myth-statement {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem; font-weight: 900;
+      line-height: 1.4; margin-bottom: 14px;
+    }
+    .myth-flip-hint {
+      font-size: 0.78rem; opacity: 0.6; font-weight: 700;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .myth-explanation {
+      display: none; margin-top: 14px;
+      background: rgba(255,255,255,0.12);
+      border-left: 4px solid var(--yellow);
+      border-radius: 8px; padding: 14px 16px;
+      font-size: 0.9rem; line-height: 1.65; font-weight: 600;
+      animation: fadeExplain 0.3s ease;
+    }
+    @keyframes fadeExplain { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+    .myth-card.revealed .myth-explanation { display: block; }
+    .myth-card.revealed .myth-flip-hint { display: none; }
+    .myth-card.mito-card { border-color: rgba(239,68,68,0.35); }
+    .myth-card.verdade-card { border-color: rgba(6,214,160,0.35); }
+    .myth-card.mito-card.revealed { background: rgba(239,68,68,0.12); }
+    .myth-card.verdade-card.revealed { background: rgba(6,214,160,0.1); }
     .myths-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
     .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 700; }
     .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -367,32 +438,56 @@
     #backTop.visible { opacity:1; transform:translateY(0); pointer-events:all; }
     #backTop:hover { transform:scale(1.1); }
 
-    /* Mapa, Tooltips e outros mantidos iguais... */
+    /* Mapa */
     .map-container { margin-top: 28px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md); border: 2px solid rgba(255,255,255,0.2); }
     .map-container iframe { width: 100%; height: 300px; border: 0; display: block; }
+
+    /* Tooltip */
     .tooltip-wrap { position: relative; display: inline; cursor: help; border-bottom: 2px dashed rgba(255,209,102,0.7); }
-    .tooltip-wrap .tooltip-box { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--blue-deeper); color: #fff; border: 1.5px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 10px 14px; font-size: 0.82rem; line-height: 1.55; font-weight: 600; width: 230px; z-index: 999; box-shadow: var(--shadow-md); pointer-events: none; }
-    .tooltip-wrap .tooltip-box::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 7px solid transparent; border-top-color: var(--blue-deeper); }
+    .tooltip-wrap .tooltip-box {
+      display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+      background: var(--blue-deeper); color: #fff; border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 12px; padding: 10px 14px; font-size: 0.82rem; line-height: 1.55;
+      font-weight: 600; width: 230px; z-index: 999; box-shadow: var(--shadow-md);
+      pointer-events: none;
+    }
+    .tooltip-wrap .tooltip-box::after {
+      content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      border: 7px solid transparent; border-top-color: var(--blue-deeper);
+    }
     .tooltip-wrap:hover .tooltip-box { display: block; animation: fadeExplain 0.2s ease; }
-    @keyframes fadeExplain { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
-    
+
+    /* Glossário */
     .glossary-section { background: var(--blue-dark); }
     .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-    .glossary-card { background: rgba(255,255,255,0.1); border-radius: 20px; padding: 24px 22px; border: 1.5px solid rgba(255,255,255,0.16); transition: var(--transition); position: relative; overflow: hidden; }
+    .glossary-card {
+      background: rgba(255,255,255,0.1); border-radius: 20px; padding: 24px 22px;
+      border: 1.5px solid rgba(255,255,255,0.16); transition: var(--transition);
+      position: relative; overflow: hidden;
+    }
     .glossary-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--yellow); border-radius: 20px 20px 0 0; transform: scaleX(0); transition: transform 0.3s; }
     .glossary-card:hover::before { transform: scaleX(1); }
     .glossary-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
     .glossary-term { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 900; color: var(--yellow); margin-bottom: 8px; }
     .glossary-def { font-size: 0.88rem; line-height: 1.65; opacity: 0.92; }
     .glossary-ref { display: inline-block; margin-top: 10px; font-size: 0.75rem; font-weight: 700; background: rgba(255,255,255,0.15); border-radius: 50px; padding: 3px 10px; opacity: 0.75; }
+
+    /* Linha do tempo */
     .timeline-list { position: relative; padding-left: 36px; max-width: 800px; margin: 0 auto; }
     .timeline-list::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.2); border-radius: 2px; }
     .timeline-item { position: relative; margin-bottom: 32px; }
-    .timeline-item::before { content: ''; position: absolute; left: -30px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--yellow); border: 3px solid var(--blue-main); box-shadow: 0 0 0 3px rgba(255,209,102,0.3); }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -30px; top: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--yellow); border: 3px solid var(--blue-main);
+      box-shadow: 0 0 0 3px rgba(255,209,102,0.3);
+    }
     .timeline-year { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 900; color: var(--yellow); letter-spacing: 1px; margin-bottom: 4px; }
     .timeline-title { font-weight: 800; font-size: 0.97rem; margin-bottom: 6px; }
     .timeline-desc { font-size: 0.87rem; opacity: 0.85; line-height: 1.6; }
     .timeline-law { display: inline-block; margin-top: 8px; background: rgba(255,255,255,0.12); border-radius: 50px; padding: 3px 12px; font-size: 0.75rem; font-weight: 700; }
+
+    /* Localizador INSS */
     .inss-box { background: rgba(255,255,255,0.1); border-radius: 22px; padding: 36px; border: 2px solid rgba(255,255,255,0.18); display: flex; flex-wrap: wrap; gap: 32px; max-width: 860px; margin: 0 auto; }
     .inss-content { flex: 2; min-width: 200px; }
     .inss-map { flex: 1.5; min-width: 260px; }
@@ -400,6 +495,8 @@
     .inss-text h3 { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; }
     .inss-text p { font-size: 0.92rem; opacity: 0.88; line-height: 1.65; margin-bottom: 18px; }
     .inss-links { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* PDF button */
     .pdf-btn { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 0.95rem; padding: 14px 28px; border-radius: 50px; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); box-shadow: 0 4px 20px rgba(239,68,68,0.35); }
     .pdf-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(239,68,68,0.45); }
 
@@ -412,22 +509,24 @@
       .footer-inner{grid-template-columns:1fr;} 
       .quiz-box,.calc-box{padding:26px 18px;} 
       .grace-block{min-width:100%;}
-      .a11y-bar { bottom: 20px; left: 12px; padding: 8px 6px; border-radius: 28px; }
-      .a11y-btn { min-width: 40px; min-height: 40px; padding: 6px 8px; }
-      #backTop { bottom: 75px; }
-      .hero { background-image: none; background-color: var(--blue-main); }
+      .hero {
+        background-image: none; /* Remove imagem no mobile */
+        background-color: var(--blue-main);
+      }
     }
     @media(max-width:480px) { .hero-cards{grid-template-columns:1fr;} .stats-inner{grid-template-columns:1fr 1fr;} }
+
+    /* Scroll spy */
     nav a.active { background: var(--yellow) !important; color: var(--text-dark) !important; }
-    
+
+    /* Print */
     @media print {
       .a11y-bar, .alert-banner, header, #backTop, .share-btns, .hero-cta, .hamburger, .mobile-menu { display: none !important; }
       body { background: white !important; color: black !important; }
       section { break-inside: avoid; }
     }
   </style>
-</head> 
-<body>
+</head> <body>
 
 <div class="blob-bg">
   <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -439,23 +538,24 @@
   </svg>
 </div>
 
+<!-- Barra de acessibilidade -->
 <div class="a11y-bar" role="toolbar" aria-label="Acessibilidade">
-  <button type="button" class="a11y-btn" onclick="changeFontSize(-1)" title="Diminuir fonte">A-</button>
-  <button type="button" class="a11y-btn" onclick="changeFontSize(0)" title="Fonte padrão">A</button>
-  <button type="button" class="a11y-btn" onclick="changeFontSize(1)" title="Aumentar fonte">A+</button>
-  <button type="button" class="a11y-btn" id="contrastBtn" onclick="toggleContrast()" title="Alto contraste">◑</button>
+  <button type="button" class="a11y-btn" onclick="changeFontSize(-1)" title="Diminuir fonte" aria-label="Diminuir fonte">A-</button>
+  <button type="button" class="a11y-btn" onclick="changeFontSize(0)" title="Fonte padrão" aria-label="Fonte padrão">A</button>
+  <button type="button" class="a11y-btn" onclick="changeFontSize(1)" title="Aumentar fonte" aria-label="Aumentar fonte">A+</button>
+  <button type="button" class="a11y-btn" id="contrastBtn" onclick="toggleContrast()" title="Alto contraste" aria-label="Alto contraste">◑</button>
 </div>
 
 <div class="alert-banner" id="alertBanner" role="alert">
   <span>⚠️</span>
   <span>Muitas famílias perdem esse benefício por falta de informação. Compartilhe essa página!</span>
-  <button type="button" class="alert-close" onclick="document.getElementById('alertBanner').style.display='none'">✕</button>
+  <button type="button" class="alert-close" onclick="document.getElementById('alertBanner').style.display='none'" aria-label="Fechar aviso">✕</button>
 </div>
 
 <header id="mainHeader">
   <div class="nav-inner">
     <div class="logo-area" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-      <span class="logo-title">⚖️ DIREITOS PREVIDENCIÁRIOS</span>
+      <span class="logo-title">DIREITOS PREVIDENCIÁRIOS</span>
       <span class="logo-sub">Salário-Maternidade — UNIFAGOC</span>
     </div>
     <nav>
@@ -470,7 +570,7 @@
       <a href="#quiz">Quiz</a>
       <button type="button" class="pdf-btn" onclick="savePDF()" style="padding:7px 14px;font-size:0.78rem;border-radius:50px;margin-left:4px;">📥 PDF</button>
     </nav>
-    <button type="button" class="hamburger" id="hambBtn" aria-label="Menu">
+    <button type="button" class="hamburger" id="hambBtn" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -491,6 +591,7 @@
   <button type="button" class="pdf-btn" onclick="savePDF();"><i class="fas fa-file-pdf"></i> Salvar como PDF</button>
 </div>
 
+<!-- Hero com imagem de fundo -->
 <section class="hero" id="inicio">
   <div class="hero-inner">
     <div class="hero-text">
@@ -623,6 +724,7 @@
   </div>
 </section>
 
+<!-- Calculadora completa -->
 <section class="calc-section" id="calculadora">
   <div class="section-inner">
     <span class="section-badge fade-in" style="display:block;text-align:center;max-width:fit-content;margin:0 auto 12px;"><i class="fas fa-calculator"></i> Ferramenta</span>
@@ -633,10 +735,10 @@
       <p>Selecione a opção que melhor descreve seu vínculo previdenciário:</p>
       <div class="calc-group">
         <div class="calc-radio-group">
-          <label class="calc-radio"><input type="radio" name="perfil" value="clt" onclick="atualizarPerguntas()"> 👩‍💼 Empregada CLT</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="autonoma" onclick="atualizarPerguntas()"> 💼 Autônoma / MEI</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="desempregada" onclick="atualizarPerguntas()"> 🚶‍♀️ Desempregada</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="rural" onclick="atualizarPerguntas()"> 🌾 Trabalhadora rural</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="clt" onclick="atualizarPerguntas()"> 👩‍💼 Empregada CLT (carteira assinada)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="autonoma" onclick="atualizarPerguntas()"> 💼 Autônoma / MEI (contribuinte individual)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="desempregada" onclick="atualizarPerguntas()"> 🚶‍♀️ Desempregada (não contribui mais)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="rural" onclick="atualizarPerguntas()"> 🌾 Trabalhadora rural (segurada especial)</label>
         </div>
       </div>
       <div id="perguntasDinamicas" style="display: none;"></div>
@@ -671,15 +773,15 @@
     <h2 class="section-title fade-in">Como <span>solicitar</span>?</h2>
     <p class="section-desc fade-in">5 passos simples para fazer seu pedido sem sair de casa:</p>
     <div class="steps-grid">
-      <div class="step-card fade-in"><div class="step-num">1</div><h4>📂 Reúna os documentos</h4><p>RG, CPF, certidão de nascimento e comprovante de vínculo.</p></div>
-      <div class="step-card fade-in delay-1"><div class="step-num">2</div><h4>📱 Baixe o Meu INSS</h4><p>Disponível na App Store e Google Play. Faça login com gov.br.</p></div>
+      <div class="step-card fade-in"><div class="step-num">1</div><h4>📂 Reúna os documentos</h4><p>RG, CPF, certidão de nascimento (ou termo de adoção) e comprovante de vínculo.</p></div>
+      <div class="step-card fade-in delay-1"><div class="step-num">2</div><h4>📱 Baixe o Meu INSS</h4><p>Disponível na App Store e Google Play. Faça login com sua conta gov.br.</p></div>
       <div class="step-card fade-in delay-2"><div class="step-num">3</div><h4>🔍 Busque o benefício</h4><p>Digite "Salário-Maternidade" na busca e toque em <em>Solicitar</em>.</p></div>
       <div class="step-card fade-in delay-3"><div class="step-num">4</div><h4>✍️ Preencha e envie</h4><p>Complete o formulário, anexe os documentos e confirme o envio.</p></div>
       <div class="step-card fade-in"><div class="step-num">5</div><h4>📊 Acompanhe o pedido</h4><p>Pelo app Meu INSS ou pelo <strong>135</strong>, acompanhe o status em tempo real.</p></div>
     </div>
     <div style="margin-top:36px;text-align:center;">
       <p style="font-size:1rem;opacity:0.88;margin-bottom:16px;">Sem internet? Vá à agência mais próxima do INSS com seus documentos.</p>
-      <a href="https://www.gov.br/meuinss" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-mobile-alt"></i> Abrir Meu INSS</a>
+      <a href="https://meu.inss.gov.br/#/login" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-mobile-alt"></i> Abrir Meu INSS</a>
     </div>
   </div>
 </section>
@@ -775,124 +877,16 @@
       <div class="legend-item"><div class="legend-dot mito"></div> Mito — afirmação falsa e perigosa</div>
       <div class="legend-item"><div class="legend-dot verdade"></div> Verdade — garantida por lei</div>
     </div>
-    
     <div class="myths-grid">
-      <div class="myth-card mito-card fade-in" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label mito">❌ MITO</div>
-            <div class="myth-statement">"Se fui demitida, perco imediatamente o direito ao salário-maternidade."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">FALSO. A lei garante o <strong>Período de Graça</strong> — você continua protegida por 12, 24 ou até 36 meses após a demissão, dependendo do seu histórico. (Art. 15, Lei nº 8.213/1991)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card verdade-card fade-in delay-1" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label verdade">✅ VERDADE</div>
-            <div class="myth-statement">"Trabalhadora doméstica também tem direito ao salário-maternidade."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">CORRETO. Com a Emenda Constitucional 72/2013 (PEC das Domésticas), a trabalhadora doméstica com carteira assinada passou a ter os mesmos direitos.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card mito-card fade-in delay-2" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label mito">❌ MITO</div>
-            <div class="myth-statement">"A empresa pode me demitir assim que descobrir que estou grávida."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">FALSO. A gestante tem <strong>estabilidade no emprego</strong> desde a confirmação da gravidez até 5 meses após o parto. Demissão nesse período é nula. (Súmula 244, TST)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card mito-card fade-in" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label mito">❌ MITO</div>
-            <div class="myth-statement">"Só mãe biológica tem direito ao salário-maternidade."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">FALSO. Mães adotivas têm exatamente os mesmos 120 dias de benefício que mães biológicas, independentemente da idade da criança. (Lei nº 12.873/2013)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card verdade-card fade-in delay-1" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label verdade">✅ VERDADE</div>
-            <div class="myth-statement">"Mesmo sem carteira assinada, a trabalhadora rural tem direito ao benefício."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">CORRETO. A <strong>segurada especial</strong> tem direito a 1 salário mínimo, sem precisar ter contribuído mensalmente, apenas comprovando a atividade rural.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card mito-card fade-in delay-2" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label mito">❌ MITO</div>
-            <div class="myth-statement">"MEI não precisa se preocupar com carência — é automático."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">FALSO. A MEI precisa ter pagado o DAS por pelo menos <strong>10 meses</strong> antes do parto para ter direito. O pagamento não é retroativo. (Art. 25, Lei nº 8.213/1991)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card verdade-card fade-in" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label verdade">✅ VERDADE</div>
-            <div class="myth-statement">"Homem solteiro que adota uma criança pode receber os 120 dias de benefício."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">CORRETO. Homem solteiro que adota ou obtém guarda judicial para adoção tem direito aos 120 dias completos, seguindo as mesmas regras. (Art. 71-A, Lei 8.213/1991)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card mito-card fade-in delay-1" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label mito">❌ MITO</div>
-            <div class="myth-statement">"Se o bebê nascer morto, não há direito a nenhum benefício."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">FALSO. Em caso de natimorto, a trabalhadora tem direito a <strong>120 dias completos</strong> de salário-maternidade. Exige atestado. (Art. 93, Decreto 3.048/1999)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card verdade-card fade-in delay-2" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label verdade">✅ VERDADE</div>
-            <div class="myth-statement">"O salário-maternidade pode ser solicitado 100% pelo celular, sem ir ao INSS."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">CORRETO. Pelo app <strong>Meu INSS</strong> ou pelo site meu.inss.gov.br, é possível solicitar, acompanhar e receber o benefício sem sair de casa.</div>
-          </div>
-        </div>
-      </div>
+      <div class="myth-card mito-card fade-in" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"Se fui demitida, perco imediatamente o direito ao salário-maternidade."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. A lei garante o <strong>Período de Graça</strong> — você continua protegida por 12, 24 ou até 36 meses após a demissão, dependendo do seu histórico de contribuições. (Art. 15, Lei nº 8.213/1991)</div></div>
+      <div class="myth-card verdade-card fade-in delay-1" onclick="revealMyth(this)"><div class="myth-label verdade">✅ VERDADE</div><div class="myth-statement">"Trabalhadora doméstica também tem direito ao salário-maternidade."</div><div class="myth-flip-hint">👆 Clique para confirmar</div><div class="myth-explanation">CORRETO. Com a Emenda Constitucional 72/2013 (PEC das Domésticas), a trabalhadora doméstica com carteira assinada passou a ter os mesmos direitos trabalhistas, incluindo o salário-maternidade. (CF/88, art. 7º, parágrafo único)</div></div>
+      <div class="myth-card mito-card fade-in delay-2" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"A empresa pode me demitir assim que descobrir que estou grávida."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. A gestante tem <strong>estabilidade no emprego</strong> desde a confirmação da gravidez até 5 meses após o parto. Demissão nesse período é nula de pleno direito e a empresa pode ser obrigada a reintegrar a funcionária e pagar todos os salários do período. (Súmula 244, TST)</div></div>
+      <div class="myth-card mito-card fade-in" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"Só mãe biológica tem direito ao salário-maternidade."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. Mães adotivas têm exatamente os mesmos 120 dias de benefício que mães biológicas, independentemente da idade da criança adotada. Pais adotivos solteiros também têm esse direito. (Lei nº 12.873/2013)</div></div>
+      <div class="myth-card verdade-card fade-in delay-1" onclick="revealMyth(this)"><div class="myth-label verdade">✅ VERDADE</div><div class="myth-statement">"Mesmo sem carteira assinada, a trabalhadora rural tem direito ao benefício."</div><div class="myth-flip-hint">👆 Clique para confirmar</div><div class="myth-explanation">CORRETO. A <strong>segurada especial</strong> (trabalhadora rural que produz para subsistência) tem direito ao salário-maternidade no valor de 1 salário mínimo, sem precisar ter contribuído mensalmente, apenas comprovando a atividade rural. (Art. 39, Lei nº 8.213/1991)</div></div>
+      <div class="myth-card mito-card fade-in delay-2" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"MEI não precisa se preocupar com carência — é automático."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. A MEI precisa ter pagado o DAS (carnê mensal) por pelo menos <strong>10 meses</strong> antes do parto para ter direito. O pagamento não é retroativo — é preciso se planejar com antecedência. (Art. 25, Lei nº 8.213/1991)</div></div>
+      <div class="myth-card verdade-card fade-in" onclick="revealMyth(this)"><div class="myth-label verdade">✅ VERDADE</div><div class="myth-statement">"Homem solteiro que adota uma criança pode receber os 120 dias de benefício."</div><div class="myth-flip-hint">👆 Clique para confirmar</div><div class="myth-explanation">CORRETO. O salário-maternidade não é exclusivo das mulheres. Homem solteiro que adota ou obtém guarda judicial para adoção tem direito aos 120 dias completos, seguindo as mesmas regras. (Art. 71-A, Lei nº 8.213/1991)</div></div>
+      <div class="myth-card mito-card fade-in delay-1" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"Se o bebê nascer morto, não há direito a nenhum benefício."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. Em caso de natimorto, a trabalhadora tem direito a <strong>120 dias completos</strong> de salário-maternidade. Em caso de aborto não criminoso (espontâneo ou terapêutico), tem direito a 2 semanas de repouso remunerado. Em ambos os casos é necessário atestado médico. (Art. 93, Decreto nº 3.048/1999)</div></div>
+      <div class="myth-card verdade-card fade-in delay-2" onclick="revealMyth(this)"><div class="myth-label verdade">✅ VERDADE</div><div class="myth-statement">"O salário-maternidade pode ser solicitado 100% pelo celular, sem ir ao INSS."</div><div class="myth-flip-hint">👆 Clique para confirmar</div><div class="myth-explanation">CORRETO. Pelo aplicativo <strong>Meu INSS</strong> (disponível para Android e iOS) ou pelo site meu.inss.gov.br, é possível solicitar, acompanhar e receber o benefício sem sair de casa. Também é possível ligar gratuitamente para o <strong>135</strong>. (Resolução PRES/INSS nº 677/2021)</div></div>
     </div>
     <p style="margin-top:28px;font-size:0.85rem;opacity:0.7;text-align:center;">⚖️ Todas as informações são baseadas na legislação brasileira vigente. Em caso de dúvidas, consulte um advogado previdenciário.</p>
   </div>
@@ -920,9 +914,9 @@
     <h2 class="section-title fade-in" style="text-align:center;">Espalhe o <span>conhecimento</span>!</h2>
     <p class="section-desc fade-in" style="text-align:center;margin:0 auto 10px;">Muitas pessoas perdem benefícios por falta de informação. Compartilhe com amigos e familiares!</p>
     <div class="share-btns fade-in">
-      <a class="share-btn wa" href="https://wa.me/?text=Descubra+seus+direitos+ao+Sal%C3%A1rio-Maternidade!+%F0%9F%A4%B1" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      <a class="share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=https://seusite.github.io" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
-      <a class="share-btn tw" href="https://twitter.com/intent/tweet?text=Descubra+seus+direitos+ao+Sal%C3%A1rio-Maternidade!" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> Twitter/X</a>
+      <a class="share-btn wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a class="share-btn fb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+      <a class="share-btn tw" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> Twitter/X</a>
       <button type="button" class="share-btn cp" onclick="copyLink()"><i class="fas fa-link"></i> Copiar link</button>
       <button type="button" class="pdf-btn" onclick="savePDF()"><i class="fas fa-file-pdf"></i> Salvar como PDF</button>
     </div>
@@ -933,15 +927,15 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <h3>⚖️ Direitos Previdenciários</h3>
-      <p>Material educativo criado pelo Projeto de Extensão do 9º Período de Direito da <strong>UNIFAGOC</strong> — Centro Universitário Governador Ozanam Coelho.</p>
-      <p style="margin-top:10px;font-size:0.8rem;opacity:0.52;">Prof.ª Orientadora: Drielly Faria de Paula Leão</p>
+      <h3>DIREITOS PREVIDENCIÁRIOS</h3>
+      <p>“Este material educativo foi elaborado pelos alunos do 9º período do curso de Direito da <strong>UNIFAGOC</strong> — Centro Universitário Governador Ozanam Coelho.</p>
+      <p style="margin-top:10px;font-size:0.8rem;opacity:0.52;"><strong>Prof.ª Orientadora</strong>: Drielly Faria de Paula Leão</p>
       <a href="https://unifagoc.edu.br" target="_blank" class="footer-logo-link">
         <img class="footer-logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='%233b9ee8'/%3E%3Ctext x='10' y='40' font-family='Montserrat' font-weight='bold' fill='white' font-size='20'%3EUNIFAGOC%3C/text%3E%3C/svg%3E" alt="UNIFAGOC" style="background: white; border-radius: 12px; padding: 8px 16px;">
       </a>
       <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
         <a href="tel:135" style="background:var(--yellow);color:var(--text-dark);padding:8px 16px;border-radius:50px;font-weight:900;font-size:0.85rem;text-decoration:none;"><i class="fas fa-phone-alt"></i> Ligue 135</a>
-        <a href="https://www.gov.br/meuinss" target="_blank" style="background:rgba(255,255,255,0.15);color:#fff;padding:8px 16px;border-radius:50px;font-weight:800;font-size:0.85rem;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);"><i class="fas fa-mobile-alt"></i> Meu INSS</a>
+        <a href="https://meu.inss.gov.br/#/login" target="_blank" style="background:rgba(255,255,255,0.15);color:#fff;padding:8px 16px;border-radius:50px;font-weight:800;font-size:0.85rem;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);"><i class="fas fa-mobile-alt"></i> Meu INSS</a>
       </div>
     </div>
     <div class="footer-col">
@@ -993,6 +987,7 @@ function toggleMenu() {
   if (!mobileMenu || !hambBtn) return;
   const isOpen = mobileMenu.classList.toggle('open');
   hambBtn.classList.toggle('open', isOpen);
+  hambBtn.setAttribute('aria-expanded', isOpen);
 }
 document.addEventListener('DOMContentLoaded', function() {
   const hambBtn = document.getElementById('hambBtn');
@@ -1003,6 +998,7 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
   link.addEventListener('click', () => {
     document.getElementById('mobileMenu')?.classList.remove('open');
     document.getElementById('hambBtn')?.classList.remove('open');
+    document.getElementById('hambBtn')?.setAttribute('aria-expanded', 'false');
   });
 });
 
@@ -1042,10 +1038,8 @@ function toggleFaq(id) {
   document.getElementById(id)?.classList.toggle('open');
 }
 
-/* MYTHS - Efeito 3D (Apenas alterna a classe, o CSS faz o giro) */
-function revealMyth(card) { 
-  card.classList.toggle('revealed'); 
-}
+/* MYTHS */
+function revealMyth(card) { card.classList.toggle('revealed'); }
 
 /* PDF */
 function savePDF() { window.print(); }
@@ -1097,13 +1091,6 @@ function atualizarPerguntas() {
       <div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS (somando toda a vida)?</label>
         <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_10anos" value="sim"> Sim</label>
         <label class="calc-radio"><input type="radio" name="autonoma_10anos" value="nao"> Não</label></div></div>`;
-    // Evento para mostrar/ocultar tempo de parada
-    document.addEventListener('change', function(e) {
-      if (e.target && e.target.name === 'autonoma_atual') {
-        const grupo = document.getElementById('grupoTempoParada');
-        if (grupo) grupo.style.display = e.target.value === 'nao' ? 'block' : 'none';
-      }
-    });
   } else if (selecionado === 'desempregada') {
     html = `
       <div class="calc-group"><label>Há quanto tempo você parou de contribuir (último pagamento ao INSS)?</label>
@@ -1124,6 +1111,14 @@ function atualizarPerguntas() {
   if(perguntasHTML) perguntasHTML.innerHTML = html;
 }
 
+// Listener para mostrar/ocultar campo de tempo parada para autônoma (apenas uma vez)
+document.addEventListener('change', function(e) {
+  if (e.target && e.target.name === 'autonoma_atual') {
+    const grupo = document.getElementById('grupoTempoParada');
+    if (grupo) grupo.style.display = e.target.value === 'nao' ? 'block' : 'none';
+  }
+});
+
 function calcularDireitoCompleto() {
   const resultDiv = document.getElementById('calcResultFinal');
   if (resultDiv) resultDiv.style.display = 'none';
@@ -1143,7 +1138,7 @@ function calcularDireitoCompleto() {
       detalhe = 'Como empregada CLT, não há carência e o benefício é garantido por 120 dias.';
     } else {
       if (!tempo) { alert('Selecione há quanto tempo foi demitida.'); return; }
-      const dezAnos = false;
+      const dezAnos = false; // CLT não tem campo de 10 anos, mas poderia ser adicionado; manter falso como padrão
       const comprovaDesemprego = true;
       const mesesParada = tempo === 'menos12' ? 0 : (tempo === 'entre12e24' ? 12 : 24);
       if (mesesParada < 12) {
@@ -1233,7 +1228,17 @@ function calcularDireitoCompleto() {
   if (gracaDiv) gracaDiv.innerHTML = mensagemGraça ? `<p>${mensagemGraça}</p>` : '';
 }
 
-/* SHARE */
+/* SHARE - dynamic URLs */
+function updateShareLinks() {
+  const url = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent('Descubra seus direitos ao Salário-Maternidade! 🍼');
+  const waBtn = document.querySelector('.share-btn.wa');
+  const fbBtn = document.querySelector('.share-btn.fb');
+  const twBtn = document.querySelector('.share-btn.tw');
+  if (waBtn) waBtn.href = `https://wa.me/?text=${text}%20${url}`;
+  if (fbBtn) fbBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  if (twBtn) twBtn.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+}
 function copyLink() {
   const url = window.location.href;
   if (navigator.clipboard) navigator.clipboard.writeText(url);
@@ -1313,6 +1318,9 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 setTimeout(() => { const stats = document.querySelector('.stats-bar'); if (stats && stats.getBoundingClientRect().top < window.innerHeight && !countersStarted) { countersStarted = true; animateCounters(); } }, 500);
+
+// Atualizar links de compartilhamento ao carregar a página
+updateShareLinks();
 
 initQuiz(); renderQuiz();
 </script>
