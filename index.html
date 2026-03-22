@@ -726,35 +726,37 @@
     }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ===== VLIBRAS — força posição inferior esquerda, longe da a11y-bar ===== */
-    [vw] { position: fixed !important; z-index: 300 !important; }
+    /* ===== VLIBRAS — oculta botão nativo, mantém painel de vídeo na tela ===== */
+    /* Esconde APENAS o botão azul nativo do VLibras */
     [vw-access-button],
     [vw] .vw-access-button,
     .vw-access-button {
-      position: fixed !important;
-      bottom: 24px !important;
-      left: 24px !important;
-      right: auto !important;
-      top: auto !important;
-      z-index: 300 !important;
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
+
+    /* Painel de vídeo: posicionado no centro-inferior da tela para não sair */
     [vw-plugin-wrapper],
     .vw-plugin-wrapper {
       position: fixed !important;
-      bottom: 90px !important;
-      left: 24px !important;
+      bottom: 16px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
       right: auto !important;
       top: auto !important;
-      z-index: 300 !important;
+      z-index: 9000 !important;
+      max-width: 95vw !important;
     }
-    @media (max-width: 480px) {
-      [vw-access-button], [vw] .vw-access-button, .vw-access-button {
-        bottom: 16px !important;
-        left: 16px !important;
-      }
+
+    @media (max-width: 600px) {
       [vw-plugin-wrapper], .vw-plugin-wrapper {
-        bottom: 80px !important;
-        left: 16px !important;
+        bottom: 8px !important;
+        left: 8px !important;
+        right: 8px !important;
+        transform: none !important;
+        max-width: calc(100vw - 16px) !important;
       }
     }
 
@@ -2492,14 +2494,24 @@ carregarChecklist();
     waFloat.href = `https://wa.me/?text=${txt}${url}`;
   }
 })();
+/* ========== VLIBRAS ========== */
+let vlibrasAtivo = false;
 function ativarVLibras() {
   const btn = document.querySelector('[vw-access-button]');
-  if (btn) {
-    btn.click();
-    mostrarToast('🤟 VLibras ativado! Clique no ícone no canto inferior esquerdo.');
-  } else {
-    mostrarToast('⚠️ VLibras ainda carregando. Tente em instantes.');
+  if (!btn) {
+    mostrarToast('⚠️ VLibras ainda carregando. Aguarde um instante.');
+    return;
   }
+  // Torna clicável momentaneamente (display:block mas opacity:0 pra não aparecer)
+  btn.style.cssText = 'display:block!important;visibility:visible!important;opacity:0!important;position:fixed!important;top:-999px!important;left:-999px!important;';
+  btn.click();
+  setTimeout(() => {
+    btn.style.cssText = 'display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;';
+  }, 150);
+  vlibrasAtivo = !vlibrasAtivo;
+  const a11yBtn = document.querySelector('.a11y-btn[onclick*="ativarVLibras"]');
+  if (a11yBtn) a11yBtn.classList.toggle('active', vlibrasAtivo);
+  mostrarToast(vlibrasAtivo ? '🤟 VLibras ativado! O painel aparecerá na tela.' : '🤟 VLibras desativado.');
 }
 </script>
 </body>
