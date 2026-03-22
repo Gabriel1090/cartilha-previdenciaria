@@ -48,15 +48,15 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  background: rgba(0, 0, 0, 0.4); /* mais translúcido */
-  backdrop-filter: blur(4px);
-  padding: 10px 6px;
-  border-radius: 40px;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  padding: 12px 8px;
+  border-radius: 50px;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  opacity: 0.7; /* leve transparência */
+  opacity: 0.75;
 }
 .a11y-bar:hover {
   opacity: 1;
@@ -88,25 +88,24 @@
   transform: scale(1.05);
 }
 
-/* Responsividade: no mobile, reposiciona para o canto inferior direito */
+/* Responsividade: mantém vertical também no mobile, mas ajusta tamanho e posição para não sobrepor conteúdo */
 @media (max-width: 768px) {
   .a11y-bar {
     top: auto;
-    bottom: 20px;
-    right: 20px;
-    left: auto;
+    bottom: 80px;
+    right: 12px;
     transform: none;
-    flex-direction: row;
+    flex-direction: column;
     gap: 6px;
-    padding: 8px 10px;
-    border-radius: 50px;
+    padding: 8px 6px;
+    border-radius: 40px;
     opacity: 0.8;
   }
   .a11y-btn {
-    min-width: 40px;
-    min-height: 40px;
-    padding: 6px 10px;
-    font-size: 0.8rem;
+    min-width: 38px;
+    min-height: 38px;
+    padding: 6px 8px;
+    font-size: 0.75rem;
   }
 }
 
