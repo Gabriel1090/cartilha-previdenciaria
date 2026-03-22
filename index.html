@@ -518,14 +518,134 @@
     /* Scroll spy */
     nav a.active { background: var(--yellow) !important; color: var(--text-dark) !important; }
 
-    /* Print */
+    /* ========== MELHORIAS PARA IMPRESSÃO / PDF ========== */
     @media print {
-      .a11y-bar, .alert-banner, header, #backTop, .share-btns, .hero-cta, .hamburger, .mobile-menu { display: none !important; }
-      body { background: white !important; color: black !important; }
-      section { break-inside: avoid; }
+      /* Remove elementos interativos e de navegação */
+      .a11y-bar, .alert-banner, header, .hamburger, .mobile-menu, #backTop, .share-btns, .hero-cta, .quiz-nav, .pdf-btn, .btn-primary, .btn-secondary, .inss-links a, .footer-logo-link {
+        display: none !important;
+      }
+      /* Força cores escuras em fundo branco */
+      body, section, .hero, .stats-bar, .who-section, .rules-section, .calc-section, .how-section, .glossary-section, .myths-section, .quiz-section, footer {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      /* Remove imagens de fundo e mantém o conteúdo legível */
+      .hero {
+        background-image: none !important;
+        background-color: white !important;
+      }
+      .hero::before { background: none !important; }
+      .hero-card, .who-card, .info-card, .men-card, .step-card, .accordion-item, .faq-item, .myth-card, .glossary-card, .calc-box, .inss-box {
+        background: #f0f0f0 !important;
+        border: 1px solid #ccc !important;
+        color: black !important;
+        box-shadow: none !important;
+      }
+      /* Força abertura de todos os acordeões e FAQ */
+      .accordion-item .accordion-body, .faq-item .faq-a {
+        max-height: none !important;
+        overflow: visible !important;
+        padding: 10px 22px !important;
+        display: block !important;
+      }
+      .accordion-header .acc-arrow, .faq-q .arrow {
+        display: none !important;
+      }
+      /* Exibe todas as tooltips como texto inline */
+      .tooltip-wrap .tooltip-box {
+        display: inline !important;
+        position: static !important;
+        background: transparent !important;
+        color: black !important;
+        border: none !important;
+        padding: 0 !important;
+        font-weight: normal !important;
+        width: auto !important;
+        box-shadow: none !important;
+        font-style: italic;
+      }
+      .tooltip-wrap .tooltip-box::after {
+        display: none !important;
+      }
+      .tooltip-wrap {
+        border-bottom: none !important;
+        cursor: default !important;
+      }
+      /* Mitos e verdades: força exibição da explicação */
+      .myth-card .myth-explanation {
+        display: block !important;
+      }
+      .myth-card .myth-flip-hint {
+        display: none !important;
+      }
+      /* Ajustes de quebra de página */
+      section, .who-card, .info-card, .accordion-item, .myth-card, .glossary-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      /* Links: mostra URL */
+      a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8rem;
+        font-weight: normal;
+        text-decoration: none;
+        color: #666;
+      }
+      a[href^="#"]::after, a[href^="javascript"]::after {
+        content: "" !important;
+      }
+      /* Ajusta fonte para leitura confortável */
+      body {
+        font-size: 12pt;
+        line-height: 1.4;
+      }
+      h1, h2, h3 {
+        page-break-after: avoid;
+      }
+      img, svg, iframe {
+        max-width: 100% !important;
+        break-inside: avoid;
+      }
+      /* Mapa substituído por texto alternativo */
+      .map-container iframe {
+        display: none !important;
+      }
+      .map-container::after {
+        content: "Para visualizar o mapa, acesse: https://maps.app.goo.gl/... (disponível online)";
+        display: block;
+        font-size: 0.8rem;
+        margin-top: 8px;
+      }
+      /* Esconde elementos decorativos */
+      .blob-bg {
+        display: none !important;
+      }
+      /* Garante que a calculadora mostre os resultados selecionados */
+      .calc-result-box {
+        display: block !important;
+        background: #f9f9f9 !important;
+        border: 1px solid #aaa !important;
+        color: black !important;
+      }
+      /* Quiz: mostra todas as perguntas? Por simplicidade, mantém o estado atual, mas como o usuário pode finalizar antes de imprimir, fica ok */
+      .quiz-box {
+        background: #fff !important;
+        border: 1px solid #ccc !important;
+      }
+      /* Remove gradientes e sombras */
+      .btn-primary, .btn-secondary, .pdf-btn, .share-btn {
+        background: #ccc !important;
+        color: black !important;
+        border: 1px solid #000 !important;
+      }
     }
   </style>
-</head> <body>
+</head>
+<body>
 
 <div class="blob-bg">
   <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -992,7 +1112,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const hambBtn = document.getElementById('hambBtn');
   if (hambBtn) hambBtn.addEventListener('click', toggleMenu);
 });
-// Fechar menu ao clicar em link
 document.querySelectorAll('.mobile-menu a').forEach(link => {
   link.addEventListener('click', () => {
     document.getElementById('mobileMenu')?.classList.remove('open');
@@ -1110,7 +1229,6 @@ function atualizarPerguntas() {
   if(perguntasHTML) perguntasHTML.innerHTML = html;
 }
 
-// Listener para mostrar/ocultar campo de tempo parada para autônoma (apenas uma vez)
 document.addEventListener('change', function(e) {
   if (e.target && e.target.name === 'autonoma_atual') {
     const grupo = document.getElementById('grupoTempoParada');
@@ -1318,10 +1436,9 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 setTimeout(() => { const stats = document.querySelector('.stats-bar'); if (stats && stats.getBoundingClientRect().top < window.innerHeight && !countersStarted) { countersStarted = true; animateCounters(); } }, 500);
 
-// Atualizar links de compartilhamento ao carregar a página
 updateShareLinks();
-
-initQuiz(); renderQuiz();
+initQuiz();
+renderQuiz();
 </script>
 </body>
 </html>
