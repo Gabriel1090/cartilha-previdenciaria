@@ -4,19 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Guia completo sobre Salário-Maternidade e Direitos Previdenciários. Saiba quem tem direito, como solicitar e proteja seu futuro.">
-  
-  <meta property="og:title" content="Direitos Previdenciários – Salário-Maternidade" />
-  <meta property="og:description" content="Guia completo: Saiba quem tem direito ao Salário-Maternidade, como solicitar e conheça as regras do Período de Graça." />
-  <meta property="og:image" content="https://seusite.com/caminho-para-sua-imagem.jpg" /> <meta property="og:url" content="https://seusite.com" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="pt_BR" />
-
-  <title>Direitos Previdenciários – Salário-Maternidade</title>
-  
+  <title>Direitos Previdenciários – Salário-Maternidade (Guia Completo)</title>
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  
   <style>
+    /* ========== ESTILOS PRINCIPAIS (mesmos do original com melhorias) ========== */
     :root {
       --blue-main: #3b9ee8;
       --blue-dark: #2176ae;
@@ -42,28 +36,26 @@
     html { scroll-behavior: smooth; font-size: var(--font-size-base); }
     body { font-family: 'Nunito', sans-serif; background: var(--blue-main); color: var(--white); overflow-x: hidden; }
 
-    /* Background decorativo fixo (blob) */
+    /* Blob decorativo */
     .blob-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .blob-bg svg { width: 100%; height: 100%; }
 
     /* Barra de acessibilidade */
     .a11y-bar {
-      position: fixed; bottom: 20px; left: 20px; z-index: 1000;
-      display: flex; flex-direction: column; gap: 8px;
-      background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
-      padding: 10px 8px; border-radius: 30px; transition: var(--transition);
-      border: 1px solid rgba(255,255,255,0.2); box-shadow: var(--shadow-sm);
+      position: fixed; top: 50%; right: 20px; transform: translateY(-50%); z-index: 1000;
+      display: flex; flex-direction: column; gap: 8px; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+      padding: 10px 8px; border-radius: 30px; transition: var(--transition); border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2); opacity: 0.8;
     }
+    .a11y-bar:hover { opacity: 1; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); }
     .a11y-btn {
-      background: rgba(255,255,255,0.2); border: none; color: #fff;
-      border-radius: 40px; padding: 8px 12px; font-size: 0.85rem;
-      font-weight: 800; cursor: pointer; transition: var(--transition);
-      font-family: 'Nunito', sans-serif; min-width: 44px; min-height: 44px;
-      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.2); border: none; color: #fff; border-radius: 40px; padding: 8px 12px;
+      font-size: 0.85rem; font-weight: 800; cursor: pointer; transition: all 0.2s; font-family: 'Nunito', sans-serif;
+      min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center;
     }
     .a11y-btn:hover, .a11y-btn.active { background: var(--yellow); color: var(--text-dark); transform: scale(1.05); }
 
-    /* Alerta superior */
+    /* Alert banner */
     .alert-banner { position: relative; z-index: 15; background: var(--yellow); color: var(--text-dark); text-align: center; padding: 10px 50px; font-weight: 800; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .alert-close { position: absolute; right: 14px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-dark); font-weight: 900; }
 
@@ -89,17 +81,8 @@
     .mobile-menu .pdf-btn { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: 800; margin-top: 6px; cursor: pointer; }
 
     /* Hero */
-    .hero {
-      position: relative; z-index: 5; min-height: 90vh; display: flex;
-      align-items: center; justify-content: center; padding: 80px 5vw;
-      overflow: hidden; background-color: var(--blue-main);
-      background-image: url('fundo.png'); background-repeat: no-repeat;
-      background-position: right center; background-size: cover;
-    }
-    .hero::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%); z-index: 1;
-    }
+    .hero { position: relative; z-index: 5; min-height: 90vh; display: flex; align-items: center; justify-content: center; padding: 80px 5vw; overflow: hidden; background-color: var(--blue-main); background-image: url('fundo.png'); background-repeat: no-repeat; background-position: right center; background-size: cover; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%); z-index: 1; }
     .hero-inner { position: relative; z-index: 2; max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
     .hero-text { animation: slideUp 0.8s ease both; }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.18); border-radius: 50px; padding: 8px 18px; font-size: 0.82rem; font-weight: 800; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.28); animation: pulse 3s ease infinite; }
@@ -133,7 +116,7 @@
     .btn-secondary { background: rgba(255,255,255,0.16); color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; padding: 15px 30px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.4); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); }
     .btn-secondary:hover { transform: translateY(-3px); background: rgba(255,255,255,0.26); }
 
-    /* Seções gerais */
+    /* Seções */
     section { position: relative; z-index: 5; padding: var(--section-pad) 5vw; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
     .section-badge { display: inline-block; background: rgba(255,255,255,0.18); border-radius: 50px; padding: 6px 18px; font-size: 0.78rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
@@ -141,7 +124,6 @@
     .section-title span { color: var(--yellow); }
     .section-desc { font-size: 1.02rem; opacity: 0.88; line-height: 1.65; max-width: 620px; margin-bottom: 40px; }
 
-    /* Fade-in animado */
     .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
     .fade-in.delay-1 { transition-delay: 0.1s; }
@@ -152,7 +134,6 @@
     .who-section { background: var(--blue-dark); }
     .who-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 22px; }
     .who-card { background: var(--blue-main); border-radius: 24px; padding: 30px 26px; transition: var(--transition); position: relative; overflow: hidden; border: 2px solid rgba(255,255,255,0.1); }
-    .who-card::before { content:''; position:absolute; top:-30px; right:-30px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,0.06); }
     .who-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
     .who-card .num { font-family:'Montserrat',sans-serif; font-size:3.2rem; font-weight:900; opacity:0.12; line-height:1; margin-bottom:4px; }
     .who-card h3 { font-size:1.08rem; font-weight:800; margin-bottom:10px; color:var(--yellow); }
@@ -181,7 +162,7 @@
     .accordion-header .acc-arrow { margin-left: auto; font-size: 1.2rem; transition: transform 0.35s; }
     .accordion-item.open .acc-arrow { transform: rotate(180deg); }
     .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease, padding 0.3s; padding: 0 22px; }
-    .accordion-item.open .accordion-body { max-height: 700px; padding: 0 22px 22px; }
+    .accordion-item.open .accordion-body { max-height: 1200px; padding: 0 22px 22px; }
     .accordion-body p { font-size: 0.93rem; line-height: 1.7; opacity: 0.92; margin-bottom: 12px; }
 
     /* Período de Graça */
@@ -197,7 +178,7 @@
 
     /* Calculadora */
     .calc-section { background: var(--blue-dark); }
-    .calc-box { background: rgba(255,255,255,0.13); border-radius: 26px; padding: 40px; max-width: 680px; margin: 0 auto; border: 2px solid rgba(255,255,255,0.2); }
+    .calc-box { background: rgba(255,255,255,0.13); border-radius: 26px; padding: 40px; max-width: 720px; margin: 0 auto; border: 2px solid rgba(255,255,255,0.2); }
     .calc-box h3 { font-family:'Montserrat',sans-serif; font-size:1.35rem; font-weight:900; margin-bottom:8px; }
     .calc-box > p { font-size:0.92rem; opacity:0.85; margin-bottom:24px; line-height:1.6; }
     .calc-group { margin-bottom: 20px; }
@@ -211,9 +192,11 @@
     .calc-result-box { background:var(--yellow); color:var(--text-dark); border-radius:16px; padding:24px; text-align:center; margin-top:24px; display:none; animation:popIn 0.4s ease; }
     @keyframes popIn { from{transform:scale(0.9);opacity:0} to{transform:scale(1);opacity:1} }
     .calc-result-box.show { display:block; }
-    .calc-result-months { font-family:'Montserrat',sans-serif; font-size:2.8rem; font-weight:900; line-height:1; }
-    .calc-result-label { font-size:1rem; font-weight:800; margin-top:4px; }
-    .calc-result-tip { font-size:0.86rem; margin-top:10px; opacity:0.72; }
+    .required-star { color: var(--yellow); font-size: 0.9rem; }
+
+    /* Estabilidade */
+    .stability-card { background: rgba(255,255,255,0.1); border-radius: 24px; padding: 28px; border-left: 8px solid var(--yellow); margin: 30px 0; }
+    .stability-card h3 { font-family:'Montserrat',sans-serif; font-size:1.3rem; margin-bottom: 12px; }
 
     /* Men (pais) */
     .men-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
@@ -243,73 +226,24 @@
     .faq-a { max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.3s; padding:0 20px; font-size:0.88rem; line-height:1.65; opacity:0.88; }
     .faq-item.open .faq-a { max-height:400px; padding:0 20px 18px; }
 
-    /* =========================================
-       Mitos e Verdades - NOVO EFEITO 3D
-       ========================================= */
+    /* Mitos e Verdades */
     .myths-section { background: var(--blue-dark); }
     .myths-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-    
-    .myth-card {
-      perspective: 1000px; /* Cria a perspectiva 3D */
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      min-height: 260px;
-    }
-    
-    .myth-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
-      transform-style: preserve-3d; /* Mantém os filhos no espaço 3D */
-    }
-    
-    .myth-card.revealed .myth-inner {
-      transform: rotateY(180deg); /* Faz o flip completo */
-    }
-    
-    .myth-front, .myth-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden; /* Esconde o verso quando virado */
-      border-radius: 22px;
-      padding: 28px 24px;
-      border: 2px solid rgba(255,255,255,0.15);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    
-    /* Frente */
-    .myth-front { background: rgba(255,255,255,0.1); }
-    .myth-card:hover .myth-front { transform: scale(1.02); box-shadow: var(--shadow-md); transition: 0.3s; }
-    
-    /* Verso */
-    .myth-back {
-      transform: rotateY(180deg); /* O verso já começa "virado" */
-      align-items: center;
-      text-align: center;
-    }
-    .myth-card.mito-card .myth-back { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.4); }
-    .myth-card.verdade-card .myth-back { background: rgba(6,214,160,0.15); border-color: rgba(6,214,160,0.4); }
-    
-    /* Textos dos Mitos */
-    .myth-label {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.72rem; font-weight: 900; letter-spacing: 1.5px;
-      text-transform: uppercase; padding: 4px 12px;
-      border-radius: 50px; margin-bottom: 14px;
-      width: fit-content;
-    }
+    .myth-card { border-radius: 22px; padding: 28px 24px; border: 2px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.1); cursor: pointer; transition: var(--transition); position: relative; overflow: hidden; }
+    .myth-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .myth-label { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 50px; margin-bottom: 14px; background: rgba(255,255,255,0.2); }
     .myth-label.mito { background: rgba(239,68,68,0.25); color: #fca5a5; }
     .myth-label.verdade { background: rgba(6,214,160,0.25); color: #6ee7b7; }
-    
-    .myth-statement { font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 900; line-height: 1.4; margin-bottom: 14px; }
-    .myth-flip-hint { font-size: 0.78rem; opacity: 0.6; font-weight: 700; display: flex; align-items: center; gap: 5px; margin-top: auto; }
-    .myth-explanation { font-size: 0.95rem; line-height: 1.65; font-weight: 600; }
-    
+    .myth-statement { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 900; line-height: 1.4; margin-bottom: 14px; }
+    .myth-flip-hint { font-size: 0.78rem; opacity: 0.6; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+    .myth-explanation { display: none; margin-top: 14px; background: rgba(255,255,255,0.12); border-left: 4px solid var(--yellow); border-radius: 8px; padding: 14px 16px; font-size: 0.9rem; line-height: 1.65; font-weight: 600; animation: fadeExplain 0.3s ease; }
+    @keyframes fadeExplain { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+    .myth-card.revealed .myth-explanation { display: block; }
+    .myth-card.revealed .myth-flip-hint { display: none; }
+    .myth-card.mito-card { border-color: rgba(239,68,68,0.35); }
+    .myth-card.verdade-card { border-color: rgba(6,214,160,0.35); }
+    .myth-card.mito-card.revealed { background: rgba(239,68,68,0.12); }
+    .myth-card.verdade-card.revealed { background: rgba(6,214,160,0.1); }
     .myths-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
     .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 700; }
     .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -345,8 +279,8 @@
     .share-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:50px; font-weight:800; font-size:0.92rem; cursor:pointer; border:none; text-decoration:none; transition:var(--transition); }
     .share-btn:hover { transform:translateY(-3px); box-shadow:var(--shadow-sm); }
     .share-btn.wa { background:#25D366; color:#fff; }
-    .share-btn.tw { background:#1DA1F2; color:#fff; }
     .share-btn.fb { background:#1877F2; color:#fff; }
+    .share-btn.tw { background:#1DA1F2; color:#fff; }
     .share-btn.cp { background:rgba(255,255,255,0.2); color:#fff; border:2px solid rgba(255,255,255,0.35); }
 
     /* Footer */
@@ -367,15 +301,17 @@
     #backTop.visible { opacity:1; transform:translateY(0); pointer-events:all; }
     #backTop:hover { transform:scale(1.1); }
 
-    /* Mapa, Tooltips e outros mantidos iguais... */
+    /* Mapa */
     .map-container { margin-top: 28px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md); border: 2px solid rgba(255,255,255,0.2); }
     .map-container iframe { width: 100%; height: 300px; border: 0; display: block; }
+
+    /* Tooltip */
     .tooltip-wrap { position: relative; display: inline; cursor: help; border-bottom: 2px dashed rgba(255,209,102,0.7); }
     .tooltip-wrap .tooltip-box { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--blue-deeper); color: #fff; border: 1.5px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 10px 14px; font-size: 0.82rem; line-height: 1.55; font-weight: 600; width: 230px; z-index: 999; box-shadow: var(--shadow-md); pointer-events: none; }
     .tooltip-wrap .tooltip-box::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 7px solid transparent; border-top-color: var(--blue-deeper); }
     .tooltip-wrap:hover .tooltip-box { display: block; animation: fadeExplain 0.2s ease; }
-    @keyframes fadeExplain { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
-    
+
+    /* Glossário */
     .glossary-section { background: var(--blue-dark); }
     .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
     .glossary-card { background: rgba(255,255,255,0.1); border-radius: 20px; padding: 24px 22px; border: 1.5px solid rgba(255,255,255,0.16); transition: var(--transition); position: relative; overflow: hidden; }
@@ -385,6 +321,8 @@
     .glossary-term { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 900; color: var(--yellow); margin-bottom: 8px; }
     .glossary-def { font-size: 0.88rem; line-height: 1.65; opacity: 0.92; }
     .glossary-ref { display: inline-block; margin-top: 10px; font-size: 0.75rem; font-weight: 700; background: rgba(255,255,255,0.15); border-radius: 50px; padding: 3px 10px; opacity: 0.75; }
+
+    /* Linha do tempo */
     .timeline-list { position: relative; padding-left: 36px; max-width: 800px; margin: 0 auto; }
     .timeline-list::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.2); border-radius: 2px; }
     .timeline-item { position: relative; margin-bottom: 32px; }
@@ -393,6 +331,8 @@
     .timeline-title { font-weight: 800; font-size: 0.97rem; margin-bottom: 6px; }
     .timeline-desc { font-size: 0.87rem; opacity: 0.85; line-height: 1.6; }
     .timeline-law { display: inline-block; margin-top: 8px; background: rgba(255,255,255,0.12); border-radius: 50px; padding: 3px 12px; font-size: 0.75rem; font-weight: 700; }
+
+    /* Localizador INSS */
     .inss-box { background: rgba(255,255,255,0.1); border-radius: 22px; padding: 36px; border: 2px solid rgba(255,255,255,0.18); display: flex; flex-wrap: wrap; gap: 32px; max-width: 860px; margin: 0 auto; }
     .inss-content { flex: 2; min-width: 200px; }
     .inss-map { flex: 1.5; min-width: 260px; }
@@ -400,37 +340,47 @@
     .inss-text h3 { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; }
     .inss-text p { font-size: 0.92rem; opacity: 0.88; line-height: 1.65; margin-bottom: 18px; }
     .inss-links { display: flex; gap: 12px; flex-wrap: wrap; }
-    .pdf-btn { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 0.95rem; padding: 14px 28px; border-radius: 50px; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); box-shadow: 0 4px 20px rgba(239,68,68,0.35); }
-    .pdf-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(239,68,68,0.45); }
+
+    /* Áudio */
+    .audio-btn { background: rgba(255,255,255,0.2); border: none; color: white; border-radius: 50px; padding: 8px 12px; font-size: 0.8rem; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 6px; margin-left: 12px; }
+    .audio-btn:hover { background: var(--yellow); color: var(--text-dark); transform: scale(1.02); }
+
+    /* Barra de progresso de leitura */
+    .reading-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: var(--yellow); z-index: 10000; transition: width 0.1s ease; }
 
     /* Responsividade */
     @media(max-width:900px) { nav{display:none;} .hamburger{display:flex;} .stats-inner{grid-template-columns:repeat(2,1fr);} }
-    @media(max-width:768px) { 
-      :root{--section-pad:56px;} 
-      .hero-inner{grid-template-columns:1fr;} 
-      .hero-cards{grid-template-columns:1fr 1fr;} 
-      .footer-inner{grid-template-columns:1fr;} 
-      .quiz-box,.calc-box{padding:26px 18px;} 
-      .grace-block{min-width:100%;}
-      .a11y-bar { bottom: 20px; left: 12px; padding: 8px 6px; border-radius: 28px; }
-      .a11y-btn { min-width: 40px; min-height: 40px; padding: 6px 8px; }
-      #backTop { bottom: 75px; }
-      .hero { background-image: none; background-color: var(--blue-main); }
-    }
+    @media(max-width:768px) { :root{--section-pad:56px;} .hero-inner{grid-template-columns:1fr;} .hero-cards{grid-template-columns:1fr 1fr;} .footer-inner{grid-template-columns:1fr;} .quiz-box,.calc-box{padding:26px 18px;} .grace-block{min-width:100%;} .hero { background-image: none; background-color: var(--blue-main); } }
     @media(max-width:480px) { .hero-cards{grid-template-columns:1fr;} .stats-inner{grid-template-columns:1fr 1fr;} }
+
     nav a.active { background: var(--yellow) !important; color: var(--text-dark) !important; }
-    
+
+    /* Print */
     @media print {
-      .a11y-bar, .alert-banner, header, #backTop, .share-btns, .hero-cta, .hamburger, .mobile-menu { display: none !important; }
-      body { background: white !important; color: black !important; }
-      section { break-inside: avoid; }
+      .a11y-bar, .alert-banner, header, .hamburger, .mobile-menu, #backTop, .share-btns, .hero-cta, .quiz-nav, .pdf-btn, .btn-primary, .btn-secondary, .inss-links a, .footer-logo-link, .audio-btn, .reading-progress { display: none !important; }
+      body, section, .hero, .stats-bar, .who-section, .rules-section, .calc-section, .how-section, .glossary-section, .myths-section, .quiz-section, footer { background: white !important; color: black !important; box-shadow: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .hero { background-image: none !important; background-color: white !important; }
+      .hero::before { background: none !important; }
+      .hero-card, .who-card, .info-card, .men-card, .step-card, .accordion-item, .faq-item, .myth-card, .glossary-card, .calc-box, .inss-box { background: #f0f0f0 !important; border: 1px solid #ccc !important; color: black !important; box-shadow: none !important; }
+      .accordion-item .accordion-body, .faq-item .faq-a { max-height: none !important; overflow: visible !important; padding: 10px 22px !important; display: block !important; }
+      .accordion-header .acc-arrow, .faq-q .arrow { display: none !important; }
+      .tooltip-wrap .tooltip-box { display: inline !important; position: static !important; background: transparent !important; color: black !important; border: none !important; padding: 0 !important; font-weight: normal !important; width: auto !important; box-shadow: none !important; font-style: italic; }
+      .tooltip-wrap .tooltip-box::after { display: none !important; }
+      .tooltip-wrap { border-bottom: none !important; cursor: default !important; }
+      .myth-card .myth-explanation { display: block !important; }
+      .myth-card .myth-flip-hint { display: none !important; }
+      section, .who-card, .info-card, .accordion-item, .myth-card, .glossary-card { break-inside: avoid; page-break-inside: avoid; }
+      .map-container iframe { display: none !important; }
+      .map-container::after { content: "Para visualizar o mapa, acesse: https://maps.app.goo.gl/... (disponível online)"; display: block; font-size: 0.8rem; margin-top: 8px; }
+      .blob-bg { display: none !important; }
+      .calc-result-box { display: block !important; background: #f9f9f9 !important; border: 1px solid #aaa !important; color: black !important; }
     }
   </style>
-</head> 
+</head>
 <body>
-
+<div class="reading-progress" id="readingProgress"></div>
 <div class="blob-bg">
-  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
     <rect width="1440" height="900" fill="#3b9ee8"/>
     <path d="M-80,0 C180,70 420,-50 730,30 C1040,110 1260,-40 1520,50 L1520,0 Z" fill="#6aaee0" opacity="0.45"/>
     <path d="M-80,860 C120,780 380,870 680,830 C980,790 1230,850 1520,840 L1520,900 L-80,900 Z" fill="#6aaee0" opacity="0.42"/>
@@ -444,18 +394,19 @@
   <button type="button" class="a11y-btn" onclick="changeFontSize(0)" title="Fonte padrão">A</button>
   <button type="button" class="a11y-btn" onclick="changeFontSize(1)" title="Aumentar fonte">A+</button>
   <button type="button" class="a11y-btn" id="contrastBtn" onclick="toggleContrast()" title="Alto contraste">◑</button>
+  <button type="button" class="a11y-btn" onclick="toggleSpeechRate()" title="Velocidade da fala">⚡</button>
 </div>
 
 <div class="alert-banner" id="alertBanner" role="alert">
   <span>⚠️</span>
   <span>Muitas famílias perdem esse benefício por falta de informação. Compartilhe essa página!</span>
-  <button type="button" class="alert-close" onclick="document.getElementById('alertBanner').style.display='none'">✕</button>
+  <button type="button" class="alert-close" onclick="document.getElementById('alertBanner').style.display='none'" aria-label="Fechar aviso">✕</button>
 </div>
 
 <header id="mainHeader">
   <div class="nav-inner">
     <div class="logo-area" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-      <span class="logo-title">⚖️ DIREITOS PREVIDENCIÁRIOS</span>
+      <span class="logo-title">DIREITOS PREVIDENCIÁRIOS</span>
       <span class="logo-sub">Salário-Maternidade — UNIFAGOC</span>
     </div>
     <nav>
@@ -470,7 +421,7 @@
       <a href="#quiz">Quiz</a>
       <button type="button" class="pdf-btn" onclick="savePDF()" style="padding:7px 14px;font-size:0.78rem;border-radius:50px;margin-left:4px;">📥 PDF</button>
     </nav>
-    <button type="button" class="hamburger" id="hambBtn" aria-label="Menu">
+    <button type="button" class="hamburger" id="hambBtn" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -491,6 +442,7 @@
   <button type="button" class="pdf-btn" onclick="savePDF();"><i class="fas fa-file-pdf"></i> Salvar como PDF</button>
 </div>
 
+<!-- Hero -->
 <section class="hero" id="inicio">
   <div class="hero-inner">
     <div class="hero-text">
@@ -520,19 +472,27 @@
   </div>
 </div>
 
+<!-- Seção Quem tem direito (expandida) -->
 <section class="who-section" id="quem-tem-direito">
   <div class="section-inner">
-    <span class="section-badge fade-in"><i class="fas fa-baby"></i> Beneficiárias</span>
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span class="section-badge fade-in"><i class="fas fa-baby"></i> Beneficiárias</span>
+      <button class="audio-btn" onclick="speakText(document.querySelector('#quem-tem-direito .who-grid').innerText)"><i class="fas fa-volume-up"></i> Ouvir seção</button>
+    </div>
     <h2 class="section-title fade-in">Quem tem <span>direito</span>?</h2>
     <p class="section-desc fade-in">O salário-maternidade é garantido por lei, mas as regras mudam de acordo com sua situação. Identifique a sua:</p>
     <div class="who-grid">
       <div class="who-card fade-in"><div class="num">01</div><h3><i class="fas fa-briefcase"></i> Carteira Assinada (CLT)</h3><p>Empregada formalmente? Você tem direito ao benefício por <strong>120 dias</strong>.</p><div class="acc-highlight">✅ Sem <span class="tooltip-wrap">carência<span class="tooltip-box">Número mínimo de meses contribuídos ao INSS antes de poder pedir o benefício. CLT não precisa!</span></span> mínima de INSS!</div><div class="acc-highlight">⚠️ <span class="tooltip-wrap">Estabilidade gestacional<span class="tooltip-box">Proteção legal que impede sua demissão desde a confirmação da gravidez até 5 meses após o parto.</span></span> desde a gravidez até 5 meses após o parto.</div><span class="tag">💰 Paga pela empresa</span></div>
       <div class="who-card fade-in delay-1"><div class="num">02</div><h3><i class="fas fa-leaf"></i> Autônomas, MEI e Rurais</h3><p>Trabalha por conta própria ou no campo? Você também tem direito, com regras diferentes.</p><div class="acc-highlight">📋 <span class="tooltip-wrap">Carência<span class="tooltip-box">Período mínimo de contribuições ao INSS antes de ter direito ao benefício. Para autônomas/MEI são obrigatórios 10 meses de pagamento.</span></span>: 10 meses de contribuição ao INSS antes do parto.</div><span class="tag">💰 Pago pelo INSS</span></div>
       <div class="who-card fade-in delay-2"><div class="num">03</div><h3><i class="fas fa-home"></i> Desempregada</h3><p>Foi demitida? Você não perde os direitos imediatamente. A lei garante o <span class="tooltip-wrap"><strong>"Período de Graça"</strong><span class="tooltip-box">Tempo de proteção após parar de contribuir — dura de 12 a 36 meses dependendo do seu histórico no INSS.</span></span>!</p><div class="acc-highlight">🕐 Se o bebê nascer no prazo, o INSS paga!</div><span class="tag">👉 Use a Calculadora abaixo</span></div>
+      <div class="who-card fade-in"><div class="num">04</div><h3><i class="fas fa-user-friends"></i> Segurada Facultativa</h3><p>Dona de casa, estudante ou qualquer pessoa que contribui voluntariamente ao INSS. Tem direito com as mesmas regras da autônoma: <strong>10 meses de carência</strong> e pagamento em dia.</p><span class="tag">💰 Contribuição facultativa</span></div>
+      <div class="who-card fade-in delay-1"><div class="num">05</div><h3><i class="fas fa-anchor"></i> Trabalhadora Avulsa</h3><p>Profissionais que prestam serviços a diversas empresas sem vínculo empregatício (ex: portuárias). Têm direito como seguradas obrigatórias, sem carência, similar à CLT.</p><span class="tag">💰 Pago pelo INSS</span></div>
+      <div class="who-card fade-in delay-2"><div class="num">06</div><h3><i class="fas fa-clock"></i> CLT Intermitente</h3><p>Contrato intermitente (Lei 13.467/2017). Tem direito ao salário-maternidade, calculado sobre a média dos valores recebidos nos últimos 12 meses. A estabilidade também se aplica.</p><span class="tag">💰 Pago pela empresa</span></div>
     </div>
   </div>
 </section>
 
+<!-- Infográfico com valores atualizados -->
 <section id="numeros">
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-chart-line"></i> Em números</span>
@@ -544,71 +504,57 @@
       <div class="info-card fade-in delay-2"><span class="i-icon"><i class="fas fa-clock"></i></span><div class="i-value">28</div><div class="i-label">dias antes do parto se necessário</div></div>
       <div class="info-card fade-in delay-3"><span class="i-icon"><i class="fas fa-list-alt"></i></span><div class="i-value">10</div><div class="i-label">meses de carência p/ autônomas</div></div>
       <div class="info-card fade-in"><span class="i-icon"><i class="fas fa-phone-alt"></i></span><div class="i-value">135</div><div class="i-label">telefone gratuito do INSS</div></div>
-      <div class="info-card fade-in delay-1"><span class="i-icon"><i class="fas fa-mobile-alt"></i></span><div class="i-value">100%</div><div class="i-label">online pelo App Meu INSS</div></div>
+      <div class="info-card fade-in delay-1"><span class="i-icon"><i class="fas fa-chart-line"></i></span><div class="i-value">R$ 8.157</div><div class="i-label">teto do INSS (2026)</div></div>
     </div>
   </div>
 </section>
 
+<!-- Regras com novos acordeões -->
 <section class="rules-section" id="regras">
   <div class="section-inner">
-    <span class="section-badge fade-in"><i class="fas fa-list-ul"></i> Detalhes</span>
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span class="section-badge fade-in"><i class="fas fa-list-ul"></i> Detalhes</span>
+      <button class="audio-btn" onclick="speakText(document.querySelector('.accordion-list').innerText)"><i class="fas fa-volume-up"></i> Ouvir regras</button>
+    </div>
     <h2 class="section-title fade-in">Conheça as <span>regras</span></h2>
     <p class="section-desc fade-in">Clique em cada tema para expandir e entender melhor:</p>
     <div class="accordion-list">
-      <div class="accordion-item fade-in" id="acc1">
-        <div class="accordion-header" onclick="toggleAcc('acc1')"><span class="acc-icon"><i class="fas fa-coins"></i></span><span>Quanto vou receber?</span><span class="acc-arrow">▼</span></div>
-        <div class="accordion-body">
-          <p>O valor varia conforme sua situação:</p>
-          <div class="acc-highlight">👷 <strong>CLT:</strong> Equivalente ao salário que você recebia.</div>
-          <div class="acc-highlight">💼 <strong>MEI/Autônoma:</strong> Média das contribuições ao INSS.</div>
-          <div class="acc-highlight">🌾 <strong>Trabalhadora Rural (segurada especial):</strong> Um salário mínimo por mês (atualmente R$ 1.621).</div>
-        </div>
-      </div>
-      <div class="accordion-item fade-in" id="acc2">
-        <div class="accordion-header" onclick="toggleAcc('acc2')"><span class="acc-icon"><i class="fas fa-calendar-alt"></i></span><span>Por quanto tempo dura?</span><span class="acc-arrow">▼</span></div>
-        <div class="accordion-body">
-          <p>Duração padrão: <strong>120 dias (4 meses)</strong> a partir do parto, adoção ou guarda judicial.</p>
-          <div class="acc-highlight">🔰 Empresas com o <span class="tooltip-wrap"><strong>Programa Empresa Cidadã</strong><span class="tooltip-box">Programa voluntário onde a empresa amplia a licença para 180 dias em troca de incentivo fiscal no IR. Pergunte ao RH!</span></span> podem prorrogar para <strong>180 dias</strong>!</div>
-          <p>Pode começar até 28 dias antes do parto, com atestado médico.</p>
-        </div>
-      </div>
-      <div class="accordion-item fade-in" id="acc3">
-        <div class="accordion-header" onclick="toggleAcc('acc3')"><span class="acc-icon"><i class="fas fa-file-alt"></i></span><span>Documentos necessários</span><span class="acc-arrow">▼</span></div>
-        <div class="accordion-body">
-          <div class="acc-highlight">📋 <strong>Todos:</strong> RG, CPF e Certidão de Nascimento (ou Termo de Adoção).</div>
-          <div class="acc-highlight">💼 <strong>CLT:</strong> Carteira de Trabalho e comprovante de vínculo empregatício.</div>
-          <div class="acc-highlight">🏢 <strong>MEI/Autônoma:</strong> Comprovante de pagamento do INSS dos últimos 10 meses.</div>
-          <div class="acc-highlight">🌾 <strong>Rural:</strong> Documento de atividade rural (contrato, nota de produtor ou declaração do sindicato).</div>
-        </div>
-      </div>
-      <div class="accordion-item fade-in" id="acc4">
-        <div class="accordion-header" onclick="toggleAcc('acc4')"><span class="acc-icon"><i class="fas fa-heartbeat"></i></span><span>E em caso de aborto ou natimorto?</span><span class="acc-arrow">▼</span></div>
-        <div class="accordion-body">
-          <div class="acc-highlight">💙 <strong>Aborto não criminoso:</strong> 2 semanas de repouso remunerado. Exige atestado médico.</div>
-          <div class="acc-highlight">💙 <strong>Natimorto:</strong> 120 dias completos de benefício. A lei protege nesses momentos.</div>
-        </div>
-      </div>
-      <div class="accordion-item fade-in" id="acc5">
-        <div class="accordion-header" onclick="toggleAcc('acc5')"><span class="acc-icon"><i class="fas fa-building"></i></span><span>O que é o Programa Empresa Cidadã?</span><span class="acc-arrow">▼</span></div>
-        <div class="accordion-body">
-          <p>Programa voluntário em que empresas se comprometem a prorrogar a licença-maternidade de 120 para <strong>180 dias</strong> e a licença-paternidade de 5 para <strong>20 dias</strong>.</p>
-          <div class="acc-highlight">💡 Em troca, a empresa recebe incentivo fiscal: dedução no Imposto de Renda.</div>
-          <p>Pergunte ao seu RH se a empresa participa!</p>
-        </div>
-      </div>
-      <div class="accordion-item fade-in" id="acc6">
-        <div class="accordion-header" onclick="toggleAcc('acc6')"><span class="acc-icon"><i class="fas fa-gavel"></i></span><span>E se a empresa negar ou atrasar o benefício?</span><span class="acc-arrow">▼</span></div>
-        <div class="accordion-body">
-          <div class="acc-highlight">1️⃣ Denuncie ao <strong>Ministério do Trabalho</strong> pelo portal gov.br.</div>
-          <div class="acc-highlight">2️⃣ Procure o <strong>sindicato da sua categoria</strong> para apoio jurídico gratuito.</div>
-          <div class="acc-highlight">3️⃣ Ingresse com <strong>reclamação trabalhista</strong> — para valores menores não precisa de advogado.</div>
-          <p>O pagamento do salário-maternidade é obrigatório por lei. Negar é crime!</p>
-        </div>
-      </div>
+      <div class="accordion-item fade-in" id="acc1"><div class="accordion-header" onclick="toggleAcc('acc1')"><span class="acc-icon"><i class="fas fa-coins"></i></span><span>Quanto vou receber? (com exemplos)</span><span class="acc-arrow">▼</span></div><div class="accordion-body"><p>O valor varia conforme sua situação:</p><div class="acc-highlight">👷 <strong>CLT:</strong> Equivalente ao salário que você recebia. Ex: salário R$ 3.500 → recebe R$ 3.500 por 120 dias.</div><div class="acc-highlight">💼 <strong>MEI/Autônoma:</strong> Média das contribuições dos últimos 12 meses, limitado ao teto do INSS (R$ 8.157,41). Ex: contribuiu sobre R$ 1.412,00 → recebe R$ 1.412,00.</div><div class="acc-highlight">🌾 <strong>Trabalhadora Rural (segurada especial):</strong> Um salário mínimo por mês (R$ 1.621,00).</div><div class="acc-highlight">🏢 <strong>Segurada facultativa:</strong> mesma regra da autônoma: média das contribuições.</div><div class="acc-highlight">📌 <strong>Teto INSS:</strong> nenhum benefício pode ultrapassar R$ 8.157,41 (valor 2026).</div></div></div>
+      <div class="accordion-item fade-in" id="acc2"><div class="accordion-header" onclick="toggleAcc('acc2')"><span class="acc-icon"><i class="fas fa-calendar-alt"></i></span><span>Por quanto tempo dura?</span><span class="acc-arrow">▼</span></div><div class="accordion-body"><p>Duração padrão: <strong>120 dias (4 meses)</strong> a partir do parto, adoção ou guarda judicial.</p><div class="acc-highlight">🔰 Empresas com o <span class="tooltip-wrap"><strong>Programa Empresa Cidadã</strong><span class="tooltip-box">Programa voluntário onde a empresa amplia a licença para 180 dias em troca de incentivo fiscal no IR. Pergunte ao RH!</span></span> podem prorrogar para <strong>180 dias</strong>!</div><p>Pode começar até 28 dias antes do parto, com atestado médico.</p><div class="acc-highlight">👶 <strong>Parto múltiplo:</strong> continua sendo 120 dias, não se multiplica.</div></div></div>
+      <div class="accordion-item fade-in" id="acc3"><div class="accordion-header" onclick="toggleAcc('acc3')"><span class="acc-icon"><i class="fas fa-file-alt"></i></span><span>Documentos necessários</span><span class="acc-arrow">▼</span></div><div class="accordion-body"><div class="acc-highlight">📋 <strong>Todos:</strong> RG, CPF e Certidão de Nascimento (ou Termo de Adoção).</div><div class="acc-highlight">💼 <strong>CLT:</strong> Carteira de Trabalho e comprovante de vínculo empregatício.</div><div class="acc-highlight">🏢 <strong>MEI/Autônoma/Facultativa:</strong> Comprovante de pagamento do INSS dos últimos 10 meses (carnês ou DAS).</div><div class="acc-highlight">🌾 <strong>Rural:</strong> Documento de atividade rural (contrato, nota de produtor ou declaração do sindicato).</div></div></div>
+      <div class="accordion-item fade-in" id="acc4"><div class="accordion-header" onclick="toggleAcc('acc4')"><span class="acc-icon"><i class="fas fa-heartbeat"></i></span><span>E em caso de aborto ou natimorto?</span><span class="acc-arrow">▼</span></div><div class="accordion-body"><div class="acc-highlight">💙 <strong>Aborto não criminoso (espontâneo ou legal):</strong> 2 semanas de repouso remunerado. Exige atestado médico.</div><div class="acc-highlight">💙 <strong>Natimorto:</strong> 120 dias completos de benefício. A lei protege nesses momentos.</div><div class="acc-highlight">⚖️ <strong>Aborto por violência sexual:</strong> considerado aborto legal, mesmo direito às 2 semanas.</div></div></div>
+      <div class="accordion-item fade-in" id="acc5"><div class="accordion-header" onclick="toggleAcc('acc5')"><span class="acc-icon"><i class="fas fa-building"></i></span><span>O que é o Programa Empresa Cidadã?</span><span class="acc-arrow">▼</span></div><div class="accordion-body"><p>Programa voluntário em que empresas se comprometem a prorrogar a licença-maternidade de 120 para <strong>180 dias</strong> e a licença-paternidade de 5 para <strong>20 dias</strong>.</p><div class="acc-highlight">💡 Em troca, a empresa recebe incentivo fiscal: dedução no Imposto de Renda.</div><p>Pergunte ao seu RH se a empresa participa!</p></div></div>
+      <div class="accordion-item fade-in" id="acc6"><div class="accordion-header" onclick="toggleAcc('acc6')"><span class="acc-icon"><i class="fas fa-gavel"></i></span><span>E se a empresa negar ou atrasar o benefício?</span><span class="acc-arrow">▼</span></div><div class="accordion-body"><div class="acc-highlight">1️⃣ Denuncie ao <strong>Ministério do Trabalho</strong> pelo portal gov.br.</div><div class="acc-highlight">2️⃣ Procure o <strong>sindicato da sua categoria</strong> para apoio jurídico gratuito.</div><div class="acc-highlight">3️⃣ Ingresse com <strong>reclamação trabalhista</strong> — para valores menores não precisa de advogado.</div><p>O pagamento do salário-maternidade é obrigatório por lei. Negar é crime!</p></div></div>
+      <div class="accordion-item fade-in" id="acc7"><div class="accordion-header" onclick="toggleAcc('acc7')"><span class="acc-icon"><i class="fas fa-hourglass-half"></i></span><span>Prazo para pedir e decadência</span><span class="acc-arrow">▼</span></div><div class="accordion-body"><p>Não há um prazo fatal para solicitar o salário-maternidade, mas o INSS só paga as parcelas dos <strong>últimos 5 anos</strong> (decadência). Se você deixar para pedir depois de muito tempo, pode perder o direito a parte do valor. <strong>Peça o quanto antes!</strong></p></div></div>
+      <div class="accordion-item fade-in" id="acc8"><div class="accordion-header" onclick="toggleAcc('acc8')"><span class="acc-icon"><i class="fas fa-balance-scale"></i></span><span>Recursos em caso de indeferimento</span><span class="acc-arrow">▼</span></div><div class="accordion-body"><p>Se o INSS negar seu pedido, você pode:</p><div class="acc-highlight">📄 Pedir <strong>reconsideração</strong> (revisão administrativa) no próprio Meu INSS.</div><div class="acc-highlight">⚖️ Recorrer ao <strong>Conselho de Recursos da Previdência Social (CRPS)</strong>.</div><div class="acc-highlight">🏛️ Ajuizar <strong>ação judicial</strong> (assistência da Defensoria Pública, Ministério Público ou advogado).</div><p>Nunca desista: muitas vezes o indeferimento ocorre por falta de documento ou erro do sistema.</p></div></div>
     </div>
   </div>
 </section>
 
+<!-- Estabilidade no emprego (nova seção) -->
+<section id="estabilidade" style="background: var(--blue-dark);">
+  <div class="section-inner">
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <span class="section-badge fade-in"><i class="fas fa-shield-alt"></i> Proteção</span>
+      <button class="audio-btn" onclick="speakText(document.querySelector('#estabilidade .stability-card').innerText)"><i class="fas fa-volume-up"></i> Ouvir</button>
+    </div>
+    <h2 class="section-title fade-in">Estabilidade no <span>Emprego</span></h2>
+    <div class="stability-card fade-in">
+      <h3><i class="fas fa-gavel"></i> Direito garantido</h3>
+      <p>A gestante tem <strong>estabilidade provisória no emprego</strong> desde a confirmação da gravidez até 5 meses após o parto. Isso vale para:</p>
+      <ul style="margin: 12px 0 12px 24px;">
+        <li>Trabalhadoras CLT (inclusive em contrato de experiência e temporário)</li>
+        <li>Trabalhadoras rurais</li>
+        <li>Empregadas domésticas</li>
+        <li>Servidoras públicas (estabilidade garantida por lei própria)</li>
+      </ul>
+      <p>⚠️ A demissão sem justa causa nesse período é <strong>nula</strong> e a empresa pode ser condenada a reintegrar a funcionária e pagar todos os salários do período.</p>
+      <div class="acc-highlight" style="margin-top: 12px;">📌 Importante: a estabilidade é <strong>automática</strong> – não precisa de comunicação prévia. Se você for demitida grávida, procure um advogado ou o sindicato imediatamente.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Período de Graça (já existente, mantido) -->
 <section id="periodo-graca">
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-hourglass-half"></i> Proteção</span>
@@ -623,25 +569,29 @@
   </div>
 </section>
 
+<!-- ========== CALCULADORA REFATORADA (MAIS PRECISA) ========== -->
 <section class="calc-section" id="calculadora">
   <div class="section-inner">
-    <span class="section-badge fade-in" style="display:block;text-align:center;max-width:fit-content;margin:0 auto 12px;"><i class="fas fa-calculator"></i> Ferramenta</span>
-    <h2 class="section-title fade-in" style="text-align:center;">Calculadora de <span>Direito e Período de Graça</span></h2>
-    <p class="section-desc fade-in" style="text-align:center;margin:0 auto 36px;">Responda as perguntas para descobrir se você tem direito ao salário-maternidade e, se for o caso, quanto tempo ainda está protegida.</p>
+    <span class="section-badge fade-in"><i class="fas fa-calculator"></i> Ferramenta</span>
+    <h2 class="section-title fade-in">Calculadora de <span>Direito e Período de Graça</span></h2>
+    <p class="section-desc fade-in">Responda as perguntas para descobrir se você tem direito ao salário-maternidade e, se for o caso, quanto tempo ainda está protegida.</p>
     <div class="calc-box fade-in">
       <h3>📋 Qual a sua situação atual?</h3>
-      <p>Selecione a opção que melhor descreve seu vínculo previdenciário:</p>
       <div class="calc-group">
         <div class="calc-radio-group">
-          <label class="calc-radio"><input type="radio" name="perfil" value="clt" onclick="atualizarPerguntas()"> 👩‍💼 Empregada CLT</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="autonoma" onclick="atualizarPerguntas()"> 💼 Autônoma / MEI</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="desempregada" onclick="atualizarPerguntas()"> 🚶‍♀️ Desempregada</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="rural" onclick="atualizarPerguntas()"> 🌾 Trabalhadora rural</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="clt" onclick="atualizarPerguntas(); salvarRespostas()"> 👩‍💼 Empregada CLT (carteira assinada)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="autonoma" onclick="atualizarPerguntas(); salvarRespostas()"> 💼 Autônoma / MEI / Facultativa</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="desempregada" onclick="atualizarPerguntas(); salvarRespostas()"> 🚶‍♀️ Desempregada (não contribui mais)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="rural" onclick="atualizarPerguntas(); salvarRespostas()"> 🌾 Trabalhadora rural (segurada especial)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="avulsa" onclick="atualizarPerguntas(); salvarRespostas()"> ⚓ Trabalhadora avulsa</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="intermitente" onclick="atualizarPerguntas(); salvarRespostas()"> ⏲️ CLT intermitente</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="informal" onclick="atualizarPerguntas(); salvarRespostas()"> 🙋‍♀️ Trabalhadora informal (sem contribuição)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="adocao" onclick="atualizarPerguntas(); salvarRespostas()"> 👨‍👧 Adoção (pai ou mãe)</label>
         </div>
       </div>
       <div id="perguntasDinamicas" style="display: none;"></div>
       <div style="text-align:center; margin-top: 20px;">
-        <button type="button" class="btn-primary" onclick="calcularDireitoCompleto()"><i class="fas fa-search"></i> Verificar meu direito</button>
+        <button type="button" class="btn-primary" id="btnCalcular" onclick="calcularDireito()" disabled><i class="fas fa-search"></i> Verificar meu direito</button>
       </div>
       <div class="calc-result-box" id="calcResultFinal" style="display: none;">
         <div id="resultadoDireito"></div>
@@ -652,80 +602,84 @@
   </div>
 </section>
 
+<!-- Pais também (expandido) -->
 <section id="homens">
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-male"></i> Pais</span>
     <h2 class="section-title fade-in">Homens também <span>podem receber!</span></h2>
     <p class="section-desc fade-in">O salário-maternidade não é exclusivo das mães. Veja as situações em que o pai tem direito:</p>
     <div class="men-grid">
-      <div class="men-card fade-in"><span class="men-icon"><i class="fas fa-female"></i><i class="fas fa-child"></i></span><h3>Adoção por Homem Solteiro</h3><p>Se um homem solteiro adotar uma criança, ele tem direito aos <strong>120 dias completos</strong>, com as mesmas regras das mulheres.</p><div class="acc-highlight" style="margin-top:14px;">💑 Em casais adotantes, apenas <strong>um dos parceiros</strong> pode solicitar.</div></div>
-      <div class="men-card fade-in delay-1"><span class="men-icon"><i class="fas fa-heart-broken"></i></span><h3>Falecimento da Mãe</h3><p>Se a mãe falecer durante o parto ou enquanto recebia o benefício, o pai assume o direito, <strong>desde que contribua ao INSS</strong> ou esteja no período de graça.</p></div>
+      <div class="men-card fade-in"><span class="men-icon"><i class="fas fa-female"></i><i class="fas fa-child"></i></span><h3>Adoção por Homem Solteiro</h3><p>Se um homem solteiro adotar uma criança, ele tem direito aos <strong>120 dias completos</strong>, com as mesmas regras das mulheres.</p><div class="acc-highlight" style="margin-top:14px;">💑 Em casais adotantes, apenas <strong>um dos parceiros</strong> pode solicitar. A orientação sexual não interfere.</div></div>
+      <div class="men-card fade-in delay-1"><span class="men-icon"><i class="fas fa-heart-broken"></i></span><h3>Falecimento da Mãe</h3><p>Se a mãe falecer durante o parto ou enquanto recebia o benefício, o pai assume o direito, <strong>desde que contribua ao INSS</strong> ou esteja no período de graça. Se o pai não for segurado, não há direito.</p></div>
       <div class="men-card fade-in delay-2"><span class="men-icon"><i class="fas fa-briefcase"></i></span><h3>Licença-Paternidade Estendida</h3><p>O pai tem direito a <strong>5 dias</strong> de licença. Em empresas no <strong>Programa Empresa Cidadã</strong>, esse prazo sobe para <strong>20 dias</strong>!</p></div>
     </div>
   </div>
 </section>
 
+<!-- Como pedir (mantido) -->
 <section class="how-section" id="como-pedir">
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-mobile-alt"></i> Passo a Passo</span>
     <h2 class="section-title fade-in">Como <span>solicitar</span>?</h2>
     <p class="section-desc fade-in">5 passos simples para fazer seu pedido sem sair de casa:</p>
     <div class="steps-grid">
-      <div class="step-card fade-in"><div class="step-num">1</div><h4>📂 Reúna os documentos</h4><p>RG, CPF, certidão de nascimento e comprovante de vínculo.</p></div>
-      <div class="step-card fade-in delay-1"><div class="step-num">2</div><h4>📱 Baixe o Meu INSS</h4><p>Disponível na App Store e Google Play. Faça login com gov.br.</p></div>
+      <div class="step-card fade-in"><div class="step-num">1</div><h4>📂 Reúna os documentos</h4><p>RG, CPF, certidão de nascimento (ou termo de adoção) e comprovante de vínculo.</p></div>
+      <div class="step-card fade-in delay-1"><div class="step-num">2</div><h4>📱 Baixe o Meu INSS</h4><p>Disponível na App Store e Google Play. Faça login com sua conta gov.br.</p></div>
       <div class="step-card fade-in delay-2"><div class="step-num">3</div><h4>🔍 Busque o benefício</h4><p>Digite "Salário-Maternidade" na busca e toque em <em>Solicitar</em>.</p></div>
       <div class="step-card fade-in delay-3"><div class="step-num">4</div><h4>✍️ Preencha e envie</h4><p>Complete o formulário, anexe os documentos e confirme o envio.</p></div>
-      <div class="step-card fade-in"><div class="step-num">5</div><h4>📊 Acompanhe o pedido</h4><p>Pelo app Meu INSS ou pelo <strong>135</strong>, acompanhe o status em tempo real.</p></div>
+      <div class="step-card fade-in"><div class="step-num">5</div><h4>📊 Acompanhe o pedido</h4><p>Pelo app Meu INSS ou pelo <strong>135</strong> (segunda a sábado, 7h às 19h), acompanhe o status em tempo real.</p></div>
     </div>
     <div style="margin-top:36px;text-align:center;">
       <p style="font-size:1rem;opacity:0.88;margin-bottom:16px;">Sem internet? Vá à agência mais próxima do INSS com seus documentos.</p>
-      <a href="https://www.gov.br/meuinss" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-mobile-alt"></i> Abrir Meu INSS</a>
+      <a href="https://meu.inss.gov.br/#/login" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-mobile-alt"></i> Abrir Meu INSS</a>
     </div>
   </div>
 </section>
 
+<!-- FAQ com novas perguntas -->
 <section id="faq">
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-question-circle"></i> Dúvidas</span>
     <h2 class="section-title fade-in">Perguntas <span>frequentes</span></h2>
-    <p class="section-desc fade-in">As dúvidas mais comuns sobre o salário-maternidade:</p>
     <div class="faq-grid">
       <div class="faq-item fade-in" id="faq1"><div class="faq-q" onclick="toggleFaq('faq1')">Posso receber o benefício e ter renda extra?<span class="arrow">▼</span></div><div class="faq-a">A trabalhadora CLT não pode exercer outra atividade remunerada durante a licença. Autônomas e MEI podem ter rendimentos de outras fontes, mas devem respeitar as regras do INSS.</div></div>
       <div class="faq-item fade-in delay-1" id="faq2"><div class="faq-q" onclick="toggleFaq('faq2')">O benefício é descontado no Imposto de Renda?<span class="arrow">▼</span></div><div class="faq-a">Sim. O salário-maternidade pago pelo INSS é tributado pelo IR, desde que supere o limite de isenção anual. O pago diretamente pela empresa também está sujeito ao IR normal.</div></div>
       <div class="faq-item fade-in delay-2" id="faq3"><div class="faq-q" onclick="toggleFaq('faq3')">Posso iniciar a licença antes do parto?<span class="arrow">▼</span></div><div class="faq-a">Sim! Com atestado médico, a licença pode começar até 28 dias antes da data prevista do parto. Especialmente recomendado em gestações de risco. O total de dias não muda.</div></div>
       <div class="faq-item fade-in" id="faq4"><div class="faq-q" onclick="toggleFaq('faq4')">Se adotar uma criança maior, recebo os 120 dias?<span class="arrow">▼</span></div><div class="faq-a">Sim! Desde 2013 a duração é unificada: 120 dias independentemente da idade da criança adotada. Antes havia variação por faixa etária, mas hoje o prazo é igual para todos.</div></div>
       <div class="faq-item fade-in delay-1" id="faq5"><div class="faq-q" onclick="toggleFaq('faq5')">Tenho direito em contrato temporário ou por experiência?<span class="arrow">▼</span></div><div class="faq-a">Sim! Qualquer vínculo com registro em carteira garante o direito, inclusive contratos temporários. A estabilidade no emprego desde a gravidez até 5 meses após o parto também se aplica.</div></div>
-      <div class="faq-item fade-in delay-2" id="faq6"><div class="faq-q" onclick="toggleFaq('faq6')">Qual é o prazo para solicitar após o nascimento?<span class="arrow">▼</span></div><div class="faq-a">Para CLT, o pedido costuma ser feito pelo RH antes ou logo após o parto. Para quem solicita ao INSS diretamente, quanto antes melhor. O benefício pode ser solicitado retroativamente, mas não deixe para depois.</div></div>
+      <div class="faq-item fade-in delay-2" id="faq6"><div class="faq-q" onclick="toggleFaq('faq6')">Qual é o prazo para solicitar após o nascimento?<span class="arrow">▼</span></div><div class="faq-a">Para CLT, o pedido costuma ser feito pelo RH antes ou logo após o parto. Para quem solicita ao INSS diretamente, quanto antes melhor. O benefício pode ser solicitado retroativamente, mas não deixe para depois (decadência de 5 anos).</div></div>
       <div class="faq-item fade-in" id="faq7"><div class="faq-q" onclick="toggleFaq('faq7')">MEI com menos de 10 meses tem alguma proteção?<span class="arrow">▼</span></div><div class="faq-a">Infelizmente sem completar os 10 meses de carência, a MEI não tem direito ao salário-maternidade. O ideal é regularizar as contribuições o mais cedo possível em gestações futuras. Consulte um advogado previdenciário.</div></div>
       <div class="faq-item fade-in delay-1" id="faq8"><div class="faq-q" onclick="toggleFaq('faq8')">O que é "manutenção da qualidade de segurada"?<span class="arrow">▼</span></div><div class="faq-a">É o status que garante seus direitos previdenciários mesmo após parar de contribuir. Durante o Período de Graça, você mantém a qualidade de segurada — acesso ao salário-maternidade, auxílio-doença e outros. Ao expirar sem novas contribuições, você perde esse status.</div></div>
+      <div class="faq-item fade-in" id="faq9"><div class="faq-q" onclick="toggleFaq('faq9')">Estou de auxílio-doença e engravidei. O que acontece?<span class="arrow">▼</span></div><div class="faq-a">Se você está recebendo auxílio-doença e ocorre o parto, o benefício é automaticamente convertido em salário-maternidade, com a mesma duração de 120 dias. A conversão é automática no sistema do INSS.</div></div>
+      <div class="faq-item fade-in delay-1" id="faq10"><div class="faq-q" onclick="toggleFaq('faq10')">Sou estrangeira, refugiada, tenho direito?<span class="arrow">▼</span></div><div class="faq-a">Sim, desde que esteja em situação regular no país e contribua para o INSS ou possua qualidade de segurada (CLT, MEI, etc.). O direito é garantido a todos os residentes no Brasil.</div></div>
     </div>
   </div>
 </section>
 
+<!-- Glossário (com termos adicionais) -->
 <section class="glossary-section" id="glossario">
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-graduation-cap"></i> Vocabulário</span>
     <h2 class="section-title fade-in">Glossário <span>Jurídico</span></h2>
-    <p class="section-desc fade-in">Termos legais explicados de forma simples para você entender seus direitos sem precisar de advogado:</p>
     <div class="glossary-grid">
       <div class="glossary-card fade-in"><div class="glossary-term">📋 Carência</div><div class="glossary-def">Número mínimo de contribuições mensais ao INSS exigidas antes de ter direito a um benefício. Para o salário-maternidade de autônomas e MEI, são necessários <strong>10 meses</strong>.</div><span class="glossary-ref">Art. 25, Lei 8.213/91</span></div>
-      <div class="glossary-card fade-in delay-1"><div class="glossary-term">⏳ Período de Graça</div><div class="glossary-def">Tempo em que você <strong>mantém a qualidade de segurada</strong> mesmo sem contribuir. Dura de 12 a 36 meses após a última contribuição, dependendo do histórico.</div><span class="glossary-ref">Art. 15, Lei 8.213/91</span></div>
-      <div class="glossary-card fade-in delay-2"><div class="glossary-term">🛡️ Qualidade de Segurada</div><div class="glossary-def">Status que garante seus direitos previdenciários junto ao INSS. Você a possui enquanto contribui ou está no período de graça. Perder esse status significa perder acesso aos benefícios.</div><span class="glossary-ref">Art. 15, Lei 8.213/91</span></div>
-      <div class="glossary-card fade-in"><div class="glossary-term">⏰ Período de Carência vs. Graça</div><div class="glossary-def">São opostos: <strong>Carência</strong> é o tempo que você precisa contribuir <em>antes</em> de pedir o benefício. <strong>Graça</strong> é o tempo de proteção <em>depois</em> que você para de contribuir.</div><span class="glossary-ref">Arts. 24-25, Lei 8.213/91</span></div>
-      <div class="glossary-card fade-in delay-1"><div class="glossary-term">🏢 Segurada Especial</div><div class="glossary-def">Trabalhadora rural que produz para sua própria subsistência ou em regime de economia familiar. Tem direito ao salário-maternidade (1 salário mínimo) <strong>sem contribuição mensal</strong>, apenas comprovando a atividade.</div><span class="glossary-ref">Art. 11, VIII, Lei 8.213/91</span></div>
-      <div class="glossary-card fade-in delay-2"><div class="glossary-term">🏦 DAS (Documento de Arrecadação do Simples)</div><div class="glossary-def">O "carnê mensal" que a MEI paga para formalizar suas contribuições ao INSS. Cada DAS pago conta como 1 mês de carência. <strong>Não pagar = não contar.</strong></div><span class="glossary-ref">LC 123/2006</span></div>
-      <div class="glossary-card fade-in"><div class="glossary-term">🔰 Empresa Cidadã</div><div class="glossary-def">Programa voluntário em que empresas prorrogam a licença-maternidade de 120 para <strong>180 dias</strong> e a licença-paternidade de 5 para 20 dias, em troca de incentivo fiscal no IR.</div><span class="glossary-ref">Lei 11.770/2008</span></div>
-      <div class="glossary-card fade-in delay-1"><div class="glossary-term">⚖️ Estabilidade Gestacional</div><div class="glossary-def">Proteção legal que impede a demissão sem justa causa desde a <strong>confirmação da gravidez</strong> até 5 meses após o parto. Demissão nesse período pode ser anulada na Justiça do Trabalho.</div><span class="glossary-ref">Súmula 244, TST</span></div>
-      <div class="glossary-card fade-in delay-2"><div class="glossary-term">💳 Salário de Benefício</div><div class="glossary-def">Base de cálculo usada pelo INSS para determinar o valor do benefício. Para autônomas e MEI, é calculado pela <strong>média dos últimos 12 salários de contribuição</strong>, com teto definido anualmente.</div><span class="glossary-ref">Art. 29, Lei 8.213/91</span></div>
+      <div class="glossary-card fade-in delay-1"><div class="glossary-term">⏳ Período de Graça</div><div class="glossary-def">Tempo em que você mantém a qualidade de segurada mesmo sem contribuir. Dura de 12 a 36 meses após a última contribuição.</div><span class="glossary-ref">Art. 15, Lei 8.213/91</span></div>
+      <div class="glossary-card fade-in delay-2"><div class="glossary-term">🛡️ Qualidade de Segurada</div><div class="glossary-def">Status que garante seus direitos previdenciários junto ao INSS. Você a possui enquanto contribui ou está no período de graça.</div><span class="glossary-ref">Art. 15, Lei 8.213/91</span></div>
+      <div class="glossary-card fade-in"><div class="glossary-term">🏢 Segurada Especial</div><div class="glossary-def">Trabalhadora rural que produz para sua própria subsistência ou em regime de economia familiar. Tem direito ao salário-maternidade (1 salário mínimo) sem contribuição mensal.</div><span class="glossary-ref">Art. 11, VIII, Lei 8.213/91</span></div>
+      <div class="glossary-card fade-in delay-1"><div class="glossary-term">🏦 DAS (Documento de Arrecadação do Simples)</div><div class="glossary-def">O "carnê mensal" que a MEI paga para formalizar suas contribuições ao INSS. Cada DAS pago conta como 1 mês de carência. <strong>Não pagar = não contar.</strong></div><span class="glossary-ref">LC 123/2006</span></div>
+      <div class="glossary-card fade-in delay-2"><div class="glossary-term">🔰 Empresa Cidadã</div><div class="glossary-def">Programa voluntário em que empresas prorrogam a licença-maternidade de 120 para 180 dias, em troca de incentivo fiscal.</div><span class="glossary-ref">Lei 11.770/2008</span></div>
+      <div class="glossary-card fade-in"><div class="glossary-term">⚖️ Estabilidade Gestacional</div><div class="glossary-def">Proteção legal que impede a demissão sem justa causa desde a confirmação da gravidez até 5 meses após o parto.</div><span class="glossary-ref">Súmula 244, TST</span></div>
+      <div class="glossary-card fade-in delay-1"><div class="glossary-term">💳 Salário de Benefício</div><div class="glossary-def">Base de cálculo usada pelo INSS para determinar o valor do benefício. Para autônomas e MEI, é calculado pela média dos últimos 12 salários de contribuição, com teto definido anualmente.</div><span class="glossary-ref">Art. 29, Lei 8.213/91</span></div>
+      <div class="glossary-card fade-in delay-2"><div class="glossary-term">🌾 Atividade rural mista</div><div class="glossary-def">Trabalhadora rural que também exerce atividade urbana. Pode perder a qualidade de segurada especial se a atividade urbana for preponderante. Nesse caso, passa a seguir regras da autônoma.</div><span class="glossary-ref">Art. 11, § 1º, Lei 8.213/91</span></div>
     </div>
   </div>
 </section>
 
+<!-- Localizador INSS (mantido) -->
 <section id="localizador" style="background: var(--blue-main);">
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-map-marker-alt"></i> Atendimento</span>
     <h2 class="section-title fade-in">Encontre uma <span>Agência INSS</span></h2>
-    <p class="section-desc fade-in">Prefere atendimento presencial? Encontre a agência mais próxima e vá com seus documentos:</p>
     <div class="inss-box fade-in">
       <div class="inss-content">
         <div class="inss-icon-big"><i class="fas fa-university"></i></div>
@@ -736,7 +690,6 @@
             <a href="https://meu.inss.gov.br/#/aberto/localizador-aps?origem-click=MENU?tk-categoria=Por%20Highlight" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-map-marker-alt"></i> Buscar agências por CEP</a>
             <a href="https://meu.inss.gov.br/#/login" target="_blank" rel="noopener" class="btn-secondary"><i class="fas fa-calendar-check"></i> Agendar atendimento</a>
           </div>
-          <p style="margin-top:14px;font-size:0.82rem;opacity:0.65;">⚠️ Leve documentos originais: RG, CPF, CTPS e certidão de nascimento.</p>
         </div>
       </div>
       <div class="inss-map">
@@ -749,11 +702,11 @@
   </div>
 </section>
 
+<!-- Linha do tempo (mantida) -->
 <section id="timeline" style="background: var(--blue-dark);">
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-chart-line"></i> História</span>
     <h2 class="section-title fade-in">Linha do Tempo <span>da Lei</span></h2>
-    <p class="section-desc fade-in">Como o direito ao salário-maternidade evoluiu ao longo dos anos no Brasil:</p>
     <div class="timeline-list">
       <div class="timeline-item fade-in"><div class="timeline-year">1943</div><div class="timeline-title">CLT e os Primeiros Direitos</div><div class="timeline-desc">A Consolidação das Leis do Trabalho (CLT) garantiu às trabalhadoras o direito a 4 semanas antes e 8 semanas após o parto — com emprego e salário assegurados.</div><span class="timeline-law">Decreto-Lei nº 5.452/1943</span></div>
       <div class="timeline-item fade-in delay-1"><div class="timeline-year">1988</div><div class="timeline-title">Constituição Federal — Grande avanço</div><div class="timeline-desc">A Constituição Cidadã ampliou para <strong>120 dias</strong> a licença-maternidade e inseriu o benefício como direito previdenciário constitucional, cobrindo todas as trabalhadoras.</div><span class="timeline-law">CF/88, Art. 7º, XVIII</span></div>
@@ -766,138 +719,31 @@
   </div>
 </section>
 
+<!-- Mitos e Verdades (com novos mitos) -->
 <section class="myths-section" id="mitos">
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-search"></i> Educativo</span>
     <h2 class="section-title fade-in">Mitos e <span>Verdades</span></h2>
-    <p class="section-desc fade-in">Muita gente perde benefícios por acreditar em informações erradas. Clique em cada card para descobrir a verdade com base na lei:</p>
     <div class="myths-legend fade-in">
       <div class="legend-item"><div class="legend-dot mito"></div> Mito — afirmação falsa e perigosa</div>
       <div class="legend-item"><div class="legend-dot verdade"></div> Verdade — garantida por lei</div>
     </div>
-    
     <div class="myths-grid">
-      <div class="myth-card mito-card fade-in" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label mito">❌ MITO</div>
-            <div class="myth-statement">"Se fui demitida, perco imediatamente o direito ao salário-maternidade."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">FALSO. A lei garante o <strong>Período de Graça</strong> — você continua protegida por 12, 24 ou até 36 meses após a demissão, dependendo do seu histórico. (Art. 15, Lei nº 8.213/1991)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card verdade-card fade-in delay-1" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label verdade">✅ VERDADE</div>
-            <div class="myth-statement">"Trabalhadora doméstica também tem direito ao salário-maternidade."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">CORRETO. Com a Emenda Constitucional 72/2013 (PEC das Domésticas), a trabalhadora doméstica com carteira assinada passou a ter os mesmos direitos.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card mito-card fade-in delay-2" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label mito">❌ MITO</div>
-            <div class="myth-statement">"A empresa pode me demitir assim que descobrir que estou grávida."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">FALSO. A gestante tem <strong>estabilidade no emprego</strong> desde a confirmação da gravidez até 5 meses após o parto. Demissão nesse período é nula. (Súmula 244, TST)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card mito-card fade-in" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label mito">❌ MITO</div>
-            <div class="myth-statement">"Só mãe biológica tem direito ao salário-maternidade."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">FALSO. Mães adotivas têm exatamente os mesmos 120 dias de benefício que mães biológicas, independentemente da idade da criança. (Lei nº 12.873/2013)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card verdade-card fade-in delay-1" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label verdade">✅ VERDADE</div>
-            <div class="myth-statement">"Mesmo sem carteira assinada, a trabalhadora rural tem direito ao benefício."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">CORRETO. A <strong>segurada especial</strong> tem direito a 1 salário mínimo, sem precisar ter contribuído mensalmente, apenas comprovando a atividade rural.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card mito-card fade-in delay-2" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label mito">❌ MITO</div>
-            <div class="myth-statement">"MEI não precisa se preocupar com carência — é automático."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">FALSO. A MEI precisa ter pagado o DAS por pelo menos <strong>10 meses</strong> antes do parto para ter direito. O pagamento não é retroativo. (Art. 25, Lei nº 8.213/1991)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card verdade-card fade-in" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label verdade">✅ VERDADE</div>
-            <div class="myth-statement">"Homem solteiro que adota uma criança pode receber os 120 dias de benefício."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">CORRETO. Homem solteiro que adota ou obtém guarda judicial para adoção tem direito aos 120 dias completos, seguindo as mesmas regras. (Art. 71-A, Lei 8.213/1991)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card mito-card fade-in delay-1" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label mito">❌ MITO</div>
-            <div class="myth-statement">"Se o bebê nascer morto, não há direito a nenhum benefício."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">FALSO. Em caso de natimorto, a trabalhadora tem direito a <strong>120 dias completos</strong> de salário-maternidade. Exige atestado. (Art. 93, Decreto 3.048/1999)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="myth-card verdade-card fade-in delay-2" onclick="revealMyth(this)">
-        <div class="myth-inner">
-          <div class="myth-front">
-            <div class="myth-label verdade">✅ VERDADE</div>
-            <div class="myth-statement">"O salário-maternidade pode ser solicitado 100% pelo celular, sem ir ao INSS."</div>
-            <div class="myth-flip-hint">👆 Clique para virar</div>
-          </div>
-          <div class="myth-back">
-            <div class="myth-explanation">CORRETO. Pelo app <strong>Meu INSS</strong> ou pelo site meu.inss.gov.br, é possível solicitar, acompanhar e receber o benefício sem sair de casa.</div>
-          </div>
-        </div>
-      </div>
+      <div class="myth-card mito-card fade-in" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"Se fui demitida, perco imediatamente o direito ao salário-maternidade."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. A lei garante o Período de Graça — você continua protegida por 12, 24 ou até 36 meses após a demissão.</div></div>
+      <div class="myth-card verdade-card fade-in delay-1" onclick="revealMyth(this)"><div class="myth-label verdade">✅ VERDADE</div><div class="myth-statement">"Trabalhadora doméstica também tem direito ao salário-maternidade."</div><div class="myth-flip-hint">👆 Clique para confirmar</div><div class="myth-explanation">CORRETO. Com a PEC das Domésticas (2013), a doméstica com carteira assinada tem os mesmos direitos trabalhistas.</div></div>
+      <div class="myth-card mito-card fade-in delay-2" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"A empresa pode me demitir assim que descobrir que estou grávida."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. A gestante tem estabilidade no emprego desde a confirmação da gravidez até 5 meses após o parto. Demissão nesse período é nula.</div></div>
+      <div class="myth-card mito-card fade-in" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"Só mãe biológica tem direito ao salário-maternidade."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. Mães adotivas têm os mesmos 120 dias, assim como pais adotivos solteiros.</div></div>
+      <div class="myth-card verdade-card fade-in delay-1" onclick="revealMyth(this)"><div class="myth-label verdade">✅ VERDADE</div><div class="myth-statement">"Mesmo sem carteira assinada, a trabalhadora rural tem direito ao benefício."</div><div class="myth-flip-hint">👆 Clique para confirmar</div><div class="myth-explanation">CORRETO. A segurada especial tem direito ao salário-maternidade de 1 salário mínimo, sem necessidade de contribuição mensal.</div></div>
+      <div class="myth-card mito-card fade-in delay-2" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"MEI não precisa se preocupar com carência — é automático."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. A MEI precisa ter pagado o DAS por pelo menos 10 meses antes do parto. Interrupções quebram a contagem.</div></div>
+      <div class="myth-card verdade-card fade-in" onclick="revealMyth(this)"><div class="myth-label verdade">✅ VERDADE</div><div class="myth-statement">"Homem solteiro que adota uma criança pode receber os 120 dias de benefício."</div><div class="myth-flip-hint">👆 Clique para confirmar</div><div class="myth-explanation">CORRETO. O salário-maternidade não é exclusivo das mulheres. Homem solteiro que adota tem direito aos 120 dias completos.</div></div>
+      <div class="myth-card mito-card fade-in delay-1" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"Se o bebê nascer morto, não há direito a nenhum benefício."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. Em caso de natimorto, a trabalhadora tem direito a 120 dias completos de salário-maternidade.</div></div>
+      <div class="myth-card verdade-card fade-in delay-2" onclick="revealMyth(this)"><div class="myth-label verdade">✅ VERDADE</div><div class="myth-statement">"O salário-maternidade pode ser solicitado 100% pelo celular, sem ir ao INSS."</div><div class="myth-flip-hint">👆 Clique para confirmar</div><div class="myth-explanation">CORRETO. Pelo app Meu INSS ou site meu.inss.gov.br, é possível solicitar e acompanhar sem sair de casa.</div></div>
+      <div class="myth-card mito-card fade-in" onclick="revealMyth(this)"><div class="myth-label mito">❌ MITO</div><div class="myth-statement">"Aposentada ou pensionista também tem direito ao salário-maternidade."</div><div class="myth-flip-hint">👆 Clique para ver a verdade</div><div class="myth-explanation">FALSO. Quem já está aposentada ou recebe pensão não pode acumular salário-maternidade, pois já está inativa. O benefício é para quem está em atividade ou mantém qualidade de segurada.</div></div>
     </div>
-    <p style="margin-top:28px;font-size:0.85rem;opacity:0.7;text-align:center;">⚖️ Todas as informações são baseadas na legislação brasileira vigente. Em caso de dúvidas, consulte um advogado previdenciário.</p>
   </div>
 </section>
 
+<!-- Quiz (mantido) -->
 <section class="quiz-section" id="quiz">
   <div class="section-inner">
     <span class="section-badge fade-in" style="display:block;text-align:center;max-width:fit-content;margin:0 auto 12px;"><i class="fas fa-brain"></i> Teste</span>
@@ -914,15 +760,15 @@
   </div>
 </section>
 
+<!-- Compartilhar -->
 <section id="compartilhar" style="text-align:center;">
   <div class="section-inner">
     <span class="section-badge fade-in" style="display:block;text-align:center;max-width:fit-content;margin:0 auto 12px;"><i class="fas fa-share-alt"></i> Compartilhe</span>
     <h2 class="section-title fade-in" style="text-align:center;">Espalhe o <span>conhecimento</span>!</h2>
-    <p class="section-desc fade-in" style="text-align:center;margin:0 auto 10px;">Muitas pessoas perdem benefícios por falta de informação. Compartilhe com amigos e familiares!</p>
     <div class="share-btns fade-in">
-      <a class="share-btn wa" href="https://wa.me/?text=Descubra+seus+direitos+ao+Sal%C3%A1rio-Maternidade!+%F0%9F%A4%B1" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      <a class="share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=https://seusite.github.io" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
-      <a class="share-btn tw" href="https://twitter.com/intent/tweet?text=Descubra+seus+direitos+ao+Sal%C3%A1rio-Maternidade!" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> Twitter/X</a>
+      <a class="share-btn wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a class="share-btn fb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+      <a class="share-btn tw" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> Twitter/X</a>
       <button type="button" class="share-btn cp" onclick="copyLink()"><i class="fas fa-link"></i> Copiar link</button>
       <button type="button" class="pdf-btn" onclick="savePDF()"><i class="fas fa-file-pdf"></i> Salvar como PDF</button>
     </div>
@@ -933,15 +779,15 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <h3>⚖️ Direitos Previdenciários</h3>
-      <p>Material educativo criado pelo Projeto de Extensão do 9º Período de Direito da <strong>UNIFAGOC</strong> — Centro Universitário Governador Ozanam Coelho.</p>
-      <p style="margin-top:10px;font-size:0.8rem;opacity:0.52;">Prof.ª Orientadora: Drielly Faria de Paula Leão</p>
+      <h3>DIREITOS PREVIDENCIÁRIOS</h3>
+      <p>“Este material educativo foi elaborado pelos alunos do 9º período do curso de Direito da <strong>UNIFAGOC</strong> — Centro Universitário Governador Ozanam Coelho.</p>
+      <p style="margin-top:10px;font-size:0.8rem;opacity:0.52;"><strong>Prof.ª Orientadora</strong>: Drielly Faria de Paula Leão</p>
       <a href="https://unifagoc.edu.br" target="_blank" class="footer-logo-link">
         <img class="footer-logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='%233b9ee8'/%3E%3Ctext x='10' y='40' font-family='Montserrat' font-weight='bold' fill='white' font-size='20'%3EUNIFAGOC%3C/text%3E%3C/svg%3E" alt="UNIFAGOC" style="background: white; border-radius: 12px; padding: 8px 16px;">
       </a>
       <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
         <a href="tel:135" style="background:var(--yellow);color:var(--text-dark);padding:8px 16px;border-radius:50px;font-weight:900;font-size:0.85rem;text-decoration:none;"><i class="fas fa-phone-alt"></i> Ligue 135</a>
-        <a href="https://www.gov.br/meuinss" target="_blank" style="background:rgba(255,255,255,0.15);color:#fff;padding:8px 16px;border-radius:50px;font-weight:800;font-size:0.85rem;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);"><i class="fas fa-mobile-alt"></i> Meu INSS</a>
+        <a href="https://meu.inss.gov.br/#/login" target="_blank" style="background:rgba(255,255,255,0.15);color:#fff;padding:8px 16px;border-radius:50px;font-weight:800;font-size:0.85rem;text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);"><i class="fas fa-mobile-alt"></i> Meu INSS</a>
       </div>
     </div>
     <div class="footer-col">
@@ -967,15 +813,16 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Direito Unifagoc – Material educativo gratuito. Não substitui orientação jurídica profissional.</p>
+    <p>© 2026 Direito Unifagoc – Material educativo gratuito. Não substitui orientação jurídica profissional. Reforma da Previdência (EC 103/2019) não alterou o salário-maternidade.</p>
   </div>
 </footer>
 
 <button type="button" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
 <script>
-/* ========== FUNÇÕES GLOBAIS ========== */
+/* ========== FUNÇÕES DE ACESSIBILIDADE E ÁUDIO ========== */
 let fontSize = 16;
+let speechRate = 0.9;
 function changeFontSize(dir) {
   if (dir === 0) fontSize = 16;
   else fontSize = Math.min(22, Math.max(13, fontSize + dir * 2));
@@ -985,28 +832,49 @@ function toggleContrast() {
   document.body.classList.toggle('high-contrast');
   document.getElementById('contrastBtn').classList.toggle('active');
 }
+function toggleSpeechRate() {
+  speechRate = speechRate === 0.9 ? 1.2 : 0.9;
+  alert(`Velocidade da fala: ${speechRate === 0.9 ? 'Normal' : 'Mais rápida'}`);
+}
+function speakText(text) {
+  if (!text) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'pt-BR';
+  utterance.rate = speechRate;
+  window.speechSynthesis.speak(utterance);
+}
 
-/* MENU MOBILE */
+/* Barra de progresso de leitura */
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('readingProgress').style.width = scrolled + '%';
+});
+
+/* Menu mobile */
 function toggleMenu() {
   const mobileMenu = document.getElementById('mobileMenu');
   const hambBtn = document.getElementById('hambBtn');
   if (!mobileMenu || !hambBtn) return;
   const isOpen = mobileMenu.classList.toggle('open');
   hambBtn.classList.toggle('open', isOpen);
+  hambBtn.setAttribute('aria-expanded', isOpen);
 }
 document.addEventListener('DOMContentLoaded', function() {
   const hambBtn = document.getElementById('hambBtn');
   if (hambBtn) hambBtn.addEventListener('click', toggleMenu);
 });
-// Fechar menu ao clicar em link
 document.querySelectorAll('.mobile-menu a').forEach(link => {
   link.addEventListener('click', () => {
     document.getElementById('mobileMenu')?.classList.remove('open');
     document.getElementById('hambBtn')?.classList.remove('open');
+    document.getElementById('hambBtn')?.setAttribute('aria-expanded', 'false');
   });
 });
 
-/* HEADER SCROLL & SCROLL SPY */
+/* Header scroll & scroll spy */
 window.addEventListener('scroll', () => {
   const header = document.getElementById('mainHeader');
   if (header) header.classList.toggle('scrolled', window.scrollY > 50);
@@ -1028,7 +896,7 @@ function updateScrollSpy() {
   });
 }
 
-/* ACCORDION */
+/* Accordion e FAQ */
 function toggleAcc(id) {
   const item = document.getElementById(id);
   if (!item) return;
@@ -1036,21 +904,13 @@ function toggleAcc(id) {
   document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
   if (!wasOpen) item.classList.add('open');
 }
-
-/* FAQ */
 function toggleFaq(id) {
   document.getElementById(id)?.classList.toggle('open');
 }
-
-/* MYTHS - Efeito 3D (Apenas alterna a classe, o CSS faz o giro) */
-function revealMyth(card) { 
-  card.classList.toggle('revealed'); 
-}
-
-/* PDF */
+function revealMyth(card) { card.classList.toggle('revealed'); }
 function savePDF() { window.print(); }
 
-/* COUNTERS ANIMATION */
+/* Contadores animados */
 let countersStarted = false;
 function animateCounters() {
   document.querySelectorAll('[data-target]').forEach(el => {
@@ -1067,131 +927,318 @@ function animateCounters() {
   });
 }
 
-/* CALCULADORA COMPLETA */
+/* ========== CALCULADORA PRECISA ========== */
 let perfilAtual = null;
-const perguntasHTML = document.getElementById('perguntasDinamicas');
+const perguntasDinamicasDiv = document.getElementById('perguntasDinamicas');
+const btnCalcular = document.getElementById('btnCalcular');
+
+function salvarRespostas() {
+  const formData = {};
+  document.querySelectorAll('#perguntasDinamicas input, #perguntasDinamicas select').forEach(el => {
+    if (el.type === 'radio' && el.checked) formData[el.name] = el.value;
+    else if (el.type !== 'radio') formData[el.name] = el.value;
+  });
+  const perfil = document.querySelector('input[name="perfil"]:checked')?.value;
+  formData.perfil = perfil;
+  localStorage.setItem('calcRespostas', JSON.stringify(formData));
+}
+
+function carregarRespostas() {
+  const saved = localStorage.getItem('calcRespostas');
+  if (!saved) return;
+  const data = JSON.parse(saved);
+  if (data.perfil) {
+    const radio = document.querySelector(`input[name="perfil"][value="${data.perfil}"]`);
+    if (radio) radio.click();
+  }
+  setTimeout(() => {
+    for (let name in data) {
+      if (name === 'perfil') continue;
+      const el = document.querySelector(`[name="${name}"]`);
+      if (el) {
+        if (el.type === 'radio') {
+          const radio = document.querySelector(`input[name="${name}"][value="${data[name]}"]`);
+          if (radio) radio.checked = true;
+        } else {
+          el.value = data[name];
+        }
+      }
+    }
+    validarFormulario();
+  }, 100);
+}
+
+function validarFormulario() {
+  const camposObrigatorios = document.querySelectorAll('#perguntasDinamicas input[required], #perguntasDinamicas select[required]');
+  let todosPreenchidos = true;
+  camposObrigatorios.forEach(campo => {
+    if (campo.type === 'radio') {
+      const nome = campo.name;
+      const selecionado = document.querySelector(`input[name="${nome}"]:checked`);
+      if (!selecionado) todosPreenchidos = false;
+    } else {
+      if (!campo.value) todosPreenchidos = false;
+    }
+  });
+  btnCalcular.disabled = !todosPreenchidos;
+}
+
 function atualizarPerguntas() {
   const radios = document.querySelectorAll('input[name="perfil"]');
   let selecionado = null;
   for (let r of radios) if (r.checked) { selecionado = r.value; break; }
   perfilAtual = selecionado;
-  if (!selecionado) { if(perguntasHTML) perguntasHTML.style.display = 'none'; return; }
-  if(perguntasHTML) perguntasHTML.style.display = 'block';
+  if (!selecionado) { if(perguntasDinamicasDiv) perguntasDinamicasDiv.style.display = 'none'; btnCalcular.disabled = true; return; }
+  if(perguntasDinamicasDiv) perguntasDinamicasDiv.style.display = 'block';
   let html = '';
+  
   if (selecionado === 'clt') {
     html = `
-      <div class="calc-group"><label>Você está empregada no momento?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="clt_empregada" value="sim"> Sim, estou trabalhando</label>
-        <label class="calc-radio"><input type="radio" name="clt_empregada" value="nao"> Não, estou desempregada</label></div></div>
-      <div class="calc-group"><label>Se está desempregada, há quanto tempo foi demitida?</label>
-        <select name="clt_tempo" class="calc-select"><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>`;
+      <div class="calc-group"><label>Você está empregada no momento? <span class="required-star">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="clt_empregada" value="sim" required> Sim, estou trabalhando</label>
+        <label class="calc-radio"><input type="radio" name="clt_empregada" value="nao" required> Não, estou desempregada</label></div></div>
+      <div class="calc-group" id="grupoCltTempo" style="display:none;"><label>Há quanto tempo foi demitida? <span class="required-star">*</span></label>
+        <select name="clt_tempo" class="calc-select" required><option value="">Selecione</option><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>
+      <div class="calc-group" id="grupoClt10anos" style="display:none;"><label>Você tem mais de 10 anos de contribuição ao INSS (somando toda a vida)? <span class="required-star">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="clt_10anos" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="clt_10anos" value="nao" required> Não</label></div></div>
+      <div class="calc-group" id="grupoCltComprova" style="display:none;"><label>Você pode comprovar desemprego (CTPS com baixa, seguro-desemprego)? <span class="required-star">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="clt_comprova" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="clt_comprova" value="nao" required> Não</label></div></div>
+      <div class="calc-group"><label>Seu salário atual (R$): <span class="required-star">*</span></label>
+        <input type="number" name="clt_salario" class="calc-select" step="0.01" placeholder="Ex: 3500" required></div>
+      <div class="calc-group"><label>Data prevista do parto (se souber, ajuda a calcular melhor):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>
+      `;
   } else if (selecionado === 'autonoma') {
     html = `
-      <div class="calc-group"><label>Quantos meses de contribuição ao INSS você tem nos últimos 12 meses?</label>
-        <select name="autonoma_meses" class="calc-select"><option value="0">Menos de 10 meses</option><option value="10">10 meses ou mais</option></select></div>
-      <div class="calc-group"><label>Você continua contribuindo atualmente?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_atual" value="sim"> Sim, pago todo mês</label>
-        <label class="calc-radio"><input type="radio" name="autonoma_atual" value="nao"> Não, parei de pagar</label></div></div>
-      <div class="calc-group" id="grupoTempoParada" style="display:none;"><label>Há quanto tempo você parou de contribuir?</label>
-        <select name="autonoma_tempo" class="calc-select"><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>
-      <div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS (somando toda a vida)?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_10anos" value="sim"> Sim</label>
-        <label class="calc-radio"><input type="radio" name="autonoma_10anos" value="nao"> Não</label></div></div>`;
-    // Evento para mostrar/ocultar tempo de parada
-    document.addEventListener('change', function(e) {
-      if (e.target && e.target.name === 'autonoma_atual') {
-        const grupo = document.getElementById('grupoTempoParada');
-        if (grupo) grupo.style.display = e.target.value === 'nao' ? 'block' : 'none';
-      }
-    });
+      <div class="calc-group"><label>Quantos meses de contribuição ao INSS você tem nos últimos 12 meses? <span class="required-star">*</span></label>
+        <select name="autonoma_meses" class="calc-select" required><option value="">Selecione</option><option value="0">Menos de 10 meses</option><option value="10">10 meses ou mais</option></select></div>
+      <div class="calc-group"><label>Você continua contribuindo atualmente? <span class="required-star">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_atual" value="sim" required> Sim, pago todo mês</label>
+        <label class="calc-radio"><input type="radio" name="autonoma_atual" value="nao" required> Não, parei de pagar</label></div></div>
+      <div class="calc-group" id="grupoTempoParada" style="display:none;"><label>Há quanto tempo você parou de contribuir? <span class="required-star">*</span></label>
+        <select name="autonoma_tempo" class="calc-select"><option value="">Selecione</option><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>
+      <div class="calc-group"><label>Você pagou todos os meses consecutivamente nos últimos 10 meses? <span class="required-star">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_consecutivo" value="sim" required> Sim, todos seguidos</label><label class="calc-radio"><input type="radio" name="autonoma_consecutivo" value="nao" required> Não, houve pausa</label></div></div>
+      <div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS (somando toda a vida)? <span class="required-star">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_10anos" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="autonoma_10anos" value="nao" required> Não</label></div></div>
+      <div class="calc-group"><label>Sua média de contribuições nos últimos 12 meses (R$): <span class="required-star">*</span></label>
+        <input type="number" name="autonoma_salario" class="calc-select" step="0.01" placeholder="Ex: 2500" required></div>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>
+      `;
   } else if (selecionado === 'desempregada') {
     html = `
-      <div class="calc-group"><label>Há quanto tempo você parou de contribuir (último pagamento ao INSS)?</label>
-        <select name="desempregada_tempo" class="calc-select"><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>
-      <div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS (somando toda a vida)?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="desempregada_10anos" value="sim"> Sim</label>
-        <label class="calc-radio"><input type="radio" name="desempregada_10anos" value="nao"> Não</label></div></div>
-      <div class="calc-group"><label>Você pode comprovar desemprego (ex: seguro-desemprego, CTPS com baixa)?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="desempregada_comprova" value="sim"> Sim</label>
-        <label class="calc-radio"><input type="radio" name="desempregada_comprova" value="nao"> Não</label></div></div>`;
+      <div class="calc-group"><label>Há quanto tempo você parou de contribuir (último pagamento ao INSS)? <span class="required-star">*</span></label>
+        <select name="desempregada_tempo" class="calc-select" required><option value="">Selecione</option><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>
+      <div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS? <span class="required-star">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="desempregada_10anos" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="desempregada_10anos" value="nao" required> Não</label></div></div>
+      <div class="calc-group"><label>Você pode comprovar desemprego (ex: seguro-desemprego, CTPS com baixa)? <span class="required-star">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="desempregada_comprova" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="desempregada_comprova" value="nao" required> Não</label></div></div>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>
+      `;
   } else if (selecionado === 'rural') {
     html = `
-      <div class="calc-group"><label>Você exerce atividade rural (agricultura, pecuária, etc.) de forma individual ou em regime de economia familiar?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="rural_atividade" value="sim"> Sim</label>
-        <label class="calc-radio"><input type="radio" name="rural_atividade" value="nao"> Não</label></div></div>
-      <p style="font-size:0.85rem; margin-top:8px;">✔️ A segurada especial tem direito ao salário-maternidade (1 salário mínimo) mesmo sem contribuição mensal, desde que comprove o exercício da atividade rural. Basta apresentar documentos como declaração do sindicato, notas fiscais, etc.</p>`;
+      <div class="calc-group"><label>Você exerce atividade rural (agricultura, pecuária, etc.) de forma individual ou em regime de economia familiar? <span class="required-star">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="rural_atividade" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="rural_atividade" value="nao" required> Não</label></div></div>
+      <p style="font-size:0.85rem; margin-top:8px;">✔️ A segurada especial tem direito ao salário-maternidade (1 salário mínimo) mesmo sem contribuição mensal, desde que comprove o exercício da atividade rural.</p>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>
+      `;
+  } else if (selecionado === 'avulsa') {
+    html = `<p style="font-size:0.9rem;">✅ Trabalhadora avulsa tem os mesmos direitos da CLT: 120 dias de benefício, sem carência, pago pela empresa ou INSS conforme o caso. A estabilidade também se aplica.</p>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>`;
+  } else if (selecionado === 'intermitente') {
+    html = `<p style="font-size:0.9rem;">✅ CLT intermitente tem direito ao salário-maternidade calculado sobre a média dos últimos 12 meses de trabalho. A estabilidade também vale.</p>
+      <div class="calc-group"><label>Sua média dos últimos 12 meses (R$): <span class="required-star">*</span></label>
+        <input type="number" name="intermitente_salario" class="calc-select" step="0.01" placeholder="Ex: 2500" required></div>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>`;
+  } else if (selecionado === 'informal') {
+    html = `<p style="font-size:0.9rem;">⚠️ Infelizmente, trabalhadores informais sem contribuição ao INSS não têm direito ao salário-maternidade. <br> Para garantir o benefício no futuro, você pode se inscrever como <strong>MEI</strong> ou <strong>contribuinte facultativo</strong> e pagar as contribuições mensalmente. Após 10 meses de pagamento contínuo, passa a ter direito.</p>`;
+  } else if (selecionado === 'adocao') {
+    html = `
+      <div class="calc-group"><label>Você é: <span class="required-star">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="adotante_tipo" value="clt" required> Empregado(a) CLT</label>
+        <label class="calc-radio"><input type="radio" name="adotante_tipo" value="autonoma" required> Autônomo/MEI/Facultativo</label>
+        <label class="calc-radio"><input type="radio" name="adotante_tipo" value="desempregado" required> Desempregado (período de graça)</label></div></div>
+      <div class="calc-group" id="grupoAdocaoContribuicao" style="display:none;"></div>
+      <div class="calc-group"><label>Data da adoção/guarda:</label>
+        <input type="date" name="data_adocao" class="calc-select"></div>
+      `;
   }
-  if(perguntasHTML) perguntasHTML.innerHTML = html;
+  
+  if(perguntasDinamicasDiv) perguntasDinamicasDiv.innerHTML = html;
+  
+  // Configurar listeners para campos que mostram/ocultam subperguntas
+  document.querySelectorAll('input[name="clt_empregada"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const grupoTempo = document.getElementById('grupoCltTempo');
+      const grupo10anos = document.getElementById('grupoClt10anos');
+      const grupoComprova = document.getElementById('grupoCltComprova');
+      if (document.querySelector('input[name="clt_empregada"]:checked')?.value === 'nao') {
+        if(grupoTempo) grupoTempo.style.display = 'block';
+        if(grupo10anos) grupo10anos.style.display = 'block';
+        if(grupoComprova) grupoComprova.style.display = 'block';
+      } else {
+        if(grupoTempo) grupoTempo.style.display = 'none';
+        if(grupo10anos) grupo10anos.style.display = 'none';
+        if(grupoComprova) grupoComprova.style.display = 'none';
+      }
+      validarFormulario();
+    });
+  });
+  document.querySelectorAll('input[name="autonoma_atual"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const grupo = document.getElementById('grupoTempoParada');
+      if (grupo) grupo.style.display = r.value === 'nao' ? 'block' : 'none';
+      validarFormulario();
+    });
+  });
+  document.querySelectorAll('input[name="adotante_tipo"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const grupo = document.getElementById('grupoAdocaoContribuicao');
+      if (!grupo) return;
+      if (r.value === 'autonoma') {
+        grupo.innerHTML = `<div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS? <span class="required-star">*</span></label><div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="adocao_10anos" value="sim"> Sim</label><label class="calc-radio"><input type="radio" name="adocao_10anos" value="nao"> Não</label></div></div>`;
+      } else if (r.value === 'desempregado') {
+        grupo.innerHTML = `<div class="calc-group"><label>Há quanto tempo está desempregado? <span class="required-star">*</span></label><select name="adocao_tempo" class="calc-select"><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div><div class="calc-group"><label>Mais de 10 anos de contribuição? <span class="required-star">*</span></label><div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="adocao_10anos" value="sim"> Sim</label><label class="calc-radio"><input type="radio" name="adocao_10anos" value="nao"> Não</label></div></div><div class="calc-group"><label>Comprova desemprego? <span class="required-star">*</span></label><div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="adocao_comprova" value="sim"> Sim</label><label class="calc-radio"><input type="radio" name="adocao_comprova" value="nao"> Não</label></div></div>`;
+      } else {
+        grupo.innerHTML = '';
+      }
+      validarFormulario();
+    });
+  });
+  
+  document.querySelectorAll('#perguntasDinamicas input, #perguntasDinamicas select').forEach(el => {
+    el.addEventListener('change', () => {
+      validarFormulario();
+      salvarRespostas();
+    });
+    el.addEventListener('input', () => {
+      validarFormulario();
+      salvarRespostas();
+    });
+  });
+  validarFormulario();
+  salvarRespostas();
 }
 
-function calcularDireitoCompleto() {
+function calcularDireito() {
   const resultDiv = document.getElementById('calcResultFinal');
   if (resultDiv) resultDiv.style.display = 'none';
   const perfilRadio = document.querySelector('input[name="perfil"]:checked');
   if (!perfilRadio) { alert('Selecione sua situação atual primeiro.'); return; }
   const perfil = perfilRadio.value;
-  let direito = false, periodoGraça = 0, mensagemDireito = '', mensagemGraça = '', detalhe = '';
-
+  let direito = false, mensagemDireito = '', mensagemGraça = '', detalhe = '';
+  let valorBeneficio = 0;
+  const tetoINSS = 8157.41;
+  const salarioMinimo = 1621.00;
+  
+  function calcularMesesAteParto(dataPartoStr) {
+    if (!dataPartoStr) return null;
+    const hoje = new Date();
+    const parto = new Date(dataPartoStr);
+    const diffMs = parto - hoje;
+    if (diffMs <= 0) return 0;
+    return diffMs / (1000 * 60 * 60 * 24 * 30);
+  }
+  
   if (perfil === 'clt') {
     const empregada = document.querySelector('input[name="clt_empregada"]:checked');
     if (!empregada) { alert('Responda se está empregada ou não.'); return; }
-    const tempoSelect = document.querySelector('select[name="clt_tempo"]');
-    const tempo = tempoSelect ? tempoSelect.value : null;
+    const salario = parseFloat(document.querySelector('input[name="clt_salario"]')?.value) || 0;
+    valorBeneficio = salario;
+    const dataParto = document.querySelector('input[name="data_parto"]')?.value;
     if (empregada.value === 'sim') {
       direito = true;
       mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
       detalhe = 'Como empregada CLT, não há carência e o benefício é garantido por 120 dias.';
+      if (valorBeneficio > 0) detalhe += `<br>💵 Estimativa de valor: R$ ${valorBeneficio.toFixed(2)} por mês.`;
     } else {
+      const tempo = document.querySelector('select[name="clt_tempo"]')?.value;
+      const dezAnos = document.querySelector('input[name="clt_10anos"]:checked')?.value === 'sim';
+      const comprova = document.querySelector('input[name="clt_comprova"]:checked')?.value === 'sim';
       if (!tempo) { alert('Selecione há quanto tempo foi demitida.'); return; }
-      const dezAnos = false;
-      const comprovaDesemprego = true;
-      const mesesParada = tempo === 'menos12' ? 0 : (tempo === 'entre12e24' ? 12 : 24);
-      if (mesesParada < 12) {
-        periodoGraça = 12; direito = true;
-        mensagemDireito = '✅ Você ainda está no período de graça (até 12 meses após a demissão).';
-        mensagemGraça = `⏳ Período de graça atual: ${periodoGraça} meses de proteção. Se o parto ocorrer dentro desse prazo, você tem direito.`;
-      } else if (mesesParada >= 12 && mesesParada < 24 && dezAnos) {
-        periodoGraça = 24; direito = true;
-        mensagemDireito = '✅ Você ainda está no período de graça estendido (24 meses) por ter mais de 10 anos de contribuição.';
-      } else if (mesesParada >= 12 && mesesParada < 24 && !dezAnos) {
-        direito = false; mensagemDireito = '❌ Infelizmente você já perdeu o período de graça de 12 meses.';
-      } else if (mesesParada >= 24 && dezAnos && comprovaDesemprego) {
-        periodoGraça = 36; direito = true;
-        mensagemDireito = '✅ Você ainda está no período de graça máximo (36 meses) por ter mais de 10 anos de contribuição e comprovação de desemprego.';
+      let mesesParada = tempo === 'menos12' ? 0 : (tempo === 'entre12e24' ? 12 : 24);
+      let prazoMax = 12;
+      if (dezAnos) prazoMax = 24;
+      if (dezAnos && comprova && tempo === 'entre12e24') prazoMax = 36;
+      const mesesAteParto = calcularMesesAteParto(dataParto);
+      let dentroPrazo = false;
+      if (mesesAteParto !== null) {
+        dentroPrazo = mesesAteParto <= prazoMax;
       } else {
-        direito = false; mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
+        dentroPrazo = mesesParada < prazoMax;
+      }
+      if (dentroPrazo) {
+        direito = true;
+        mensagemDireito = `✅ Você ainda está no período de graça (até ${prazoMax} meses). Se o parto ocorrer dentro desse prazo, você tem direito.`;
+        if (mesesAteParto !== null) {
+          mensagemGraça = `⏳ Parto previsto em aproximadamente ${Math.round(mesesAteParto)} meses. Prazo máximo: ${prazoMax} meses.`;
+        } else {
+          mensagemGraça = `⏳ Período de graça: ${prazoMax} meses.`;
+        }
+      } else {
+        direito = false;
+        mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
       }
     }
   } else if (perfil === 'autonoma') {
     const mesesContrib = document.querySelector('select[name="autonoma_meses"]');
     const contribuindo = document.querySelector('input[name="autonoma_atual"]:checked');
+    const consecutivo = document.querySelector('input[name="autonoma_consecutivo"]:checked');
     const dezAnosRadio = document.querySelector('input[name="autonoma_10anos"]:checked');
-    if (!mesesContrib || !contribuindo || !dezAnosRadio) { alert('Responda todas as perguntas da sua categoria.'); return; }
+    const salario = parseFloat(document.querySelector('input[name="autonoma_salario"]')?.value) || 0;
+    if (!mesesContrib || !contribuindo || !consecutivo || !dezAnosRadio) { alert('Responda todas as perguntas.'); return; }
     const tem10Meses = mesesContrib.value === '10';
     const temDezAnos = dezAnosRadio.value === 'sim';
     const estaContribuindo = contribuindo.value === 'sim';
+    const pagamentoConsecutivo = consecutivo.value === 'sim';
     let tempoParada = null;
     if (!estaContribuindo) {
       const tempoSelect = document.querySelector('select[name="autonoma_tempo"]');
       if (tempoSelect) tempoParada = tempoSelect.value;
     }
-    if (estaContribuindo && tem10Meses) {
-      direito = true; mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
-      detalhe = 'Você já completou a carência de 10 meses e está contribuindo atualmente.';
-    } else if (estaContribuindo && !tem10Meses) {
-      direito = false; mensagemDireito = '❌ Infelizmente você ainda não tem direito.';
-      detalhe = 'Autônomas/MEI precisam de 10 meses de contribuição antes do parto. Continue pagando o DAS.';
+    if (estaContribuindo && tem10Meses && pagamentoConsecutivo) {
+      direito = true;
+      mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
+      detalhe = 'Você já completou a carência de 10 meses consecutivos e está contribuindo atualmente.';
+      valorBeneficio = Math.min(salario, tetoINSS);
+      if (valorBeneficio > 0) detalhe += `<br>💵 Estimativa de valor: R$ ${valorBeneficio.toFixed(2)} por mês.`;
+    } else if (estaContribuindo && (!tem10Meses || !pagamentoConsecutivo)) {
+      direito = false;
+      mensagemDireito = '❌ Infelizmente você ainda não tem direito.';
+      if (!tem10Meses) detalhe = 'Autônomas/MEI/Facultativas precisam de 10 meses de contribuição antes do parto.';
+      if (!pagamentoConsecutivo) detalhe += ' Além disso, os pagamentos precisam ser consecutivos. Se houve interrupção, a carência é reiniciada.';
     } else if (!estaContribuindo && tempoParada) {
       let mesesDesdeParada = tempoParada === 'menos12' ? 6 : (tempoParada === 'entre12e24' ? 18 : 30);
       let prazoMax = 12; if (temDezAnos) prazoMax = 24;
       if (temDezAnos && tempoParada === 'entre12e24') prazoMax = 36;
-      if (mesesDesdeParada < prazoMax) {
-        direito = true; periodoGraça = prazoMax - mesesDesdeParada;
-        mensagemDireito = `✅ Você ainda está no período de graça. Restam aproximadamente ${periodoGraça} meses de proteção.`;
-        mensagemGraça = `⏳ Período de graça atual: ${prazoMax} meses no total. Se o parto ocorrer dentro desse prazo, você tem direito.`;
+      const dataParto = document.querySelector('input[name="data_parto"]')?.value;
+      const mesesAteParto = calcularMesesAteParto(dataParto);
+      let dentroPrazo = false;
+      if (mesesAteParto !== null) {
+        dentroPrazo = mesesAteParto <= prazoMax;
       } else {
-        direito = false; mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
-        mensagemGraça = 'Você não está mais protegida. Para ter direito, precisaria voltar a contribuir por pelo menos 10 meses antes da gravidez.';
+        dentroPrazo = mesesDesdeParada < prazoMax;
+      }
+      if (dentroPrazo) {
+        direito = true;
+        mensagemDireito = `✅ Você ainda está no período de graça (${prazoMax} meses). Se o parto ocorrer dentro desse prazo, tem direito.`;
+        if (mesesAteParto !== null) {
+          mensagemGraça = `⏳ Parto previsto em aproximadamente ${Math.round(mesesAteParto)} meses. Prazo máximo: ${prazoMax} meses.`;
+        } else {
+          mensagemGraça = `⏳ Período de graça atual: ${prazoMax} meses.`;
+        }
+        if (salario > 0) {
+          valorBeneficio = Math.min(salario, tetoINSS);
+          detalhe = `<br>💵 Estimativa de valor: R$ ${valorBeneficio.toFixed(2)} por mês.`;
+        }
+      } else {
+        direito = false;
+        mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
       }
     } else { direito = false; mensagemDireito = '❌ Dados insuficientes.'; }
   } else if (perfil === 'desempregada') {
@@ -1205,25 +1252,88 @@ function calcularDireitoCompleto() {
     let mesesDesdeParada = tempoParada === 'menos12' ? 6 : (tempoParada === 'entre12e24' ? 18 : 30);
     let prazoMax = 12; if (temDezAnos) prazoMax = 24;
     if (temDezAnos && comprova && tempoParada === 'entre12e24') prazoMax = 36;
-    if (mesesDesdeParada < prazoMax) {
-      direito = true; periodoGraça = prazoMax - mesesDesdeParada;
-      mensagemDireito = `✅ Você ainda está no período de graça. Restam aproximadamente ${periodoGraça} meses de proteção.`;
-      mensagemGraça = `⏳ Período de graça atual: ${prazoMax} meses no total. Se o parto ocorrer dentro desse prazo, você tem direito.`;
+    const dataParto = document.querySelector('input[name="data_parto"]')?.value;
+    const mesesAteParto = calcularMesesAteParto(dataParto);
+    let dentroPrazo = false;
+    if (mesesAteParto !== null) {
+      dentroPrazo = mesesAteParto <= prazoMax;
     } else {
-      direito = false; mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
-      mensagemGraça = 'Você não está mais protegida. Para ter direito, precisaria voltar a contribuir por pelo menos 10 meses antes da gravidez.';
+      dentroPrazo = mesesDesdeParada < prazoMax;
+    }
+    if (dentroPrazo) {
+      direito = true;
+      mensagemDireito = `✅ Você ainda está no período de graça. Prazo máximo: ${prazoMax} meses.`;
+      if (mesesAteParto !== null) {
+        mensagemGraça = `⏳ Parto previsto em aproximadamente ${Math.round(mesesAteParto)} meses. Prazo máximo: ${prazoMax} meses.`;
+      } else {
+        mensagemGraça = `⏳ Período de graça atual: ${prazoMax} meses.`;
+      }
+    } else {
+      direito = false;
+      mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
     }
   } else if (perfil === 'rural') {
     const atividade = document.querySelector('input[name="rural_atividade"]:checked');
     if (!atividade) { alert('Responda se exerce atividade rural.'); return; }
     if (atividade.value === 'sim') {
-      direito = true; mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
-      detalhe = 'Como segurada especial (trabalhadora rural), você recebe 1 salário mínimo por 120 dias, sem necessidade de carência.';
+      direito = true;
+      mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
+      detalhe = `Como segurada especial, você recebe 1 salário mínimo (R$ ${salarioMinimo.toFixed(2)}) por 120 dias, sem necessidade de carência.`;
+      valorBeneficio = salarioMinimo;
     } else {
-      direito = false; mensagemDireito = '❌ Para ter direito como segurada especial, é necessário comprovar o exercício de atividade rural.';
+      direito = false;
+      mensagemDireito = '❌ Para ter direito como segurada especial, é necessário comprovar o exercício de atividade rural.';
+    }
+  } else if (perfil === 'avulsa') {
+    direito = true;
+    mensagemDireito = '✅ Trabalhadora avulsa tem direito ao salário-maternidade, sem carência, por 120 dias.';
+  } else if (perfil === 'intermitente') {
+    const salario = parseFloat(document.querySelector('input[name="intermitente_salario"]')?.value) || 0;
+    direito = true;
+    mensagemDireito = '✅ CLT intermitente tem direito ao salário-maternidade, calculado sobre a média dos últimos 12 meses trabalhados.';
+    if (salario > 0) {
+      valorBeneficio = Math.min(salario, tetoINSS);
+      detalhe = `<br>💵 Estimativa de valor: R$ ${valorBeneficio.toFixed(2)} por mês.`;
+    }
+  } else if (perfil === 'informal') {
+    direito = false;
+    mensagemDireito = '❌ Trabalhadores informais sem contribuição ao INSS não têm direito ao salário-maternidade.';
+    detalhe = 'Para ter direito no futuro, regularize-se como MEI ou contribuinte facultativo e pague por pelo menos 10 meses consecutivos antes da gravidez.';
+  } else if (perfil === 'adocao') {
+    const tipo = document.querySelector('input[name="adotante_tipo"]:checked');
+    if (!tipo) { alert('Selecione seu vínculo.'); return; }
+    if (tipo.value === 'clt') {
+      direito = true;
+      mensagemDireito = '✅ Adotante com vínculo CLT tem direito aos 120 dias de salário-maternidade, sem carência.';
+    } else if (tipo.value === 'autonoma') {
+      const dezAnos = document.querySelector('input[name="adocao_10anos"]:checked')?.value === 'sim';
+      // Simplificamos: pedir confirmação de 10 meses de contribuição nos últimos 12 meses
+      const contribuiu = confirm('Você contribuiu por pelo menos 10 meses nos últimos 12 meses? (OK para sim, Cancelar para não)');
+      if (contribuiu) {
+        direito = true;
+        mensagemDireito = '✅ Adotante autônomo/MEI com carência cumprida tem direito aos 120 dias.';
+      } else {
+        direito = false;
+        mensagemDireito = '❌ Para adotante autônomo, é necessário ter contribuído por 10 meses antes da adoção.';
+      }
+    } else if (tipo.value === 'desempregado') {
+      const tempo = document.querySelector('select[name="adocao_tempo"]')?.value;
+      const dezAnos = document.querySelector('input[name="adocao_10anos"]:checked')?.value === 'sim';
+      const comprova = document.querySelector('input[name="adocao_comprova"]:checked')?.value === 'sim';
+      if (!tempo) { alert('Responda todas as perguntas.'); return; }
+      let mesesParada = tempo === 'menos12' ? 6 : (tempo === 'entre12e24' ? 18 : 30);
+      let prazoMax = 12; if (dezAnos) prazoMax = 24;
+      if (dezAnos && comprova && tempo === 'entre12e24') prazoMax = 36;
+      if (mesesParada < prazoMax) {
+        direito = true;
+        mensagemDireito = `✅ Adotante desempregado ainda no período de graça (${prazoMax} meses) tem direito.`;
+      } else {
+        direito = false;
+        mensagemDireito = '❌ Período de graça expirado. Sem direito ao salário-maternidade.';
+      }
     }
   }
-
+  
   if (resultDiv) resultDiv.style.display = 'block';
   const direitoDiv = document.getElementById('resultadoDireito');
   const detalheDiv = document.getElementById('resultadoDetalhe');
@@ -1233,7 +1343,17 @@ function calcularDireitoCompleto() {
   if (gracaDiv) gracaDiv.innerHTML = mensagemGraça ? `<p>${mensagemGraça}</p>` : '';
 }
 
-/* SHARE */
+/* Share e Quiz (mantidos) */
+function updateShareLinks() {
+  const url = encodeURIComponent(window.location.href);
+  const text = encodeURIComponent('Descubra seus direitos ao Salário-Maternidade! 🍼');
+  const waBtn = document.querySelector('.share-btn.wa');
+  const fbBtn = document.querySelector('.share-btn.fb');
+  const twBtn = document.querySelector('.share-btn.tw');
+  if (waBtn) waBtn.href = `https://wa.me/?text=${text}%20${url}`;
+  if (fbBtn) fbBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  if (twBtn) twBtn.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+}
 function copyLink() {
   const url = window.location.href;
   if (navigator.clipboard) navigator.clipboard.writeText(url);
@@ -1248,12 +1368,10 @@ function copyLink() {
     setTimeout(() => confirm.style.display = 'none', 3000);
   }
 }
-
-/* QUIZ */
 const allQuizData = [
   { q:"Uma trabalhadora CLT foi contratada hoje. Se tiver bebê amanhã, tem direito ao salário-maternidade?", opts:["Sim, sem carência mínima","Não, precisa de 6 meses de emprego","Não, precisa de 10 meses de INSS"], correct:0, explain:"Trabalhadora CLT não precisa de carência! O benefício é garantido desde o primeiro dia de emprego." },
   { q:"Quantos dias dura o salário-maternidade no prazo padrão?", opts:["60 dias","90 dias","120 dias","180 dias"], correct:2, explain:"120 dias (4 meses) é o prazo padrão. Com o Programa Empresa Cidadã pode ser 180 dias!" },
-  { q:"Uma autônoma precisa de quantos meses de contribuição ao INSS (carência)?", opts:["Nenhum","5 meses","10 meses","12 meses"], correct:2, explain:"Autônomas, MEI e trabalhadoras rurais precisam de 10 meses de carência antes do parto." },
+  { q:"Uma autônoma precisa de quantos meses de contribuição ao INSS (carência)?", opts:["Nenhum","5 meses","10 meses","12 meses"], correct:2, explain:"Autônomas, MEI e facultativas precisam de 10 meses de carência antes do parto." },
   { q:"O pai pode receber o salário-maternidade?", opts:["Nunca","Sim, sempre que quiser","Sim, em adoção ou falecimento da mãe"], correct:2, explain:"O pai tem direito em adoção (homem solteiro) e se a mãe falecer durante ou após o parto." },
   { q:"Qual o prazo máximo do Período de Graça com +10 anos de INSS e comprovação de desemprego?", opts:["12 meses","24 meses","36 meses"], correct:2, explain:"Até 36 meses (3 anos) de proteção! É a maior duração do período de graça." },
   { q:"O que acontece em caso de natimorto (bebê que nasce sem vida)?", opts:["Nenhum benefício","2 semanas de repouso","120 dias de benefício completo"], correct:2, explain:"A lei garante os 120 dias completos em caso de natimorto. Exige atestado médico." },
@@ -1307,14 +1425,17 @@ function qShowResult() {
 }
 function qRestart() { initQuiz(); document.getElementById('quizBox').innerHTML = `<div class="quiz-header"><div class="quiz-counter" id="quizCounter"></div><div class="quiz-score-live" id="quizScoreLive"></div></div><div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizFill" style="width:0%"></div></div><p style="text-align:center;font-size:0.78rem;opacity:0.55;margin-bottom:16px;">🔀 Perguntas embaralhadas!</p><div class="quiz-question" id="quizQ"></div><div class="quiz-options" id="quizOpts"></div><div class="quiz-result" id="quizResult"></div><div class="quiz-nav" id="quizNav"></div>`; renderQuiz(); }
 
-/* SCROLL ANIMATIONS + COUNTERS */
+/* Inicializações */
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); if (!countersStarted && e.target.closest && e.target.closest('.stats-bar')) { countersStarted = true; animateCounters(); } } });
 }, { threshold: 0.08 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 setTimeout(() => { const stats = document.querySelector('.stats-bar'); if (stats && stats.getBoundingClientRect().top < window.innerHeight && !countersStarted) { countersStarted = true; animateCounters(); } }, 500);
 
-initQuiz(); renderQuiz();
+updateShareLinks();
+initQuiz();
+renderQuiz();
+carregarRespostas();
 </script>
 </body>
 </html>
