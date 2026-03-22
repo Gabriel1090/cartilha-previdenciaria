@@ -40,6 +40,7 @@
     .blob-bg svg { width: 100%; height: 100%; }
 
     /* Barra de acessibilidade (vertical esquerda) */
+/* Barra de acessibilidade - lado direito, vertical e translúcida */
 .a11y-bar {
   position: fixed;
   top: 50%;
@@ -48,20 +49,20 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(6px);
-  padding: 12px 8px;
-  border-radius: 50px;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.4); /* mais translúcido */
+  backdrop-filter: blur(4px);
+  padding: 10px 8px;
+  border-radius: 30px;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  opacity: 0.75;
+  opacity: 0.8;
 }
 .a11y-bar:hover {
   opacity: 1;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
 }
 .a11y-btn {
   background: rgba(255, 255, 255, 0.2);
@@ -88,24 +89,25 @@
   transform: scale(1.05);
 }
 
-/* Responsividade: mantém vertical também no mobile, mas ajusta tamanho e posição para não sobrepor conteúdo */
+/* No mobile, reposiciona para o canto inferior direito (horizontal) para não atrapalhar */
 @media (max-width: 768px) {
   .a11y-bar {
     top: auto;
-    bottom: 80px;
-    right: 12px;
+    bottom: 20px;
+    right: 20px;
+    left: auto;
     transform: none;
-    flex-direction: column;
+    flex-direction: row; /* fica horizontal no mobile para ocupar menos espaço vertical */
     gap: 6px;
-    padding: 8px 6px;
+    padding: 8px 12px;
     border-radius: 40px;
-    opacity: 0.8;
+    opacity: 0.9;
   }
   .a11y-btn {
-    min-width: 38px;
-    min-height: 38px;
-    padding: 6px 8px;
-    font-size: 0.75rem;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
   }
 }
 
