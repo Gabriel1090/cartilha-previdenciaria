@@ -35,19 +35,6 @@
     html { scroll-behavior: smooth; font-size: var(--font-size-base); }
     body { font-family: 'Nunito', sans-serif; background: var(--blue-main); color: var(--white); overflow-x: hidden; }
 
-    /* Barra de progresso de rolagem (novo) */
-    .scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 4px;
-      background: var(--yellow);
-      z-index: 1002;
-      transition: width 0.1s;
-      box-shadow: 0 0 4px rgba(0,0,0,0.2);
-    }
-
     /* Background decorativo fixo (blob) */
     .blob-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .blob-bg svg { width: 100%; height: 100%; }
@@ -164,40 +151,11 @@
     .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-    /* Menu mobile com transição suave (max-height) */
-    .mobile-menu {
-      display: block;
-      background: var(--blue-deeper);
-      padding: 0 5vw;
-      flex-direction: column;
-      gap: 8px;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      z-index: 99;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, padding 0.2s;
-    }
-    .mobile-menu.open {
-      max-height: 500px;
-      padding: 16px 5vw 20px;
-    }
-    .mobile-menu a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 12px 16px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.1);
-      transition: var(--transition);
-      display: block;
-    }
+    .mobile-menu { display: none; background: var(--blue-deeper); padding: 16px 5vw 20px; flex-direction: column; gap: 8px; position: absolute; top: 100%; left: 0; right: 0; z-index: 99; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: #fff; text-decoration: none; font-weight: 700; font-size: 1rem; padding: 12px 16px; border-radius: 12px; background: rgba(255,255,255,0.1); transition: var(--transition); }
     .mobile-menu a:hover { background: var(--yellow); color: var(--text-dark); }
-    .mobile-menu .pdf-btn { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: 800; margin-top: 6px; cursor: pointer; width: 100%; }
+    .mobile-menu .pdf-btn { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: 800; margin-top: 6px; cursor: pointer; }
 
     /* Hero com imagem ajustada */
     .hero {
@@ -331,7 +289,7 @@
 
     /* Calculadora */
     .calc-section { background: var(--blue-dark); }
-    .calc-box { background: rgba(255,255,255,0.13); border-radius: 26px; padding: 40px; max-width: 780px; margin: 0 auto; border: 2px solid rgba(255,255,255,0.2); }
+    .calc-box { background: rgba(255,255,255,0.13); border-radius: 26px; padding: 40px; max-width: 680px; margin: 0 auto; border: 2px solid rgba(255,255,255,0.2); }
     .calc-box h3 { font-family:'Montserrat',sans-serif; font-size:1.35rem; font-weight:900; margin-bottom:8px; }
     .calc-box > p { font-size:0.92rem; opacity:0.85; margin-bottom:24px; line-height:1.6; }
     .calc-group { margin-bottom: 20px; }
@@ -452,32 +410,6 @@
     .quiz-score-big { font-family:'Montserrat',sans-serif; font-size:4rem; font-weight:900; color:var(--yellow); line-height:1; }
     .quiz-medal { font-size:3rem; margin:10px 0; }
 
-    /* Badges do quiz (novo) */
-    .quiz-badges {
-      margin-top: 20px;
-      padding: 16px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 24px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .badge-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      transition: transform 0.2s;
-    }
-    .badge-item i { font-size: 1.2rem; }
-    .badge-item.locked { opacity: 0.5; filter: grayscale(0.3); }
-    .badge-item.unlocked { background: var(--yellow); color: var(--text-dark); }
-
     /* Compartilhar */
     .share-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:24px; }
     .share-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:50px; font-weight:800; font-size:0.92rem; cursor:pointer; border:none; text-decoration:none; transition:var(--transition); }
@@ -486,104 +418,6 @@
     .share-btn.tw { background:#1DA1F2; color:#fff; }
     .share-btn.fb { background:#1877F2; color:#fff; }
     .share-btn.cp { background:rgba(255,255,255,0.2); color:#fff; border:2px solid rgba(255,255,255,0.35); }
-
-    /* Resumo interativo (checklist) - novo */
-    .resumo-section {
-      background: var(--blue-dark);
-    }
-    .checklist-box {
-      background: rgba(255,255,255,0.13);
-      border-radius: 28px;
-      padding: 32px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .checklist-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .checklist-item input {
-      margin-top: 4px;
-      width: 20px;
-      height: 20px;
-      accent-color: var(--yellow);
-      cursor: pointer;
-    }
-    .checklist-item label {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      cursor: pointer;
-      flex: 1;
-    }
-    .checklist-item.checked label {
-      text-decoration: line-through;
-      opacity: 0.7;
-    }
-    .checklist-reset {
-      margin-top: 20px;
-      text-align: right;
-    }
-    .checklist-reset button {
-      background: rgba(255,255,255,0.2);
-      border: none;
-      padding: 8px 16px;
-      border-radius: 40px;
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .checklist-reset button:hover {
-      background: var(--yellow);
-      color: var(--text-dark);
-    }
-
-    /* Botão Iniciar Trilha */
-    .trilha-btn {
-      position: fixed;
-      bottom: 100px;
-      left: 20px;
-      z-index: 200;
-      background: var(--yellow);
-      color: var(--text-dark);
-      border: none;
-      border-radius: 50px;
-      padding: 12px 20px;
-      font-weight: 800;
-      font-size: 0.85rem;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: var(--transition);
-      opacity: 0.9;
-    }
-    .trilha-btn:hover {
-      transform: scale(1.05);
-      opacity: 1;
-    }
-    @media (max-width: 768px) {
-      .trilha-btn {
-        bottom: 140px;
-        left: 10px;
-        padding: 8px 16px;
-        font-size: 0.75rem;
-      }
-    }
-    /* Destaque de seção durante a trilha */
-    .section-highlight {
-      animation: glow 1.5s ease-in-out 3;
-      position: relative;
-    }
-    @keyframes glow {
-      0% { box-shadow: 0 0 0 0 rgba(255,209,102,0.7); }
-      50% { box-shadow: 0 0 0 12px rgba(255,209,102,0.3); }
-      100% { box-shadow: 0 0 0 0 rgba(255,209,102,0); }
-    }
 
     /* Footer */
     footer { position:relative; z-index:5; background:var(--text-dark); padding:52px 5vw 28px; }
@@ -665,30 +499,6 @@
     .pdf-btn { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 0.95rem; padding: 14px 28px; border-radius: 50px; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: var(--transition); box-shadow: 0 4px 20px rgba(239,68,68,0.35); }
     .pdf-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(239,68,68,0.45); }
 
-    /* Toast para copiar link */
-    .toast-message {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: var(--yellow);
-      color: var(--text-dark);
-      padding: 12px 24px;
-      border-radius: 50px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      z-index: 2000;
-      opacity: 0;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      pointer-events: none;
-      box-shadow: var(--shadow-md);
-      white-space: nowrap;
-    }
-    .toast-message.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-
     /* Responsividade */
     @media(max-width:900px) { nav{display:none;} .hamburger{display:flex;} .stats-inner{grid-template-columns:repeat(2,1fr);} }
     @media(max-width:768px) { 
@@ -710,14 +520,13 @@
 
     /* Print */
     @media print {
-      .a11y-bar, .alert-banner, header, #backTop, .share-btns, .hero-cta, .hamburger, .mobile-menu, .trilha-btn, .scroll-progress { display: none !important; }
+      .a11y-bar, .alert-banner, header, #backTop, .share-btns, .hero-cta, .hamburger, .mobile-menu { display: none !important; }
       body { background: white !important; color: black !important; }
       section { break-inside: avoid; }
     }
   </style>
 </head> <body>
 
-<div class="scroll-progress"></div>
 <div class="blob-bg">
   <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <rect width="1440" height="900" fill="#3b9ee8"/>
@@ -735,10 +544,6 @@
   <button type="button" class="a11y-btn" onclick="changeFontSize(1)" title="Aumentar fonte" aria-label="Aumentar fonte">A+</button>
   <button type="button" class="a11y-btn" id="contrastBtn" onclick="toggleContrast()" title="Alto contraste" aria-label="Alto contraste">◑</button>
 </div>
-
-<button class="trilha-btn" id="trilhaBtn" aria-label="Iniciar trilha guiada">
-  <i class="fas fa-route"></i> Iniciar Trilha
-</button>
 
 <div class="alert-banner" id="alertBanner" role="alert">
   <span>⚠️</span>
@@ -918,12 +723,12 @@
   </div>
 </section>
 
-<!-- Calculadora completa com simulação de valor -->
+<!-- Calculadora completa -->
 <section class="calc-section" id="calculadora">
   <div class="section-inner">
     <span class="section-badge fade-in" style="display:block;text-align:center;max-width:fit-content;margin:0 auto 12px;"><i class="fas fa-calculator"></i> Ferramenta</span>
-    <h2 class="section-title fade-in" style="text-align:center;">Calculadora de <span>Direito, Prazo e Valor</span></h2>
-    <p class="section-desc fade-in" style="text-align:center;margin:0 auto 36px;">Descubra se você tem direito ao salário-maternidade, quanto tempo está protegida e qual o valor aproximado do benefício.</p>
+    <h2 class="section-title fade-in" style="text-align:center;">Calculadora de <span>Direito e Período de Graça</span></h2>
+    <p class="section-desc fade-in" style="text-align:center;margin:0 auto 36px;">Responda as perguntas para descobrir se você tem direito ao salário-maternidade e, se for o caso, quanto tempo ainda está protegida.</p>
     <div class="calc-box fade-in">
       <h3>📋 Qual a sua situação atual?</h3>
       <p>Selecione a opção que melhor descreve seu vínculo previdenciário:</p>
@@ -936,12 +741,6 @@
         </div>
       </div>
       <div id="perguntasDinamicas" style="display: none;"></div>
-      <!-- Novo campo de renda mensal -->
-      <div class="calc-group" id="grupoRenda" style="display: none;">
-        <label>Sua renda mensal (R$):</label>
-        <input type="number" id="rendaMensal" class="calc-select" placeholder="Ex: 2500" step="100" value="0">
-        <p class="calc-result-tip" style="margin-top:4px;">Para CLT: informe seu salário bruto. Para MEI/autônoma: informe a média das suas contribuições.</p>
-      </div>
       <div style="text-align:center; margin-top: 20px;">
         <button type="button" class="btn-primary" onclick="calcularDireitoCompleto()"><i class="fas fa-search"></i> Verificar meu direito</button>
       </div>
@@ -949,7 +748,6 @@
         <div id="resultadoDireito"></div>
         <div id="resultadoGraça" style="margin-top: 12px;"></div>
         <div id="resultadoDetalhe" style="margin-top: 10px; font-size: 0.9rem; opacity:0.85;"></div>
-        <div id="resultadoValor" style="margin-top: 12px; font-size: 1.2rem; font-weight: 800;"></div>
       </div>
     </div>
   </div>
@@ -1105,45 +903,6 @@
       <div class="quiz-options" id="quizOpts"></div>
       <div class="quiz-result" id="quizResult"></div>
       <div class="quiz-nav" id="quizNav"></div>
-      <div class="quiz-badges" id="quizBadges"></div>
-    </div>
-  </div>
-</section>
-
-<!-- Resumo interativo (checklist) -->
-<section class="resumo-section" id="resumo">
-  <div class="section-inner">
-    <span class="section-badge fade-in"><i class="fas fa-check-circle"></i> Seu progresso</span>
-    <h2 class="section-title fade-in">Resumo dos <span>principais pontos</span></h2>
-    <p class="section-desc fade-in">Marque os tópicos que você já entendeu para consolidar seu aprendizado:</p>
-    <div class="checklist-box fade-in" id="checklistContainer">
-      <div class="checklist-item" data-item="1">
-        <input type="checkbox" id="check1">
-        <label for="check1">CLT tem direito sem carência mínima e estabilidade desde a gravidez até 5 meses após o parto.</label>
-      </div>
-      <div class="checklist-item" data-item="2">
-        <input type="checkbox" id="check2">
-        <label for="check2">Autônomas e MEI precisam de 10 meses de contribuição antes do parto.</label>
-      </div>
-      <div class="checklist-item" data-item="3">
-        <input type="checkbox" id="check3">
-        <label for="check3">Trabalhadora rural segurada especial recebe 1 salário mínimo, sem carência.</label>
-      </div>
-      <div class="checklist-item" data-item="4">
-        <input type="checkbox" id="check4">
-        <label for="check4">Período de Graça: proteção de 12 a 36 meses após parar de contribuir.</label>
-      </div>
-      <div class="checklist-item" data-item="5">
-        <input type="checkbox" id="check5">
-        <label for="check5">Pais têm direito em caso de adoção (homem solteiro) ou falecimento da mãe.</label>
-      </div>
-      <div class="checklist-item" data-item="6">
-        <input type="checkbox" id="check6">
-        <label for="check6">O benefício pode ser solicitado 100% online pelo app Meu INSS ou telefone 135.</label>
-      </div>
-      <div class="checklist-reset">
-        <button id="resetChecklistBtn"><i class="fas fa-undo-alt"></i> Redefinir checklist</button>
-      </div>
     </div>
   </div>
 </section>
@@ -1160,7 +919,7 @@
       <button type="button" class="share-btn cp" onclick="copyLink()"><i class="fas fa-link"></i> Copiar link</button>
       <button type="button" class="pdf-btn" onclick="savePDF()"><i class="fas fa-file-pdf"></i> Salvar como PDF</button>
     </div>
-    <div id="toastMessage" class="toast-message"></div>
+    <p id="copyConfirm" style="font-size:0.88rem;color:var(--green);font-weight:800;margin-top:14px;display:none;">✅ Link copiado com sucesso!</p>
   </div>
 </section>
 
@@ -1249,7 +1008,6 @@ window.addEventListener('scroll', () => {
   const backTop = document.getElementById('backTop');
   if (backTop) backTop.classList.toggle('visible', window.scrollY > 400);
   updateScrollSpy();
-  updateScrollProgress();
 });
 function updateScrollSpy() {
   const sections = document.querySelectorAll('section[id], div[id]');
@@ -1263,12 +1021,6 @@ function updateScrollSpy() {
     a.classList.remove('active');
     if (a.getAttribute('href') === '#' + current) a.classList.add('active');
   });
-}
-function updateScrollProgress() {
-  const winScroll = document.documentElement.scrollTop;
-  const height = document.documentElement.scrollHeight - window.innerHeight;
-  const scrolled = (winScroll / height) * 100;
-  document.querySelector('.scroll-progress').style.width = scrolled + '%';
 }
 
 /* ACCORDION */
@@ -1308,19 +1060,16 @@ function animateCounters() {
   });
 }
 
-/* CALCULADORA COMPLETA COM SIMULAÇÃO DE VALOR */
+/* CALCULADORA COMPLETA */
 let perfilAtual = null;
 const perguntasHTML = document.getElementById('perguntasDinamicas');
-const grupoRenda = document.getElementById('grupoRenda');
-
 function atualizarPerguntas() {
   const radios = document.querySelectorAll('input[name="perfil"]');
   let selecionado = null;
   for (let r of radios) if (r.checked) { selecionado = r.value; break; }
   perfilAtual = selecionado;
-  if (!selecionado) { if(perguntasHTML) perguntasHTML.style.display = 'none'; if(grupoRenda) grupoRenda.style.display = 'none'; return; }
+  if (!selecionado) { if(perguntasHTML) perguntasHTML.style.display = 'none'; return; }
   if(perguntasHTML) perguntasHTML.style.display = 'block';
-  if(grupoRenda) grupoRenda.style.display = 'block';
   let html = '';
   if (selecionado === 'clt') {
     html = `
@@ -1361,7 +1110,7 @@ function atualizarPerguntas() {
   if(perguntasHTML) perguntasHTML.innerHTML = html;
 }
 
-// Listener para mostrar/ocultar campo de tempo parada para autônoma
+// Listener para mostrar/ocultar campo de tempo parada para autônoma (apenas uma vez)
 document.addEventListener('change', function(e) {
   if (e.target && e.target.name === 'autonoma_atual') {
     const grupo = document.getElementById('grupoTempoParada');
@@ -1376,10 +1125,6 @@ function calcularDireitoCompleto() {
   if (!perfilRadio) { alert('Selecione sua situação atual primeiro.'); return; }
   const perfil = perfilRadio.value;
   let direito = false, periodoGraça = 0, mensagemDireito = '', mensagemGraça = '', detalhe = '';
-  let valorEstimado = 0;
-
-  // Obter renda informada
-  let renda = parseFloat(document.getElementById('rendaMensal')?.value) || 0;
 
   if (perfil === 'clt') {
     const empregada = document.querySelector('input[name="clt_empregada"]:checked');
@@ -1390,27 +1135,23 @@ function calcularDireitoCompleto() {
       direito = true;
       mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
       detalhe = 'Como empregada CLT, não há carência e o benefício é garantido por 120 dias.';
-      valorEstimado = renda; // CLT: salário integral
     } else {
       if (!tempo) { alert('Selecione há quanto tempo foi demitida.'); return; }
-      const dezAnos = false; // CLT não tem campo de 10 anos, manter falso
+      const dezAnos = false; // CLT não tem campo de 10 anos, mas poderia ser adicionado; manter falso como padrão
       const comprovaDesemprego = true;
       const mesesParada = tempo === 'menos12' ? 0 : (tempo === 'entre12e24' ? 12 : 24);
       if (mesesParada < 12) {
         periodoGraça = 12; direito = true;
         mensagemDireito = '✅ Você ainda está no período de graça (até 12 meses após a demissão).';
         mensagemGraça = `⏳ Período de graça atual: ${periodoGraça} meses de proteção. Se o parto ocorrer dentro desse prazo, você tem direito.`;
-        valorEstimado = renda;
       } else if (mesesParada >= 12 && mesesParada < 24 && dezAnos) {
         periodoGraça = 24; direito = true;
         mensagemDireito = '✅ Você ainda está no período de graça estendido (24 meses) por ter mais de 10 anos de contribuição.';
-        valorEstimado = renda;
       } else if (mesesParada >= 12 && mesesParada < 24 && !dezAnos) {
         direito = false; mensagemDireito = '❌ Infelizmente você já perdeu o período de graça de 12 meses.';
       } else if (mesesParada >= 24 && dezAnos && comprovaDesemprego) {
         periodoGraça = 36; direito = true;
         mensagemDireito = '✅ Você ainda está no período de graça máximo (36 meses) por ter mais de 10 anos de contribuição e comprovação de desemprego.';
-        valorEstimado = renda;
       } else {
         direito = false; mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
       }
@@ -1431,7 +1172,6 @@ function calcularDireitoCompleto() {
     if (estaContribuindo && tem10Meses) {
       direito = true; mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
       detalhe = 'Você já completou a carência de 10 meses e está contribuindo atualmente.';
-      valorEstimado = renda > 0 ? renda : 1412; // valor mínimo se não informado
     } else if (estaContribuindo && !tem10Meses) {
       direito = false; mensagemDireito = '❌ Infelizmente você ainda não tem direito.';
       detalhe = 'Autônomas/MEI precisam de 10 meses de contribuição antes do parto. Continue pagando o DAS.';
@@ -1443,7 +1183,6 @@ function calcularDireitoCompleto() {
         direito = true; periodoGraça = prazoMax - mesesDesdeParada;
         mensagemDireito = `✅ Você ainda está no período de graça. Restam aproximadamente ${periodoGraça} meses de proteção.`;
         mensagemGraça = `⏳ Período de graça atual: ${prazoMax} meses no total. Se o parto ocorrer dentro desse prazo, você tem direito.`;
-        valorEstimado = renda > 0 ? renda : 1412;
       } else {
         direito = false; mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
         mensagemGraça = 'Você não está mais protegida. Para ter direito, precisaria voltar a contribuir por pelo menos 10 meses antes da gravidez.';
@@ -1464,7 +1203,6 @@ function calcularDireitoCompleto() {
       direito = true; periodoGraça = prazoMax - mesesDesdeParada;
       mensagemDireito = `✅ Você ainda está no período de graça. Restam aproximadamente ${periodoGraça} meses de proteção.`;
       mensagemGraça = `⏳ Período de graça atual: ${prazoMax} meses no total. Se o parto ocorrer dentro desse prazo, você tem direito.`;
-      valorEstimado = renda > 0 ? renda : 1412;
     } else {
       direito = false; mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
       mensagemGraça = 'Você não está mais protegida. Para ter direito, precisaria voltar a contribuir por pelo menos 10 meses antes da gravidez.';
@@ -1475,7 +1213,6 @@ function calcularDireitoCompleto() {
     if (atividade.value === 'sim') {
       direito = true; mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
       detalhe = 'Como segurada especial (trabalhadora rural), você recebe 1 salário mínimo por 120 dias, sem necessidade de carência.';
-      valorEstimado = 1412; // valor fixo do salário mínimo
     } else {
       direito = false; mensagemDireito = '❌ Para ter direito como segurada especial, é necessário comprovar o exercício de atividade rural.';
     }
@@ -1485,20 +1222,12 @@ function calcularDireitoCompleto() {
   const direitoDiv = document.getElementById('resultadoDireito');
   const detalheDiv = document.getElementById('resultadoDetalhe');
   const gracaDiv = document.getElementById('resultadoGraça');
-  const valorDiv = document.getElementById('resultadoValor');
   if (direitoDiv) direitoDiv.innerHTML = `<div style="font-size:1.4rem; font-weight:900;">${mensagemDireito}</div>`;
   if (detalheDiv) detalheDiv.innerHTML = detalhe ? `<p>${detalhe}</p>` : '';
   if (gracaDiv) gracaDiv.innerHTML = mensagemGraça ? `<p>${mensagemGraça}</p>` : '';
-  if (valorDiv) {
-    if (direito && valorEstimado > 0) {
-      valorDiv.innerHTML = `<i class="fas fa-money-bill-wave"></i> Valor estimado: R$ ${valorEstimado.toLocaleString('pt-BR')} por mês.`;
-    } else {
-      valorDiv.innerHTML = '';
-    }
-  }
 }
 
-/* SHARE - dynamic URLs e TOAST */
+/* SHARE - dynamic URLs */
 function updateShareLinks() {
   const url = encodeURIComponent(window.location.href);
   const text = encodeURIComponent('Descubra seus direitos ao Salário-Maternidade! 🍼');
@@ -1517,13 +1246,14 @@ function copyLink() {
     el.value = url; document.body.appendChild(el); el.select();
     document.execCommand('copy'); document.body.removeChild(el);
   }
-  const toast = document.getElementById('toastMessage');
-  toast.textContent = '🔗 Link copiado com sucesso!';
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3000);
+  const confirm = document.getElementById('copyConfirm');
+  if (confirm) {
+    confirm.style.display = 'block';
+    setTimeout(() => confirm.style.display = 'none', 3000);
+  }
 }
 
-/* QUIZ COM BADGES */
+/* QUIZ */
 const allQuizData = [
   { q:"Uma trabalhadora CLT foi contratada hoje. Se tiver bebê amanhã, tem direito ao salário-maternidade?", opts:["Sim, sem carência mínima","Não, precisa de 6 meses de emprego","Não, precisa de 10 meses de INSS"], correct:0, explain:"Trabalhadora CLT não precisa de carência! O benefício é garantido desde o primeiro dia de emprego." },
   { q:"Quantos dias dura o salário-maternidade no prazo padrão?", opts:["60 dias","90 dias","120 dias","180 dias"], correct:2, explain:"120 dias (4 meses) é o prazo padrão. Com o Programa Empresa Cidadã pode ser 180 dias!" },
@@ -1543,28 +1273,6 @@ const allQuizData = [
 ];
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 let quizData = [], qCurrent = 0, qScore = 0, qAnswered = false;
-
-// Badges
-let bestScore = localStorage.getItem('quizBestScore') ? parseInt(localStorage.getItem('quizBestScore')) : 0;
-function updateBadges() {
-  const badgesDiv = document.getElementById('quizBadges');
-  if (!badgesDiv) return;
-  const badges = [
-    { id: 'starter', name: 'Iniciante', minScore: 5, icon: '🌱' },
-    { id: 'learner', name: 'Aprendiz', minScore: 7, icon: '📘' },
-    { id: 'expert', name: 'Especialista', minScore: 9, icon: '🏅' },
-    { id: 'master', name: 'Mestre do INSS', minScore: 10, icon: '👑' }
-  ];
-  let html = '';
-  badges.forEach(badge => {
-    const unlocked = bestScore >= badge.minScore;
-    html += `<div class="badge-item ${unlocked ? 'unlocked' : 'locked'}">
-      <i>${badge.icon}</i> <span>${badge.name}</span>
-    </div>`;
-  });
-  badgesDiv.innerHTML = html;
-}
-
 function initQuiz() { quizData = shuffle(allQuizData).slice(0, 10); qCurrent = 0; qScore = 0; }
 function renderQuiz() {
   const q = quizData[qCurrent]; qAnswered = false;
@@ -1597,111 +1305,11 @@ function qAnswer(idx) {
 }
 function qNext() { qCurrent++; renderQuiz(); }
 function qShowResult() {
-  if (qScore > bestScore) {
-    bestScore = qScore;
-    localStorage.setItem('quizBestScore', bestScore);
-  }
   const medals = ['😢','😕','🙂','😊','😎','🥇','🏆','🌟','🎖️','🏅','👑'];
   const msg = qScore===10 ? 'Perfeito! Você é especialista em direitos previdenciários!' : qScore>=7 ? 'Excelente! Você conhece muito bem seus direitos!' : qScore>=5 ? 'Bom trabalho! Vale reler alguns tópicos.' : '📚 Que tal reler o conteúdo? Você vai melhorar!';
-  document.getElementById('quizBox').innerHTML = `<div style="text-align:center"><div class="quiz-medal">${medals[qScore]||'👑'}</div><div class="quiz-score-big">${qScore}<span style="font-size:2rem;opacity:0.6"> / 10</span></div><p style="font-size:1.15rem;font-weight:800;margin:10px 0 8px">${msg}</p><p style="opacity:0.75;font-size:0.9rem;margin-bottom:24px">Você acertou ${Math.round(qScore/10*100)}% das perguntas!</p><p style="opacity:0.6;font-size:0.8rem;margin-bottom:20px">🔀 As perguntas são embaralhadas a cada tentativa!</p><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button type="button" class="btn-primary" onclick="qRestart()">🔄 Tentar novamente</button><a class="btn-secondary" href="https://wa.me/?text=Fiz+o+quiz+sobre+Direitos+Previdenci%C3%A1rios+e+acertei+${qScore}+de+10!+Teste+tamb%C3%A9m!" target="_blank">💬 Compartilhar</a></div><div class="quiz-badges" id="quizBadges"></div></div>`;
-  updateBadges();
+  document.getElementById('quizBox').innerHTML = `<div style="text-align:center"><div class="quiz-medal">${medals[qScore]||'👑'}</div><div class="quiz-score-big">${qScore}<span style="font-size:2rem;opacity:0.6"> / 10</span></div><p style="font-size:1.15rem;font-weight:800;margin:10px 0 8px">${msg}</p><p style="opacity:0.75;font-size:0.9rem;margin-bottom:24px">Você acertou ${Math.round(qScore/10*100)}% das perguntas!</p><p style="opacity:0.6;font-size:0.8rem;margin-bottom:20px">🔀 As perguntas são embaralhadas a cada tentativa!</p><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button type="button" class="btn-primary" onclick="qRestart()">🔄 Tentar novamente</button><a class="btn-secondary" href="https://wa.me/?text=Fiz+o+quiz+sobre+Direitos+Previdenci%C3%A1rios+e+acertei+${qScore}+de+10!+Teste+tamb%C3%A9m!" target="_blank">💬 Compartilhar</a></div></div>`;
 }
-function qRestart() { initQuiz(); document.getElementById('quizBox').innerHTML = `<div class="quiz-header"><div class="quiz-counter" id="quizCounter"></div><div class="quiz-score-live" id="quizScoreLive"></div></div><div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizFill" style="width:0%"></div></div><p style="text-align:center;font-size:0.78rem;opacity:0.55;margin-bottom:16px;">🔀 Perguntas embaralhadas!</p><div class="quiz-question" id="quizQ"></div><div class="quiz-options" id="quizOpts"></div><div class="quiz-result" id="quizResult"></div><div class="quiz-nav" id="quizNav"></div><div class="quiz-badges" id="quizBadges"></div>`; renderQuiz(); updateBadges(); }
-
-/* TRILHA GUIADA */
-let trilhaIndex = 0;
-const sectionsIds = ['quem-tem-direito', 'regras', 'periodo-graca', 'calculadora', 'faq', 'glossario', 'timeline', 'mitos', 'quiz'];
-function iniciarTrilha() {
-  trilhaIndex = 0;
-  mostrarProximaSecao();
-}
-function mostrarProximaSecao() {
-  if (trilhaIndex >= sectionsIds.length) {
-    alert('🎉 Parabéns! Você concluiu a trilha de aprendizado. Volte sempre para revisar!');
-    return;
-  }
-  const id = sectionsIds[trilhaIndex];
-  const section = document.getElementById(id);
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    section.classList.add('section-highlight');
-    setTimeout(() => section.classList.remove('section-highlight'), 2000);
-    // Pergunta se quer continuar
-    if (confirm(`📚 Seção ${trilhaIndex+1} de ${sectionsIds.length}: "${section.querySelector('h2')?.innerText || 'Conteúdo'}".\nDeseja ir para a próxima?`)) {
-      trilhaIndex++;
-      mostrarProximaSecao();
-    }
-  } else {
-    trilhaIndex++;
-    mostrarProximaSecao();
-  }
-}
-document.getElementById('trilhaBtn').addEventListener('click', iniciarTrilha);
-
-/* CHECKLIST COM LOCALSTORAGE */
-function loadChecklist() {
-  const saved = localStorage.getItem('checklistState');
-  if (saved) {
-    const items = JSON.parse(saved);
-    items.forEach((checked, idx) => {
-      const checkbox = document.getElementById(`check${idx+1}`);
-      if (checkbox) {
-        checkbox.checked = checked;
-        const parent = checkbox.closest('.checklist-item');
-        if (checked) parent.classList.add('checked');
-        else parent.classList.remove('checked');
-      }
-    });
-  }
-}
-function saveChecklist() {
-  const items = [];
-  for (let i = 1; i <= 6; i++) {
-    const chk = document.getElementById(`check${i}`);
-    items.push(chk ? chk.checked : false);
-  }
-  localStorage.setItem('checklistState', JSON.stringify(items));
-}
-function updateChecklistItem(index, checked) {
-  const parent = document.getElementById(`check${index}`)?.closest('.checklist-item');
-  if (parent) {
-    if (checked) parent.classList.add('checked');
-    else parent.classList.remove('checked');
-  }
-  saveChecklist();
-}
-document.querySelectorAll('.checklist-item input').forEach((chk, idx) => {
-  chk.addEventListener('change', (e) => {
-    updateChecklistItem(idx+1, e.target.checked);
-  });
-});
-document.getElementById('resetChecklistBtn').addEventListener('click', () => {
-  for (let i = 1; i <= 6; i++) {
-    const chk = document.getElementById(`check${i}`);
-    if (chk) {
-      chk.checked = false;
-      const parent = chk.closest('.checklist-item');
-      if (parent) parent.classList.remove('checked');
-    }
-  }
-  saveChecklist();
-});
-
-/* TOUCH-FRIENDLY TOOLTIPS (para dispositivos touch) */
-if ('ontouchstart' in window) {
-  document.querySelectorAll('.tooltip-wrap').forEach(tooltip => {
-    tooltip.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      const tooltipBox = this.querySelector('.tooltip-box');
-      if (tooltipBox) {
-        // Fecha todos os outros tooltips abertos
-        document.querySelectorAll('.tooltip-wrap .tooltip-box').forEach(b => b.style.display = 'none');
-        tooltipBox.style.display = 'block';
-        setTimeout(() => { tooltipBox.style.display = 'none'; }, 3000);
-      }
-    });
-  });
-}
+function qRestart() { initQuiz(); document.getElementById('quizBox').innerHTML = `<div class="quiz-header"><div class="quiz-counter" id="quizCounter"></div><div class="quiz-score-live" id="quizScoreLive"></div></div><div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizFill" style="width:0%"></div></div><p style="text-align:center;font-size:0.78rem;opacity:0.55;margin-bottom:16px;">🔀 Perguntas embaralhadas!</p><div class="quiz-question" id="quizQ"></div><div class="quiz-options" id="quizOpts"></div><div class="quiz-result" id="quizResult"></div><div class="quiz-nav" id="quizNav"></div>`; renderQuiz(); }
 
 /* SCROLL ANIMATIONS + COUNTERS */
 const observer = new IntersectionObserver(entries => {
@@ -1710,9 +1318,10 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 setTimeout(() => { const stats = document.querySelector('.stats-bar'); if (stats && stats.getBoundingClientRect().top < window.innerHeight && !countersStarted) { countersStarted = true; animateCounters(); } }, 500);
 
+// Atualizar links de compartilhamento ao carregar a página
 updateShareLinks();
-initQuiz(); renderQuiz(); updateBadges();
-loadChecklist();
+
+initQuiz(); renderQuiz();
 </script>
 </body>
 </html>
