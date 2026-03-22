@@ -13,8 +13,10 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://unifagoc.edu.br">
   <title>Direitos Previdenciários – Salário-Maternidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
       --blue-main: #3b9ee8;
@@ -109,20 +111,20 @@
     @media (max-width: 768px) {
       .a11y-bar { right: 20px; left: auto; top: 50%; transform: translateY(-50%); flex-direction: column; gap: 8px; padding: 10px 8px; }
       .a11y-btn { min-width: 36px; min-height: 36px; padding: 4px 8px; font-size: 0.75rem; }
-      #backTop { bottom: 80px; right: 20px; }
+      #backTop { bottom: 24px; right: 72px; }
     }
     @media (max-width: 480px) {
-      .a11y-bar { gap: 6px; padding: 8px 6px; right: 15px; }
+      .a11y-bar { gap: 6px; padding: 8px 6px; right: 12px; }
       .a11y-btn { min-width: 32px; min-height: 32px; padding: 4px 6px; font-size: 0.7rem; }
-      #backTop { bottom: 70px; right: 15px; }
+      #backTop { bottom: 20px; right: 64px; }
     }
 
     /* ===== ALERTA ===== */
-    .alert-banner { position: relative; z-index: 15; background: var(--yellow); color: var(--text-dark); text-align: center; padding: 10px 50px; font-weight: 800; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .alert-banner { position: relative; z-index: 110; background: var(--yellow); color: var(--text-dark); text-align: center; padding: 10px 50px; font-weight: 800; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .alert-close { position: absolute; right: 14px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-dark); font-weight: 900; }
 
     /* ===== HEADER ===== */
-    header { position: sticky; top: 0; z-index: 100; padding: 0 5vw; background: var(--blue-dark); box-shadow: 0 4px 24px rgba(0,0,0,0.22); transition: background var(--transition); }
+    header { position: sticky; top: 0; z-index: 100; padding: 0 5vw; background: var(--blue-dark); box-shadow: 0 4px 24px rgba(0,0,0,0.22); transition: background-color 0.3s ease; }
     header.scrolled { background: var(--blue-deeper); }
     .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 16px 0; flex-wrap: wrap; gap: 10px; }
     .logo-area { display: flex; flex-direction: column; cursor: pointer; }
@@ -167,7 +169,7 @@
     .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-    .mobile-menu { display: none; background: var(--blue-deeper); padding: 16px 5vw 20px; flex-direction: column; gap: 8px; position: absolute; top: 100%; left: 0; right: 0; z-index: 99; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    .mobile-menu { display: none; background: var(--blue-deeper); padding: 16px 5vw 20px; flex-direction: column; gap: 8px; position: fixed; top: 0; left: 0; right: 0; z-index: 98; box-shadow: 0 10px 20px rgba(0,0,0,0.2); padding-top: 80px; }
     .mobile-menu.open { display: flex; }
     .mobile-menu a { color: #fff; text-decoration: none; font-weight: 700; font-size: 1rem; padding: 12px 16px; border-radius: 12px; background: rgba(255,255,255,0.1); transition: var(--transition); }
     .mobile-menu a:hover { background: var(--yellow); color: var(--text-dark); }
@@ -596,6 +598,18 @@
     }
     .checklist-box h3 { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
     .checklist-box > p { font-size: 0.9rem; opacity: 0.82; margin-bottom: 24px; line-height: 1.6; }
+
+    /* Botões de perfil do checklist */
+    .checklist-perfil-btn {
+      background: rgba(255,255,255,0.14);
+      border: 2px solid rgba(255,255,255,0.22);
+      color: white; border-radius: 50px;
+      padding: 9px 18px; font-size: 0.85rem; font-weight: 800;
+      cursor: pointer; transition: all 0.2s;
+      font-family: 'Nunito', sans-serif;
+    }
+    .checklist-perfil-btn:hover { background: rgba(255,255,255,0.25); }
+    .checklist-perfil-btn.active { background: var(--yellow); color: var(--text-dark); border-color: var(--yellow); }
     .checklist-items { display: flex; flex-direction: column; gap: 10px; }
     .check-item {
       display: flex; align-items: center; gap: 14px;
@@ -719,9 +733,6 @@
       overflow: hidden !important;
     }
 
-    /* Impede que o corpo da página gere scroll horizontal por causa do VLibras */
-    body { overflow-x: hidden; }
-
     /* ===== RESPONSIVO ===== */
     @media(max-width:900px) { nav{display:none;} .hamburger{display:flex;} .stats-inner{grid-template-columns:repeat(2,1fr);} }
     @media(max-width:768px) {
@@ -794,7 +805,6 @@
     <button type="button" class="lgpd-dismiss" onclick="fecharLGPD(false)">Fechar</button>
   </div>
 </div>
-
 
 <div class="blob-bg">
   <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -1157,25 +1167,68 @@
   <div class="section-inner">
     <div class="section-header">
       <div class="section-header-left">
-        <span class="section-badge fade-in"><i class="fas fa-male"></i> Pais</span>
-        <h2 class="section-title fade-in">Homens também <span>podem receber!</span></h2>
-        <p class="section-desc fade-in">O salário-maternidade não é exclusivo das mães. Veja as situações em que o pai tem direito:</p>
+        <span class="section-badge fade-in"><i class="fas fa-heart"></i> Inclusivo</span>
+        <h2 class="section-title fade-in">O benefício é para <span>todas as famílias</span></h2>
+        <p class="section-desc fade-in">O salário-maternidade vai além da maternidade biológica. A lei protege diferentes configurações familiares — conheça seus direitos:</p>
       </div>
       <button class="tts-btn fade-in" onclick="lerSecao('tts-homens', this)">
         <span class="tts-icon">🔊</span> Ouvir esta seção
       </button>
     </div>
     <div id="tts-homens" style="display:none">
-      Homens também podem receber o salário-maternidade em algumas situações.
-      Primeira situação: Adoção por homem solteiro. Se um homem solteiro adotar uma criança, ele tem direito aos 120 dias completos, com as mesmas regras das mulheres. Em casais adotantes, apenas um dos parceiros pode solicitar.
-      Segunda situação: Falecimento da mãe. Se a mãe falecer durante o parto ou enquanto recebia o benefício, o pai assume o direito, desde que contribua ao INSS ou esteja no período de graça.
-      Terceira situação: Licença-paternidade estendida. O pai tem direito a 5 dias de licença. Em empresas participantes do Programa Empresa Cidadã, esse prazo sobe para 20 dias.
+      O benefício é para todas as famílias.
+      Pais que adotam sozinhos: Se um homem solteiro adotar uma criança, tem direito aos 120 dias completos, com as mesmas regras. Em casais adotantes, apenas um dos parceiros pode solicitar.
+      Casais homoafetivos: Em casais do mesmo sexo, um dos cônjuges recebe o salário-maternidade completo de 120 dias. O outro pode ter direito à licença-paternidade de 5 a 20 dias, dependendo da empresa. O critério é a contribuição ao INSS, não o gênero ou orientação sexual.
+      Pessoas trans e não-binárias: O direito ao salário-maternidade é garantido a qualquer pessoa que passe pelo processo de gestação ou adoção, independentemente do gênero registrado. Pessoas trans gestantes têm os mesmos direitos que qualquer outra gestante. O INSS avalia a contribuição previdenciária, não a identidade de gênero.
+      Falecimento da pessoa gestante: Se a pessoa que gerou o bebê falecer durante o parto ou enquanto recebia o benefício, o cônjuge ou companheiro assume o direito, desde que contribua ao INSS ou esteja no período de graça.
+      Licença-paternidade estendida: O pai ou segundo responsável tem direito a 5 dias de licença. Em empresas no Programa Empresa Cidadã, esse prazo sobe para 20 dias.
+      Base legal: Lei 8.213 de 1991, artigos 71 a 73, e interpretações do Superior Tribunal de Justiça sobre famílias homoafetivas e identidade de gênero.
     </div>
     <div class="men-grid">
-      <div class="men-card fade-in"><span class="men-icon"><i class="fas fa-female"></i><i class="fas fa-child"></i></span><h3>Adoção por Homem Solteiro</h3><p>Se um homem solteiro adotar uma criança, ele tem direito aos <strong>120 dias completos</strong>, com as mesmas regras das mulheres.</p><div class="acc-highlight" style="margin-top:14px;">💑 Em casais adotantes, apenas <strong>um dos parceiros</strong> pode solicitar.</div></div>
-      <div class="men-card fade-in delay-1"><span class="men-icon"><i class="fas fa-heart-broken"></i></span><h3>Falecimento da Mãe</h3><p>Se a mãe falecer durante o parto ou enquanto recebia o benefício, o pai assume o direito, <strong>desde que contribua ao INSS</strong> ou esteja no período de graça.</p></div>
-      <div class="men-card fade-in delay-2"><span class="men-icon"><i class="fas fa-briefcase"></i></span><h3>Licença-Paternidade Estendida</h3><p>O pai tem direito a <strong>5 dias</strong> de licença. Em empresas no <strong>Programa Empresa Cidadã</strong>, esse prazo sobe para <strong>20 dias</strong>!</p></div>
+      <div class="men-card fade-in">
+        <span class="men-icon">👨‍👧</span>
+        <h3>Pai ou Responsável Adotante Solo</h3>
+        <p>Qualquer pessoa solteira que adote uma criança tem direito aos <strong>120 dias completos</strong> de salário-maternidade, com as mesmas regras de quem dá à luz.</p>
+        <div class="acc-highlight" style="margin-top:14px;">💑 Em casais adotantes, apenas <strong>um dos parceiros</strong> pode solicitar — independentemente do gênero do casal.</div>
+        <span class="tag" style="margin-top:8px;">Art. 71-A, Lei 8.213/91</span>
+      </div>
+      <div class="men-card fade-in delay-1">
+        <span class="men-icon">🏳️‍🌈</span>
+        <h3>Casais Homoafetivos</h3>
+        <p>Em casais do mesmo sexo, <strong>um dos cônjuges</strong> recebe o salário-maternidade de 120 dias. O outro pode ter direito à licença-paternidade (5 a 20 dias, conforme a empresa).</p>
+        <div class="acc-highlight" style="margin-top:14px;">⚖️ O critério é a <strong>contribuição ao INSS</strong>, não o gênero ou orientação sexual. Decisão do STJ garante esse direito.</div>
+        <span class="tag" style="margin-top:8px;">STJ — REsp 1.281.093/SP</span>
+      </div>
+      <div class="men-card fade-in delay-2">
+        <span class="men-icon">⚧️</span>
+        <h3>Pessoas Trans e Não-Binárias</h3>
+        <p>Pessoas trans gestantes têm <strong>exatamente os mesmos direitos</strong> que qualquer outra gestante. Pessoas trans que adotam também estão plenamente amparadas.</p>
+        <div class="acc-highlight" style="margin-top:14px;">🛡️ O INSS avalia a <strong>contribuição previdenciária</strong>, não a identidade de gênero. Em caso de dificuldades, procure a Defensoria Pública.</div>
+        <span class="tag" style="margin-top:8px;">CF/88, Art. 5º — Isonomia</span>
+      </div>
+      <div class="men-card fade-in">
+        <span class="men-icon">💔</span>
+        <h3>Falecimento da Pessoa Gestante</h3>
+        <p>Se a pessoa que gerou o bebê falecer durante o parto ou enquanto recebia o benefício, o <strong>cônjuge ou companheiro(a)</strong> assume o direito integral, desde que contribua ao INSS.</p>
+        <div class="acc-highlight" style="margin-top:14px;">📋 O benefício é transferido pelo tempo que restar, sem desconto dos dias anteriores ao óbito.</div>
+        <span class="tag" style="margin-top:8px;">Art. 71-B, Lei 8.213/91</span>
+      </div>
+      <div class="men-card fade-in delay-1">
+        <span class="men-icon">👔</span>
+        <h3>Licença-Paternidade Padrão</h3>
+        <p>O pai ou segundo responsável tem direito a <strong>5 dias</strong> de licença remunerada após o nascimento ou adoção.</p>
+        <div class="acc-highlight" style="margin-top:14px;">🏆 Empresas no <strong>Programa Empresa Cidadã</strong> ampliam para <strong>20 dias</strong>. Pergunte ao seu RH!</div>
+        <span class="tag" style="margin-top:8px;">CF/88, Art. 7º, XIX</span>
+      </div>
+      <div class="men-card fade-in delay-2">
+        <span class="men-icon">⚠️</span>
+        <h3>Em caso de negativa ou dificuldade</h3>
+        <p>Se o INSS ou a empresa negar o benefício com base em gênero, orientação sexual ou identidade, isso é <strong>inconstitucional</strong>.</p>
+        <div class="acc-highlight" style="margin-top:14px;">📞 Procure a <strong>Defensoria Pública</strong> (gratuita) ou o <strong>Ministério do Trabalho</strong>. Denúncias podem ser feitas pelo 135 ou no portal gov.br.</div>
+        <span class="tag" style="margin-top:8px;">CF/88, Art. 3º, IV</span>
+      </div>
     </div>
+    <p style="margin-top:24px;font-size:0.82rem;opacity:0.65;text-align:center;">⚖️ Informações baseadas na legislação vigente e jurisprudência do STJ/STF. Em caso de dúvida, consulte um advogado ou a Defensoria Pública.</p>
   </div>
 </section>
 
@@ -1222,27 +1275,34 @@
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-check-double"></i> Preparação</span>
     <h2 class="section-title fade-in">Checklist antes de <span>solicitar</span></h2>
-    <p class="section-desc fade-in">Marque cada item conforme for se preparando. Isso garante que você não esqueça nada na hora de pedir o benefício.</p>
+    <p class="section-desc fade-in">Selecione seu perfil para ver apenas os itens que são relevantes para você — e chegar a 100% de verdade!</p>
     <div class="checklist-box fade-in">
-      <h3>📋 Documentos e etapas essenciais</h3>
-      <p>Clique em cada item para marcar como concluído. Seu progresso é salvo automaticamente.</p>
-      <div class="checklist-items" id="checklistItems">
-        <div class="check-item" data-id="0" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">🪪 RG e CPF em mãos (originais ou foto nítida)</span></div>
-        <div class="check-item" data-id="1" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">📄 Certidão de Nascimento do bebê (ou Termo de Adoção / Guarda)</span></div>
-        <div class="check-item" data-id="2" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">👩‍💼 Carteira de Trabalho com dados do emprego atual (para CLT)</span></div>
-        <div class="check-item" data-id="3" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">🧾 Comprovantes do pagamento do INSS dos últimos 10 meses (MEI/Autônoma)</span></div>
-        <div class="check-item" data-id="4" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">🌾 Declaração de atividade rural ou nota de produtor (Trabalhadora Rural)</span></div>
-        <div class="check-item" data-id="5" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">📱 App Meu INSS instalado e conta gov.br criada</span></div>
-        <div class="check-item" data-id="6" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">📋 Calculadora preenchida — sei se tenho direito e meu prazo</span></div>
-        <div class="check-item" data-id="7" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">🏢 Avisei o RH da empresa sobre a licença (se CLT)</span></div>
-        <div class="check-item" data-id="8" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">📞 Confirmei minha situação pelo 135 ou app Meu INSS</span></div>
-        <div class="check-item" data-id="9" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">✅ Protocolo de solicitação gerado e salvo</span></div>
+
+      <!-- Seletor de perfil -->
+      <div style="margin-bottom:24px;">
+        <p style="font-weight:800;font-size:0.95rem;margin-bottom:12px;">📌 Qual é a sua situação?</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <button type="button" class="checklist-perfil-btn active" data-perfil="clt" onclick="selecionarPerfilChecklist('clt', this)">👩‍💼 CLT / Empregada</button>
+          <button type="button" class="checklist-perfil-btn" data-perfil="mei" onclick="selecionarPerfilChecklist('mei', this)">💼 MEI / Autônoma</button>
+          <button type="button" class="checklist-perfil-btn" data-perfil="rural" onclick="selecionarPerfilChecklist('rural', this)">🌾 Rural</button>
+          <button type="button" class="checklist-perfil-btn" data-perfil="desempregada" onclick="selecionarPerfilChecklist('desempregada', this)">🚶‍♀️ Desempregada</button>
+          <button type="button" class="checklist-perfil-btn" data-perfil="adocao" onclick="selecionarPerfilChecklist('adocao', this)">👨‍👧 Adoção</button>
+        </div>
       </div>
-      <div class="checklist-progress">
+
+      <p id="checklist-perfil-desc" style="font-size:0.88rem;background:rgba(255,255,255,0.1);border-left:4px solid var(--yellow);border-radius:8px;padding:10px 14px;margin-bottom:20px;line-height:1.6;">
+        ✅ Mostrando itens para <strong>empregada CLT</strong> — sem carência, benefício pago pela empresa.
+      </p>
+
+      <div class="checklist-items" id="checklistItems"></div>
+
+      <div class="checklist-progress" style="margin-top:20px;">
         <div class="checklist-bar-wrap"><div class="checklist-bar-fill" id="checklistBar"></div></div>
         <span class="checklist-pct" id="checklistPct">0%</span>
       </div>
-      <button type="button" class="checklist-reset" onclick="resetChecklist()">↺ Limpar checklist</button>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+        <button type="button" class="checklist-reset" onclick="resetChecklist()">↺ Limpar marcações</button>
+      </div>
     </div>
   </div>
 </section>
@@ -1462,7 +1522,6 @@
       <button type="button" class="share-btn cp" onclick="copyLink()"><i class="fas fa-link"></i> Copiar link</button>
       <button type="button" class="pdf-btn" onclick="savePDF()"><i class="fas fa-file-pdf"></i> Salvar como PDF</button>
     </div>
-    <p id="copyConfirm" style="font-size:0.88rem;color:var(--green);font-weight:800;margin-top:14px;display:none;">✅ Link copiado com sucesso!</p>
   </div>
 </section>
 
@@ -2273,8 +2332,6 @@ function copyLink() {
     document.execCommand('copy'); document.body.removeChild(el);
   }
   mostrarToast('🔗 Link copiado com sucesso!');
-  const confirm = document.getElementById('copyConfirm');
-  if (confirm) { confirm.style.display = 'block'; setTimeout(() => confirm.style.display = 'none', 3000); }
 }
 
 /* ========== QUIZ ========== */
@@ -2391,24 +2448,112 @@ function mostrarToast(msg, dur = 3000) {
   toastTimer = setTimeout(() => t.classList.remove('show'), dur);
 }
 
-/* ========== CHECKLIST ========== */
-const CHECKLIST_KEY = 'salmat_checklist';
-function carregarChecklist() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(CHECKLIST_KEY) || '[]');
-    saved.forEach(id => {
-      const el = document.querySelector(`.check-item[data-id="${id}"]`);
-      if (el) el.classList.add('checked');
-    });
-  } catch(e) {}
+/* ========== CHECKLIST POR PERFIL ========== */
+const CHECKLIST_KEY = 'salmat_checklist_v2';
+
+// Itens comuns a todos os perfis
+const itensComuns = [
+  { id: 'c0', label: '🪪 RG e CPF em mãos (originais ou foto nítida)' },
+  { id: 'c1', label: '📄 Certidão de Nascimento do bebê (ou Termo de Adoção / Guarda Judicial)' },
+  { id: 'c2', label: '📱 App Meu INSS instalado e conta gov.br criada' },
+  { id: 'c3', label: '📋 Calculadora preenchida — sei se tenho direito e meu prazo' },
+  { id: 'c4', label: '📞 Confirmei minha situação pelo 135 ou app Meu INSS' },
+  { id: 'c5', label: '✅ Protocolo de solicitação gerado e salvo no celular ou impresso' },
+];
+
+// Itens específicos por perfil
+const itensPorPerfil = {
+  clt: {
+    desc: '✅ Mostrando itens para <strong>empregada CLT</strong> — sem carência, benefício pago pela empresa.',
+    itens: [
+      { id: 'clt0', label: '👩‍💼 Carteira de Trabalho (CTPS) com dados do emprego atual' },
+      { id: 'clt1', label: '📃 Último contracheque ou holerite para comprovar salário' },
+      { id: 'clt2', label: '🏢 Avisei o RH da empresa sobre a licença-maternidade' },
+      { id: 'clt3', label: '🔰 Consultei o RH se a empresa participa do Programa Empresa Cidadã (180 dias)' },
+    ]
+  },
+  mei: {
+    desc: '✅ Mostrando itens para <strong>MEI / Autônoma</strong> — carência de 10 meses, benefício pago pelo INSS.',
+    itens: [
+      { id: 'mei0', label: '🧾 Comprovantes de pagamento do DAS/INSS dos últimos 10 meses' },
+      { id: 'mei1', label: '📊 Verifiquei no app Meu INSS se todos os meses estão quitados (sem débito)' },
+      { id: 'mei2', label: '💳 CNPJ MEI ativo e regularizado (sem pendências)' },
+      { id: 'mei3', label: '📈 Calculei o valor médio das contribuições para saber quanto vou receber' },
+    ]
+  },
+  rural: {
+    desc: '✅ Mostrando itens para <strong>trabalhadora rural</strong> — sem carência mensal, benefício de 1 salário mínimo.',
+    itens: [
+      { id: 'rur0', label: '🌾 Declaração de atividade rural emitida pelo Sindicato dos Trabalhadores Rurais' },
+      { id: 'rur1', label: '📋 Nota fiscal de produtor rural, contrato de arrendamento ou documento equivalente' },
+      { id: 'rur2', label: '🏡 Comprovante de residência na zona rural (conta de luz, água ou similar)' },
+      { id: 'rur3', label: '✅ Confirmei que minha atividade se enquadra como segurada especial (subsistência/familiar)' },
+    ]
+  },
+  desempregada: {
+    desc: '✅ Mostrando itens para <strong>desempregada / período de graça</strong> — verificar prazo antes de solicitar.',
+    itens: [
+      { id: 'des0', label: '📅 Verifiquei meu prazo de período de graça pela calculadora desta página' },
+      { id: 'des1', label: '📃 Tenho a rescisão de contrato ou a baixa na Carteira de Trabalho (CTPS)' },
+      { id: 'des2', label: '💰 Documentos do seguro-desemprego (se houver) — ampliam o período de graça' },
+      { id: 'des3', label: '📊 Extrato CNIS do INSS em mãos para comprovar histórico de contribuições' },
+    ]
+  },
+  adocao: {
+    desc: '✅ Mostrando itens para <strong>adoção</strong> — válido para qualquer configuração familiar.',
+    itens: [
+      { id: 'ado0', label: '⚖️ Termo de Guarda Judicial ou Termo de Adoção emitido pela Vara da Infância' },
+      { id: 'ado1', label: '📄 Certidão de nascimento do(a) adotado(a) com novo registro (se já houver)' },
+      { id: 'ado2', label: '🏛️ Decisão judicial que concedeu a guarda para fins de adoção' },
+      { id: 'ado3', label: '👨‍👧 Em casal: definimos qual dos responsáveis vai solicitar o benefício de 120 dias' },
+      { id: 'ado4', label: '🏳️‍🌈 Em caso de casal homoafetivo ou trans: verifiquei meus direitos na seção acima e com a Defensoria Pública se necessário' },
+    ]
+  }
+};
+
+let perfilChecklist = 'clt';
+
+function selecionarPerfilChecklist(perfil, btn) {
+  perfilChecklist = perfil;
+  // Atualiza botões ativos
+  document.querySelectorAll('.checklist-perfil-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  // Salva perfil escolhido
+  try { localStorage.setItem('salmat_perfil_checklist', perfil); } catch(e) {}
+  renderChecklist();
+}
+
+function renderChecklist() {
+  const container = document.getElementById('checklistItems');
+  const desc = document.getElementById('checklist-perfil-desc');
+  if (!container) return;
+
+  const cfg = itensPorPerfil[perfilChecklist] || itensPorPerfil.clt;
+  if (desc) desc.innerHTML = cfg.desc;
+
+  // Carrega marcações salvas
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem(CHECKLIST_KEY + '_' + perfilChecklist) || '[]'); } catch(e) {}
+
+  const todosItens = [...cfg.itens, ...itensComuns];
+  container.innerHTML = todosItens.map(item => {
+    const checked = saved.includes(item.id);
+    return `<div class="check-item${checked ? ' checked' : ''}" data-id="${item.id}" onclick="toggleCheck(this)">
+      <div class="check-box">${checked ? '✓' : ''}</div>
+      <span class="check-label">${item.label}</span>
+    </div>`;
+  }).join('');
+
   atualizarProgressoChecklist();
 }
+
 function salvarChecklist() {
   try {
     const checked = [...document.querySelectorAll('.check-item.checked')].map(el => el.dataset.id);
-    localStorage.setItem(CHECKLIST_KEY, JSON.stringify(checked));
+    localStorage.setItem(CHECKLIST_KEY + '_' + perfilChecklist, JSON.stringify(checked));
   } catch(e) {}
 }
+
 function toggleCheck(el) {
   el.classList.toggle('checked');
   const cb = el.querySelector('.check-box');
@@ -2416,6 +2561,7 @@ function toggleCheck(el) {
   salvarChecklist();
   atualizarProgressoChecklist();
 }
+
 function atualizarProgressoChecklist() {
   const total = document.querySelectorAll('.check-item').length;
   const done = document.querySelectorAll('.check-item.checked').length;
@@ -2424,19 +2570,33 @@ function atualizarProgressoChecklist() {
   const pctEl = document.getElementById('checklistPct');
   if (bar) bar.style.width = pct + '%';
   if (pctEl) pctEl.textContent = pct + '%';
-  if (pct === 100) mostrarToast('🎉 Checklist completo! Você está pronta para solicitar!', 4000);
+  if (pct === 100) mostrarToast('🎉 Checklist 100%! Você está pronta para solicitar!', 4000);
 }
+
 function resetChecklist() {
   document.querySelectorAll('.check-item').forEach(el => {
     el.classList.remove('checked');
     const cb = el.querySelector('.check-box');
     if (cb) cb.textContent = '';
   });
-  try { localStorage.removeItem(CHECKLIST_KEY); } catch(e) {}
+  try { localStorage.removeItem(CHECKLIST_KEY + '_' + perfilChecklist); } catch(e) {}
   atualizarProgressoChecklist();
-  mostrarToast('↺ Checklist reiniciado.');
+  mostrarToast('↺ Marcações limpas.');
 }
-carregarChecklist();
+
+// Inicializa: restaura perfil salvo e renderiza
+(function inicializarChecklist() {
+  try {
+    const salvo = localStorage.getItem('salmat_perfil_checklist');
+    if (salvo && itensPorPerfil[salvo]) {
+      perfilChecklist = salvo;
+      const btn = document.querySelector(`.checklist-perfil-btn[data-perfil="${salvo}"]`);
+      document.querySelectorAll('.checklist-perfil-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+  } catch(e) {}
+  renderChecklist();
+})();
 
 /* ========== VLIBRAS ========== */
 let vlibrasAtivo = false;
