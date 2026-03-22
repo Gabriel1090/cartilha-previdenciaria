@@ -193,19 +193,40 @@
     .hero-text p { font-size: clamp(1rem,2vw,1.15rem); font-weight: 600; opacity: 0.92; margin-bottom: 32px; line-height: 1.65; }
     .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    /* ===== 8 CARDS NO DESTAQUE ===== */
+    /* ===== 4 CARDS NO DESTAQUE ===== */
     .hero-cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
       animation: slideUp 0.9s 0.15s ease both;
     }
-    .hero-card { background: rgba(255,255,255,0.16); border-radius: 18px; padding: 16px 14px; backdrop-filter: blur(8px); border: 1.5px solid rgba(255,255,255,0.26); transition: var(--transition); }
-    .hero-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--shadow-md); }
-    .hero-card .icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
-    .hero-card h3 { font-size: 0.85rem; font-weight: 800; margin-bottom: 4px; }
-    .hero-card p { font-size: 0.75rem; opacity: 0.88; line-height: 1.45; }
+    .hero-card {
+      background: rgba(255,255,255,0.16);
+      border-radius: 20px;
+      padding: 22px 18px;
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,0.26);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 0 0 20px 20px;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .hero-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: var(--shadow-md); }
+    .hero-card:hover::after { transform: scaleX(1); }
+    .hero-card .icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
+    .hero-card h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 6px; }
+    .hero-card p { font-size: 0.82rem; opacity: 0.88; line-height: 1.5; }
     .hero-card.accent { background: var(--yellow); color: var(--text-dark); border-color: var(--yellow); }
+    .hero-card.accent::after { background: rgba(0,0,0,0.15); }
     .hero-card.accent p { opacity: 0.72; }
 
     /* ===== STATS ===== */
@@ -557,13 +578,13 @@
     @media(max-width:768px) {
       :root{--section-pad:56px;}
       .hero-inner{grid-template-columns:1fr;}
-      .hero-cards{grid-template-columns:1fr 1fr;}
+      .hero-cards{grid-template-columns:1fr 1fr;gap:12px;}
       .footer-inner{grid-template-columns:1fr;}
       .quiz-box,.calc-box{padding:26px 18px;}
       .grace-block{min-width:100%;}
       .hero { background-image: none; background-color: var(--blue-main); }
     }
-    @media(max-width:480px) { .hero-cards{grid-template-columns:1fr 1fr;} .stats-inner{grid-template-columns:1fr 1fr;} }
+    @media(max-width:480px) { .hero-cards{grid-template-columns:1fr 1fr;gap:10px;} .stats-inner{grid-template-columns:1fr 1fr;} }
 
     /* ===== IMPRESSÃO / PDF ===== */
     @media print {
@@ -673,16 +694,12 @@
         <a href="#calculadora" class="btn-secondary"><i class="fas fa-calculator"></i> Calcular meu prazo</a>
       </div>
     </div>
-    <!-- 8 CARDS -->
+    <!-- 4 CARDS -->
     <div class="hero-cards">
-      <div class="hero-card accent"><span class="icon">🍼</span><h3>120 dias garantidos</h3><p>Para CLT, sem carência mínima.</p></div>
-      <div class="hero-card"><span class="icon">👨‍👩‍👧</span><h3>Pais também têm direito</h3><p>Em adoção e falecimento da mãe.</p></div>
-      <div class="hero-card"><span class="icon">⏳</span><h3>Período de Graça</h3><p>Proteção por até 36 meses.</p></div>
-      <div class="hero-card"><span class="icon">📱</span><h3>Pelo app Meu INSS</h3><p>Peça online sem sair de casa.</p></div>
-      <div class="hero-card"><span class="icon">🌾</span><h3>Trabalhadora Rural</h3><p>Sem carência: 1 salário mínimo.</p></div>
-      <div class="hero-card accent"><span class="icon">🏆</span><h3>Empresa Cidadã</h3><p>Licença ampliada para 180 dias.</p></div>
-      <div class="hero-card"><span class="icon">🛡️</span><h3>Estabilidade</h3><p>Proteção da gestante no emprego.</p></div>
-      <div class="hero-card"><span class="icon">📞</span><h3>Ligue 135</h3><p>Atendimento INSS gratuito.</p></div>
+      <div class="hero-card accent"><span class="icon">🍼</span><h3>120 dias garantidos</h3><p>Para CLT, sem carência mínima de INSS.</p></div>
+      <div class="hero-card"><span class="icon">⏳</span><h3>Período de Graça</h3><p>Proteção por até 36 meses após demissão.</p></div>
+      <div class="hero-card"><span class="icon">🛡️</span><h3>Estabilidade garantida</h3><p>Ninguém pode te demitir durante a gravidez.</p></div>
+      <div class="hero-card accent"><span class="icon">📱</span><h3>100% pelo celular</h3><p>Solicite pelo app Meu INSS sem sair de casa.</p></div>
     </div>
   </div>
 </section>
