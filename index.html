@@ -1768,7 +1768,30 @@
       <a href="#homens">Pais também</a>
       <a href="#mitos">Mitos e Verdades</a>
       <a href="#quiz">Quiz interativo</a>
-      <a href="https://unifagoc.edu.br" target="_blank"><i class="fas fa-university"></i> UNIFAGOC</a>
+      <a href="https://unifagoc.edu.br" target="_blank" class="logo unifagoc.png">
+  <i class="fas fa-university"></i>
+  <span class="sr-only">UNIFAGOC</span>
+</a>
+      .logo-link {
+  display: inline-block;
+  width: 150px;        /* ajuste conforme o tamanho da logo */
+  height: 50px;
+  background-image: url('caminho/para/sua-logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-indent: -9999px; /* esconde o texto */
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
     </div>
   </div>
   <div class="footer-bottom">
