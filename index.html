@@ -2339,6 +2339,12 @@ function calcularResultado() {
   calcLimparErro('etapa-3');
   const p = calcEstado.perfil;
 
+  /* ─── Helper: nota do 15º dia ─── */
+  const notaDia15 = `<br><br>📅 <strong>Atenção ao prazo exato:</strong> A proteção não termina no último dia do mês — ela vai até o <strong>dia 15 do segundo mês</strong> após o fim do período. Não perca o benefício por poucos dias!`;
+
+  /* ─── Helper: link CNIS para quem não sabe os 10 anos ─── */
+  const linkCNIS = `<br><br>🔍 <strong>Não tem certeza se tem 10 anos?</strong> Baixe seu <strong>Extrato CNIS</strong> gratuitamente no <a href="https://meu.inss.gov.br/#/login" target="_blank" style="color:var(--yellow);font-weight:900;">app Meu INSS</a> → Menu → Extrato CNIS. Se confirmar os 10 anos, sua proteção ganha mais <strong>12 meses</strong> — podendo chegar a 36 meses no total!`;
+
   // Coletar dados da etapa 3
   if (p === 'clt' && calcEstado.clt_empregada === 'nao') {
     const dez = document.querySelector('input[name="e3_clt_dez"]:checked');
@@ -2402,7 +2408,7 @@ function calcLogica() {
         emoji: '⏳',
         titulo: 'Você pode ter direito — está no Período de Graça!',
         desc: `Mesmo demitida, você ainda está protegida. Seu período de graça é de até <strong>${prazoMax} meses</strong> após a demissão. Se o bebê nascer dentro desse prazo, o <strong>INSS paga o benefício</strong>.`,
-        detalhe: `📞 Ligue para o 135 ou acesse o app Meu INSS para solicitar. Documentos necessários: carteira de trabalho com a baixa, rescisão de contrato e certidão de nascimento.${naoSabeDez ? ' 💡 Verifique seus anos de contribuição pelo app Meu INSS (extrato CNIS) — mais de 10 anos podem ampliar sua proteção.' : ''}${!comprova ? ' ⚠️ Tente reunir documentos da demissão — podem ampliar sua proteção para até 36 meses.' : ''}`
+        detalhe: `👩‍⚖️ Ligue gratuitamente para o <strong>135</strong> ou vá a uma agência do INSS com sua carteira de trabalho e rescisão.${naoSabeDez ? ' ' + linkCNIS : ''} Um advogado previdenciário pode analisar casos específicos.`
       };
     } else {
       return {
@@ -2424,7 +2430,7 @@ function calcLogica() {
         emoji: '⚠️',
         titulo: 'Ainda não — faltam meses de contribuição.',
         desc: 'MEI e autônomas precisam ter pago o carnê do INSS por <strong>pelo menos 10 meses</strong> antes do parto para ter direito.',
-        detalhe: '💡 Continue pagando o DAS mensalmente e sem pular meses — só meses efetivamente pagos contam. Se ainda está planejando a gravidez, organize os pagamentos o quanto antes. Ligue para o 135 para verificar quantos meses já foram reconhecidos.'
+        detalhe: '💡 Continue pagando o DAS mensalmente sem pular meses — só meses efetivamente pagos contam. Se ainda está planejando a gravidez, organize os pagamentos o quanto antes. Ligue para o 135 para verificar quantos meses já foram reconhecidos.'
       };
     }
     // Contribuindo e com carência completa
@@ -2455,8 +2461,10 @@ function calcLogica() {
       };
     }
 
-    // Tem carência mas parou — período de graça
-    // Autônoma também pode chegar a 36 meses se tiver 10+ anos e comprovar desemprego
+    // Tem carência mas parou:
+    // - Sem 10 anos → 12 meses de graça
+    // - Com 10 anos → 24 meses (autônoma que para não "comprova desemprego" no sentido CLT;
+    //   o prazo de 36 meses exige comprovação formal de desemprego, que autônoma normalmente não tem)
     let prazoMax = 12;
     if (dezAnos) prazoMax = 24;
     // Nota: autônoma/MEI que para de contribuir pode comprovar ausência de renda, equiparável ao desemprego
@@ -2472,7 +2480,7 @@ function calcLogica() {
         emoji: '⏳',
         titulo: 'Você pode ter direito — está no Período de Graça!',
         desc: `Mesmo sem contribuir atualmente, você ainda pode estar protegida por até <strong>${prazoMax} meses</strong> após a última contribuição. Se o parto ocorrer dentro desse prazo, você tem direito.`,
-        detalhe: `📱 Solicite pelo app Meu INSS ou ligue para o 135. Documentos necessários: RG, CPF, certidão de nascimento e comprovantes dos pagamentos anteriores do DAS.${naoSabeDez ? ' 💡 Verifique seu histórico de contribuições no app Meu INSS (extrato CNIS) — pode ampliar sua proteção.' : ''}`
+        detalhe: `📱 Solicite pelo app Meu INSS ou ligue para o 135. Documentos necessários: RG, CPF, certidão de nascimento e comprovantes dos pagamentos anteriores do DAS.${naoSabeDez ? linkCNIS : ''}${notaDia15}`
       };
     } else {
       return {
@@ -2480,7 +2488,7 @@ function calcLogica() {
         emoji: '❌',
         titulo: 'O prazo de proteção pode ter expirado.',
         desc: 'Com base nas informações, seu período de graça pode ter se encerrado. <strong>Confirme com o INSS antes de desistir</strong> — o cálculo exato depende do seu histórico.',
-        detalhe: `📞 Ligue gratuitamente para o <strong>135</strong> ou vá a uma agência do INSS com seus comprovantes de pagamento do DAS. ${naoSabeDez ? 'Se tiver mais de 10 anos de contribuição no total, o prazo pode ser maior.' : ''}`
+        detalhe: `📞 Ligue gratuitamente para o <strong>135</strong> ou vá a uma agência do INSS com seus comprovantes de pagamento do DAS.${naoSabeDez ? ' ' + linkCNIS : ''}`
       };
     }
   }
@@ -2507,7 +2515,7 @@ function calcLogica() {
         emoji: '⏳',
         titulo: 'Você pode ter direito — está no Período de Graça!',
         desc: `Você ainda está dentro do prazo de proteção (Período de Graça) de <strong>${prazoMax} meses</strong>. Se o parto acontecer antes desse prazo vencer, o <strong>INSS paga o benefício</strong>.`,
-        detalhe: `📞 Acesse o app Meu INSS ou ligue para o 135 para solicitar. Documentos necessários: RG, CPF, certidão de nascimento, carteira de trabalho com a baixa e rescisão de contrato.${naoSabeDez ? ' 💡 Verifique quantos anos de contribuição você tem pelo app Meu INSS (extrato CNIS) — mais de 10 anos ampliam sua proteção.' : ''}${!comprova ? ' ⚠️ Reúna documentos de demissão — eles podem ampliar sua proteção para até 36 meses.' : ''}`
+        detalhe: `📞 Acesse o app Meu INSS ou ligue para o 135 para solicitar. Documentos necessários: RG, CPF, certidão de nascimento, carteira de trabalho com a baixa e rescisão de contrato.${!comprova ? ' ⚠️ Reúna documentos de demissão — eles podem ampliar sua proteção para até 36 meses.' : ''}${naoSabeDez ? linkCNIS : ''}${notaDia15}`
       };
     } else {
       return {
@@ -2515,7 +2523,7 @@ function calcLogica() {
         emoji: '❌',
         titulo: 'O prazo de proteção pode ter expirado.',
         desc: 'Com base nas suas respostas, o período de graça pode ter encerrado. Porém, <strong>confirme com o INSS antes de desistir</strong> — o cálculo exato depende do seu histórico completo.',
-        detalhe: `📞 Ligue gratuitamente para o <strong>135</strong> ou vá a uma agência do INSS com seus documentos. ${naoSabeDez ? 'Se tiver mais de 10 anos de contribuição, o prazo pode ser maior do que estimamos.' : ''} Um advogado previdenciário pode analisar seu caso com mais detalhes.`
+        detalhe: `📞 Ligue gratuitamente para o <strong>135</strong> ou vá a uma agência do INSS com seus documentos.${naoSabeDez ? ' ' + linkCNIS : ''} Um advogado previdenciário pode analisar seu caso com mais detalhes.`
       };
     }
   }
