@@ -178,7 +178,7 @@
 
     /* Calculadora */
     .calc-section { background: var(--blue-dark); }
-    .calc-box { background: rgba(255,255,255,0.13); border-radius: 26px; padding: 40px; max-width: 680px; margin: 0 auto; border: 2px solid rgba(255,255,255,0.2); }
+    .calc-box { background: rgba(255,255,255,0.13); border-radius: 26px; padding: 40px; max-width: 720px; margin: 0 auto; border: 2px solid rgba(255,255,255,0.2); }
     .calc-box h3 { font-family:'Montserrat',sans-serif; font-size:1.35rem; font-weight:900; margin-bottom:8px; }
     .calc-box > p { font-size:0.92rem; opacity:0.85; margin-bottom:24px; line-height:1.6; }
     .calc-group { margin-bottom: 20px; }
@@ -568,7 +568,7 @@
   </div>
 </section>
 
-<!-- Calculadora (expandida para incluir novos perfis) -->
+<!-- Calculadora (expandida e melhorada) -->
 <section class="calc-section" id="calculadora">
   <div class="section-inner">
     <span class="section-badge fade-in"><i class="fas fa-calculator"></i> Ferramenta</span>
@@ -578,17 +578,19 @@
       <h3>📋 Qual a sua situação atual?</h3>
       <div class="calc-group">
         <div class="calc-radio-group">
-          <label class="calc-radio"><input type="radio" name="perfil" value="clt" onclick="atualizarPerguntas()"> 👩‍💼 Empregada CLT (carteira assinada)</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="autonoma" onclick="atualizarPerguntas()"> 💼 Autônoma / MEI / Facultativa</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="desempregada" onclick="atualizarPerguntas()"> 🚶‍♀️ Desempregada (não contribui mais)</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="rural" onclick="atualizarPerguntas()"> 🌾 Trabalhadora rural (segurada especial)</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="avulsa" onclick="atualizarPerguntas()"> ⚓ Trabalhadora avulsa</label>
-          <label class="calc-radio"><input type="radio" name="perfil" value="intermitente" onclick="atualizarPerguntas()"> ⏲️ CLT intermitente</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="clt" onclick="atualizarPerguntas(); salvarRespostas()"> 👩‍💼 Empregada CLT (carteira assinada)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="autonoma" onclick="atualizarPerguntas(); salvarRespostas()"> 💼 Autônoma / MEI / Facultativa</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="desempregada" onclick="atualizarPerguntas(); salvarRespostas()"> 🚶‍♀️ Desempregada (não contribui mais)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="rural" onclick="atualizarPerguntas(); salvarRespostas()"> 🌾 Trabalhadora rural (segurada especial)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="avulsa" onclick="atualizarPerguntas(); salvarRespostas()"> ⚓ Trabalhadora avulsa</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="intermitente" onclick="atualizarPerguntas(); salvarRespostas()"> ⏲️ CLT intermitente</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="informal" onclick="atualizarPerguntas(); salvarRespostas()"> 🙋‍♀️ Trabalhadora informal (sem contribuição)</label>
+          <label class="calc-radio"><input type="radio" name="perfil" value="adocao" onclick="atualizarPerguntas(); salvarRespostas()"> 👨‍👧 Adoção (pai ou mãe)</label>
         </div>
       </div>
       <div id="perguntasDinamicas" style="display: none;"></div>
       <div style="text-align:center; margin-top: 20px;">
-        <button type="button" class="btn-primary" onclick="calcularDireitoCompleto()"><i class="fas fa-search"></i> Verificar meu direito</button>
+        <button type="button" class="btn-primary" id="btnCalcular" onclick="calcularDireitoCompleto()" disabled><i class="fas fa-search"></i> Verificar meu direito</button>
       </div>
       <div class="calc-result-box" id="calcResultFinal" style="display: none;">
         <div id="resultadoDireito"></div>
@@ -924,65 +926,204 @@ function animateCounters() {
   });
 }
 
-/* Calculadora completa (adaptada para novos perfis) */
+/* ========== CALCULADORA MELHORADA ========== */
 let perfilAtual = null;
 const perguntasHTML = document.getElementById('perguntasDinamicas');
+const btnCalcular = document.getElementById('btnCalcular');
+
+function salvarRespostas() {
+  const formData = {};
+  document.querySelectorAll('#perguntasDinamicas input, #perguntasDinamicas select').forEach(el => {
+    if (el.type === 'radio' && el.checked) formData[el.name] = el.value;
+    else if (el.type !== 'radio') formData[el.name] = el.value;
+  });
+  const perfil = document.querySelector('input[name="perfil"]:checked')?.value;
+  formData.perfil = perfil;
+  localStorage.setItem('calcRespostas', JSON.stringify(formData));
+}
+
+function carregarRespostas() {
+  const saved = localStorage.getItem('calcRespostas');
+  if (!saved) return;
+  const data = JSON.parse(saved);
+  if (data.perfil) {
+    const radio = document.querySelector(`input[name="perfil"][value="${data.perfil}"]`);
+    if (radio) radio.click();
+  }
+  // As perguntas dinâmicas serão carregadas pelo onclick do radio, e depois podemos preencher os campos
+  setTimeout(() => {
+    for (let name in data) {
+      if (name === 'perfil') continue;
+      const el = document.querySelector(`[name="${name}"]`);
+      if (el) {
+        if (el.type === 'radio') {
+          const radio = document.querySelector(`input[name="${name}"][value="${data[name]}"]`);
+          if (radio) radio.checked = true;
+        } else {
+          el.value = data[name];
+        }
+      }
+    }
+    validarFormulario();
+  }, 100);
+}
+
+function validarFormulario() {
+  const camposObrigatorios = document.querySelectorAll('#perguntasDinamicas input[required], #perguntasDinamicas select[required], #perguntasDinamicas .calc-group input:not([type="radio"])');
+  let todosPreenchidos = true;
+  camposObrigatorios.forEach(campo => {
+    if (campo.type === 'radio') {
+      const nome = campo.name;
+      const selecionado = document.querySelector(`input[name="${nome}"]:checked`);
+      if (!selecionado) todosPreenchidos = false;
+    } else {
+      if (!campo.value) todosPreenchidos = false;
+    }
+  });
+  btnCalcular.disabled = !todosPreenchidos;
+}
+
 function atualizarPerguntas() {
   const radios = document.querySelectorAll('input[name="perfil"]');
   let selecionado = null;
   for (let r of radios) if (r.checked) { selecionado = r.value; break; }
   perfilAtual = selecionado;
-  if (!selecionado) { if(perguntasHTML) perguntasHTML.style.display = 'none'; return; }
+  if (!selecionado) { if(perguntasHTML) perguntasHTML.style.display = 'none'; btnCalcular.disabled = true; return; }
   if(perguntasHTML) perguntasHTML.style.display = 'block';
   let html = '';
   if (selecionado === 'clt') {
     html = `
-      <div class="calc-group"><label>Você está empregada no momento?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="clt_empregada" value="sim"> Sim, estou trabalhando</label>
-        <label class="calc-radio"><input type="radio" name="clt_empregada" value="nao"> Não, estou desempregada</label></div></div>
-      <div class="calc-group"><label>Se está desempregada, há quanto tempo foi demitida?</label>
-        <select name="clt_tempo" class="calc-select"><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>`;
+      <div class="calc-group"><label>Você está empregada no momento? <span style="color:var(--yellow);">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="clt_empregada" value="sim" required> Sim, estou trabalhando</label>
+        <label class="calc-radio"><input type="radio" name="clt_empregada" value="nao" required> Não, estou desempregada</label></div></div>
+      <div class="calc-group" id="grupoCltTempo" style="display:none;"><label>Se está desempregada, há quanto tempo foi demitida? <span style="color:var(--yellow);">*</span></label>
+        <select name="clt_tempo" class="calc-select" required><option value="">Selecione</option><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>
+      <div class="calc-group" id="grupoClt10anos" style="display:none;"><label>Você tem mais de 10 anos de contribuição ao INSS (somando toda a vida)? <span style="color:var(--yellow);">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="clt_10anos" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="clt_10anos" value="nao" required> Não</label></div></div>
+      <div class="calc-group" id="grupoCltComprova" style="display:none;"><label>Você pode comprovar desemprego (CTPS com baixa, seguro-desemprego)? <span style="color:var(--yellow);">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="clt_comprova" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="clt_comprova" value="nao" required> Não</label></div></div>
+      <div class="calc-group"><label>Seu salário atual (R$): <span style="color:var(--yellow);">*</span></label>
+        <input type="number" name="clt_salario" class="calc-select" step="0.01" placeholder="Ex: 3500" required></div>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>
+      `;
   } else if (selecionado === 'autonoma') {
     html = `
-      <div class="calc-group"><label>Quantos meses de contribuição ao INSS você tem nos últimos 12 meses?</label>
-        <select name="autonoma_meses" class="calc-select"><option value="0">Menos de 10 meses</option><option value="10">10 meses ou mais</option></select></div>
-      <div class="calc-group"><label>Você continua contribuindo atualmente?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_atual" value="sim"> Sim, pago todo mês</label>
-        <label class="calc-radio"><input type="radio" name="autonoma_atual" value="nao"> Não, parei de pagar</label></div></div>
-      <div class="calc-group" id="grupoTempoParada" style="display:none;"><label>Há quanto tempo você parou de contribuir?</label>
-        <select name="autonoma_tempo" class="calc-select"><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>
-      <div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS (somando toda a vida)?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_10anos" value="sim"> Sim</label>
-        <label class="calc-radio"><input type="radio" name="autonoma_10anos" value="nao"> Não</label></div></div>`;
+      <div class="calc-group"><label>Quantos meses de contribuição ao INSS você tem nos últimos 12 meses? <span style="color:var(--yellow);">*</span></label>
+        <select name="autonoma_meses" class="calc-select" required><option value="">Selecione</option><option value="0">Menos de 10 meses</option><option value="10">10 meses ou mais</option></select></div>
+      <div class="calc-group"><label>Você continua contribuindo atualmente? <span style="color:var(--yellow);">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_atual" value="sim" required> Sim, pago todo mês</label>
+        <label class="calc-radio"><input type="radio" name="autonoma_atual" value="nao" required> Não, parei de pagar</label></div></div>
+      <div class="calc-group" id="grupoTempoParada" style="display:none;"><label>Há quanto tempo você parou de contribuir? <span style="color:var(--yellow);">*</span></label>
+        <select name="autonoma_tempo" class="calc-select"><option value="">Selecione</option><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>
+      <div class="calc-group"><label>Você pagou todos os meses consecutivamente nos últimos 10 meses? <span style="color:var(--yellow);">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_consecutivo" value="sim" required> Sim, todos seguidos</label><label class="calc-radio"><input type="radio" name="autonoma_consecutivo" value="nao" required> Não, houve pausa</label></div></div>
+      <div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS (somando toda a vida)? <span style="color:var(--yellow);">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="autonoma_10anos" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="autonoma_10anos" value="nao" required> Não</label></div></div>
+      <div class="calc-group"><label>Sua média de contribuições nos últimos 12 meses (R$): <span style="color:var(--yellow);">*</span></label>
+        <input type="number" name="autonoma_salario" class="calc-select" step="0.01" placeholder="Ex: 2500" required></div>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>
+      `;
   } else if (selecionado === 'desempregada') {
     html = `
-      <div class="calc-group"><label>Há quanto tempo você parou de contribuir (último pagamento ao INSS)?</label>
-        <select name="desempregada_tempo" class="calc-select"><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>
-      <div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS (somando toda a vida)?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="desempregada_10anos" value="sim"> Sim</label>
-        <label class="calc-radio"><input type="radio" name="desempregada_10anos" value="nao"> Não</label></div></div>
-      <div class="calc-group"><label>Você pode comprovar desemprego (ex: seguro-desemprego, CTPS com baixa)?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="desempregada_comprova" value="sim"> Sim</label>
-        <label class="calc-radio"><input type="radio" name="desempregada_comprova" value="nao"> Não</label></div></div>`;
+      <div class="calc-group"><label>Há quanto tempo você parou de contribuir (último pagamento ao INSS)? <span style="color:var(--yellow);">*</span></label>
+        <select name="desempregada_tempo" class="calc-select" required><option value="">Selecione</option><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div>
+      <div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS (somando toda a vida)? <span style="color:var(--yellow);">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="desempregada_10anos" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="desempregada_10anos" value="nao" required> Não</label></div></div>
+      <div class="calc-group"><label>Você pode comprovar desemprego (ex: seguro-desemprego, CTPS com baixa)? <span style="color:var(--yellow);">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="desempregada_comprova" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="desempregada_comprova" value="nao" required> Não</label></div></div>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>
+      `;
   } else if (selecionado === 'rural') {
     html = `
-      <div class="calc-group"><label>Você exerce atividade rural (agricultura, pecuária, etc.) de forma individual ou em regime de economia familiar?</label>
-        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="rural_atividade" value="sim"> Sim</label>
-        <label class="calc-radio"><input type="radio" name="rural_atividade" value="nao"> Não</label></div></div>
-      <p style="font-size:0.85rem; margin-top:8px;">✔️ A segurada especial tem direito ao salário-maternidade (1 salário mínimo) mesmo sem contribuição mensal, desde que comprove o exercício da atividade rural. Basta apresentar documentos como declaração do sindicato, notas fiscais, etc.</p>`;
+      <div class="calc-group"><label>Você exerce atividade rural (agricultura, pecuária, etc.) de forma individual ou em regime de economia familiar? <span style="color:var(--yellow);">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="rural_atividade" value="sim" required> Sim</label><label class="calc-radio"><input type="radio" name="rural_atividade" value="nao" required> Não</label></div></div>
+      <p style="font-size:0.85rem; margin-top:8px;">✔️ A segurada especial tem direito ao salário-maternidade (1 salário mínimo) mesmo sem contribuição mensal, desde que comprove o exercício da atividade rural. Basta apresentar documentos como declaração do sindicato, notas fiscais, etc.</p>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>
+      `;
   } else if (selecionado === 'avulsa') {
-    html = `<p style="font-size:0.9rem;">✅ Trabalhadora avulsa tem os mesmos direitos da CLT: 120 dias de benefício, sem carência, pago pela empresa ou INSS conforme o caso. A estabilidade também se aplica.</p>`;
+    html = `<p style="font-size:0.9rem;">✅ Trabalhadora avulsa tem os mesmos direitos da CLT: 120 dias de benefício, sem carência, pago pela empresa ou INSS conforme o caso. A estabilidade também se aplica.</p>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>`;
   } else if (selecionado === 'intermitente') {
-    html = `<p style="font-size:0.9rem;">✅ CLT intermitente tem direito ao salário-maternidade calculado sobre a média dos últimos 12 meses de trabalho. A estabilidade também vale durante a gestação e até 5 meses após o parto.</p>`;
+    html = `<p style="font-size:0.9rem;">✅ CLT intermitente tem direito ao salário-maternidade calculado sobre a média dos últimos 12 meses de trabalho. A estabilidade também vale durante a gestação e até 5 meses após o parto.</p>
+      <div class="calc-group"><label>Sua média dos últimos 12 meses (R$): <span style="color:var(--yellow);">*</span></label>
+        <input type="number" name="intermitente_salario" class="calc-select" step="0.01" placeholder="Ex: 2500" required></div>
+      <div class="calc-group"><label>Data prevista do parto (se souber):</label>
+        <input type="date" name="data_parto" class="calc-select"></div>`;
+  } else if (selecionado === 'informal') {
+    html = `<p style="font-size:0.9rem;">⚠️ Infelizmente, trabalhadores informais sem contribuição ao INSS não têm direito ao salário-maternidade. <br> Para garantir o benefício no futuro, você pode se inscrever como <strong>MEI</strong> ou <strong>contribuinte facultativo</strong> e pagar as contribuições mensalmente. Após 10 meses de pagamento contínuo, passa a ter direito.</p>`;
+  } else if (selecionado === 'adocao') {
+    html = `
+      <div class="calc-group"><label>Você é: <span style="color:var(--yellow);">*</span></label>
+        <div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="adotante_tipo" value="clt" required> Empregado(a) CLT</label>
+        <label class="calc-radio"><input type="radio" name="adotante_tipo" value="autonoma" required> Autônomo/MEI/Facultativo</label>
+        <label class="calc-radio"><input type="radio" name="adotante_tipo" value="desempregado" required> Desempregado (período de graça)</label></div></div>
+      <div class="calc-group" id="grupoAdocaoContribuicao" style="display:none;"></div>
+      <div class="calc-group"><label>Data da adoção/guarda:</label>
+        <input type="date" name="data_adocao" class="calc-select"></div>
+      `;
   }
   if(perguntasHTML) perguntasHTML.innerHTML = html;
+
+  // Adicionar listeners para campos que influenciam visibilidade
+  document.querySelectorAll('input[name="clt_empregada"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const grupoTempo = document.getElementById('grupoCltTempo');
+      const grupo10anos = document.getElementById('grupoClt10anos');
+      const grupoComprova = document.getElementById('grupoCltComprova');
+      if (document.querySelector('input[name="clt_empregada"]:checked')?.value === 'nao') {
+        if(grupoTempo) grupoTempo.style.display = 'block';
+        if(grupo10anos) grupo10anos.style.display = 'block';
+        if(grupoComprova) grupoComprova.style.display = 'block';
+      } else {
+        if(grupoTempo) grupoTempo.style.display = 'none';
+        if(grupo10anos) grupo10anos.style.display = 'none';
+        if(grupoComprova) grupoComprova.style.display = 'none';
+      }
+      validarFormulario();
+    });
+  });
+  document.querySelectorAll('input[name="autonoma_atual"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const grupo = document.getElementById('grupoTempoParada');
+      if (grupo) grupo.style.display = r.value === 'nao' ? 'block' : 'none';
+      validarFormulario();
+    });
+  });
+  document.querySelectorAll('input[name="adotante_tipo"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const grupo = document.getElementById('grupoAdocaoContribuicao');
+      if (!grupo) return;
+      if (r.value === 'autonoma') {
+        grupo.innerHTML = `<div class="calc-group"><label>Você tem mais de 10 anos de contribuição ao INSS? <span style="color:var(--yellow);">*</span></label><div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="adocao_10anos" value="sim"> Sim</label><label class="calc-radio"><input type="radio" name="adocao_10anos" value="nao"> Não</label></div></div>`;
+      } else if (r.value === 'desempregado') {
+        grupo.innerHTML = `<div class="calc-group"><label>Há quanto tempo está desempregado? <span style="color:var(--yellow);">*</span></label><select name="adocao_tempo" class="calc-select"><option value="menos12">Menos de 12 meses</option><option value="entre12e24">Entre 12 e 24 meses</option><option value="mais24">Mais de 24 meses</option></select></div><div class="calc-group"><label>Mais de 10 anos de contribuição? <span style="color:var(--yellow);">*</span></label><div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="adocao_10anos" value="sim"> Sim</label><label class="calc-radio"><input type="radio" name="adocao_10anos" value="nao"> Não</label></div></div><div class="calc-group"><label>Comprova desemprego? <span style="color:var(--yellow);">*</span></label><div class="calc-radio-group"><label class="calc-radio"><input type="radio" name="adocao_comprova" value="sim"> Sim</label><label class="calc-radio"><input type="radio" name="adocao_comprova" value="nao"> Não</label></div></div>`;
+      } else {
+        grupo.innerHTML = '';
+      }
+      validarFormulario();
+    });
+  });
+
+  // Marcar campos como required e adicionar listeners de mudança para validação
+  document.querySelectorAll('#perguntasDinamicas input, #perguntasDinamicas select').forEach(el => {
+    el.addEventListener('change', () => {
+      validarFormulario();
+      salvarRespostas();
+    });
+    el.addEventListener('input', () => {
+      validarFormulario();
+      salvarRespostas();
+    });
+  });
+  validarFormulario();
+  salvarRespostas();
 }
-document.addEventListener('change', function(e) {
-  if (e.target && e.target.name === 'autonoma_atual') {
-    const grupo = document.getElementById('grupoTempoParada');
-    if (grupo) grupo.style.display = e.target.value === 'nao' ? 'block' : 'none';
-  }
-});
+
 function calcularDireitoCompleto() {
   const resultDiv = document.getElementById('calcResultFinal');
   if (resultDiv) resultDiv.style.display = 'none';
@@ -990,56 +1131,112 @@ function calcularDireitoCompleto() {
   if (!perfilRadio) { alert('Selecione sua situação atual primeiro.'); return; }
   const perfil = perfilRadio.value;
   let direito = false, mensagemDireito = '', mensagemGraça = '', detalhe = '';
+  let valorBeneficio = 0;
+  const tetoINSS = 8157.41;
+  const salarioMinimo = 1621.00;
+
+  // Função auxiliar para calcular dias até parto (aproximado)
+  function calcularMesesAteParto(dataPartoStr) {
+    if (!dataPartoStr) return null;
+    const hoje = new Date();
+    const parto = new Date(dataPartoStr);
+    const diffMs = parto - hoje;
+    if (diffMs <= 0) return 0; // parto já ocorreu
+    return diffMs / (1000 * 60 * 60 * 24 * 30); // aproximado em meses
+  }
+
   if (perfil === 'clt') {
     const empregada = document.querySelector('input[name="clt_empregada"]:checked');
     if (!empregada) { alert('Responda se está empregada ou não.'); return; }
-    const tempoSelect = document.querySelector('select[name="clt_tempo"]');
-    const tempo = tempoSelect ? tempoSelect.value : null;
+    const salario = parseFloat(document.querySelector('input[name="clt_salario"]')?.value) || 0;
+    valorBeneficio = salario;
+    const dataParto = document.querySelector('input[name="data_parto"]')?.value;
     if (empregada.value === 'sim') {
       direito = true;
       mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
       detalhe = 'Como empregada CLT, não há carência e o benefício é garantido por 120 dias.';
+      if (valorBeneficio > 0) detalhe += `<br>💵 Estimativa de valor: R$ ${valorBeneficio.toFixed(2)} por mês.`;
     } else {
+      const tempoSelect = document.querySelector('select[name="clt_tempo"]');
+      const tempo = tempoSelect?.value;
+      const dezAnos = document.querySelector('input[name="clt_10anos"]:checked')?.value === 'sim';
+      const comprova = document.querySelector('input[name="clt_comprova"]:checked')?.value === 'sim';
       if (!tempo) { alert('Selecione há quanto tempo foi demitida.'); return; }
-      const mesesParada = tempo === 'menos12' ? 0 : (tempo === 'entre12e24' ? 12 : 24);
-      if (mesesParada < 12) {
+      let mesesParada = tempo === 'menos12' ? 0 : (tempo === 'entre12e24' ? 12 : 24);
+      let prazoMax = 12;
+      if (dezAnos) prazoMax = 24;
+      if (dezAnos && comprova && tempo === 'entre12e24') prazoMax = 36;
+      const mesesAteParto = calcularMesesAteParto(dataParto);
+      let dentroPrazo = false;
+      if (mesesAteParto !== null) {
+        dentroPrazo = mesesAteParto <= prazoMax;
+      } else {
+        dentroPrazo = mesesParada < prazoMax;
+      }
+      if (dentroPrazo) {
         direito = true;
-        mensagemDireito = '✅ Você ainda está no período de graça (até 12 meses após a demissão).';
-        mensagemGraça = `⏳ Se o parto ocorrer dentro desse prazo, você tem direito.`;
+        mensagemDireito = `✅ Você ainda está no período de graça (até ${prazoMax} meses). Se o parto ocorrer dentro desse prazo, você tem direito.`;
+        if (mesesAteParto !== null) {
+          mensagemGraça = `⏳ Parto previsto em aproximadamente ${Math.round(mesesAteParto)} meses. Prazo máximo: ${prazoMax} meses.`;
+        } else {
+          mensagemGraça = `⏳ Período de graça: ${prazoMax} meses.`;
+        }
       } else {
         direito = false;
-        mensagemDireito = '❌ Infelizmente você já perdeu o período de graça de 12 meses.';
+        mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
       }
     }
   } else if (perfil === 'autonoma') {
     const mesesContrib = document.querySelector('select[name="autonoma_meses"]');
     const contribuindo = document.querySelector('input[name="autonoma_atual"]:checked');
+    const consecutivo = document.querySelector('input[name="autonoma_consecutivo"]:checked');
     const dezAnosRadio = document.querySelector('input[name="autonoma_10anos"]:checked');
-    if (!mesesContrib || !contribuindo || !dezAnosRadio) { alert('Responda todas as perguntas.'); return; }
+    const salario = parseFloat(document.querySelector('input[name="autonoma_salario"]')?.value) || 0;
+    if (!mesesContrib || !contribuindo || !consecutivo || !dezAnosRadio) { alert('Responda todas as perguntas.'); return; }
     const tem10Meses = mesesContrib.value === '10';
     const temDezAnos = dezAnosRadio.value === 'sim';
     const estaContribuindo = contribuindo.value === 'sim';
+    const pagamentoConsecutivo = consecutivo.value === 'sim';
     let tempoParada = null;
     if (!estaContribuindo) {
       const tempoSelect = document.querySelector('select[name="autonoma_tempo"]');
       if (tempoSelect) tempoParada = tempoSelect.value;
     }
-    if (estaContribuindo && tem10Meses) {
+    if (estaContribuindo && tem10Meses && pagamentoConsecutivo) {
       direito = true;
       mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
-      detalhe = 'Você já completou a carência de 10 meses e está contribuindo atualmente.';
-    } else if (estaContribuindo && !tem10Meses) {
+      detalhe = 'Você já completou a carência de 10 meses consecutivos e está contribuindo atualmente.';
+      valorBeneficio = Math.min(salario, tetoINSS);
+      if (valorBeneficio > 0) detalhe += `<br>💵 Estimativa de valor: R$ ${valorBeneficio.toFixed(2)} por mês.`;
+    } else if (estaContribuindo && (!tem10Meses || !pagamentoConsecutivo)) {
       direito = false;
       mensagemDireito = '❌ Infelizmente você ainda não tem direito.';
-      detalhe = 'Autônomas/MEI/Facultativas precisam de 10 meses de contribuição antes do parto.';
+      if (!tem10Meses) detalhe = 'Autônomas/MEI/Facultativas precisam de 10 meses de contribuição antes do parto.';
+      if (!pagamentoConsecutivo) detalhe += ' Além disso, os pagamentos precisam ser consecutivos. Se houve interrupção, a carência é reiniciada.';
     } else if (!estaContribuindo && tempoParada) {
       let mesesDesdeParada = tempoParada === 'menos12' ? 6 : (tempoParada === 'entre12e24' ? 18 : 30);
       let prazoMax = 12; if (temDezAnos) prazoMax = 24;
       if (temDezAnos && tempoParada === 'entre12e24') prazoMax = 36;
-      if (mesesDesdeParada < prazoMax) {
+      const dataParto = document.querySelector('input[name="data_parto"]')?.value;
+      const mesesAteParto = calcularMesesAteParto(dataParto);
+      let dentroPrazo = false;
+      if (mesesAteParto !== null) {
+        dentroPrazo = mesesAteParto <= prazoMax;
+      } else {
+        dentroPrazo = mesesDesdeParada < prazoMax;
+      }
+      if (dentroPrazo) {
         direito = true;
-        mensagemDireito = `✅ Você ainda está no período de graça. Se o parto ocorrer dentro do prazo, tem direito.`;
-        mensagemGraça = `⏳ Período de graça atual: ${prazoMax} meses no total.`;
+        mensagemDireito = `✅ Você ainda está no período de graça (${prazoMax} meses). Se o parto ocorrer dentro desse prazo, tem direito.`;
+        if (mesesAteParto !== null) {
+          mensagemGraça = `⏳ Parto previsto em aproximadamente ${Math.round(mesesAteParto)} meses. Prazo máximo: ${prazoMax} meses.`;
+        } else {
+          mensagemGraça = `⏳ Período de graça atual: ${prazoMax} meses.`;
+        }
+        if (salario > 0) {
+          valorBeneficio = Math.min(salario, tetoINSS);
+          detalhe = `<br>💵 Estimativa de valor: R$ ${valorBeneficio.toFixed(2)} por mês.`;
+        }
       } else {
         direito = false;
         mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
@@ -1056,9 +1253,22 @@ function calcularDireitoCompleto() {
     let mesesDesdeParada = tempoParada === 'menos12' ? 6 : (tempoParada === 'entre12e24' ? 18 : 30);
     let prazoMax = 12; if (temDezAnos) prazoMax = 24;
     if (temDezAnos && comprova && tempoParada === 'entre12e24') prazoMax = 36;
-    if (mesesDesdeParada < prazoMax) {
+    const dataParto = document.querySelector('input[name="data_parto"]')?.value;
+    const mesesAteParto = calcularMesesAteParto(dataParto);
+    let dentroPrazo = false;
+    if (mesesAteParto !== null) {
+      dentroPrazo = mesesAteParto <= prazoMax;
+    } else {
+      dentroPrazo = mesesDesdeParada < prazoMax;
+    }
+    if (dentroPrazo) {
       direito = true;
-      mensagemDireito = `✅ Você ainda está no período de graça. Restam aproximadamente ${prazoMax - mesesDesdeParada} meses de proteção.`;
+      mensagemDireito = `✅ Você ainda está no período de graça. Prazo máximo: ${prazoMax} meses.`;
+      if (mesesAteParto !== null) {
+        mensagemGraça = `⏳ Parto previsto em aproximadamente ${Math.round(mesesAteParto)} meses. Prazo máximo: ${prazoMax} meses.`;
+      } else {
+        mensagemGraça = `⏳ Período de graça atual: ${prazoMax} meses.`;
+      }
     } else {
       direito = false;
       mensagemDireito = '❌ Infelizmente você já perdeu o período de graça.';
@@ -1069,7 +1279,8 @@ function calcularDireitoCompleto() {
     if (atividade.value === 'sim') {
       direito = true;
       mensagemDireito = '✅ Sim, você tem direito ao salário-maternidade!';
-      detalhe = 'Como segurada especial, você recebe 1 salário mínimo por 120 dias, sem necessidade de carência.';
+      detalhe = `Como segurada especial, você recebe 1 salário mínimo (R$ ${salarioMinimo.toFixed(2)}) por 120 dias, sem necessidade de carência.`;
+      valorBeneficio = salarioMinimo;
     } else {
       direito = false;
       mensagemDireito = '❌ Para ter direito como segurada especial, é necessário comprovar o exercício de atividade rural.';
@@ -1078,9 +1289,53 @@ function calcularDireitoCompleto() {
     direito = true;
     mensagemDireito = '✅ Trabalhadora avulsa tem direito ao salário-maternidade, sem carência, por 120 dias.';
   } else if (perfil === 'intermitente') {
+    const salario = parseFloat(document.querySelector('input[name="intermitente_salario"]')?.value) || 0;
     direito = true;
     mensagemDireito = '✅ CLT intermitente tem direito ao salário-maternidade, calculado sobre a média dos últimos 12 meses trabalhados.';
+    if (salario > 0) {
+      valorBeneficio = Math.min(salario, tetoINSS);
+      detalhe = `<br>💵 Estimativa de valor: R$ ${valorBeneficio.toFixed(2)} por mês.`;
+    }
+  } else if (perfil === 'informal') {
+    direito = false;
+    mensagemDireito = '❌ Trabalhadores informais sem contribuição ao INSS não têm direito ao salário-maternidade.';
+    detalhe = 'Para ter direito no futuro, regularize-se como MEI ou contribuinte facultativo e pague por pelo menos 10 meses consecutivos antes da gravidez.';
+  } else if (perfil === 'adocao') {
+    const tipo = document.querySelector('input[name="adotante_tipo"]:checked');
+    if (!tipo) { alert('Selecione seu vínculo.'); return; }
+    if (tipo.value === 'clt') {
+      direito = true;
+      mensagemDireito = '✅ Adotante com vínculo CLT tem direito aos 120 dias de salário-maternidade, sem carência.';
+    } else if (tipo.value === 'autonoma') {
+      const dezAnos = document.querySelector('input[name="adocao_10anos"]:checked')?.value === 'sim';
+      // Para autônomo, precisa ter carência de 10 meses ou estar no período de graça
+      // Vamos simplificar: pedir informação se contribuiu 10 meses nos últimos 12
+      const contribuiu = confirm('Você contribuiu por pelo menos 10 meses nos últimos 12 meses? (OK para sim, Cancelar para não)');
+      if (contribuiu) {
+        direito = true;
+        mensagemDireito = '✅ Adotante autônomo/MEI com carência cumprida tem direito aos 120 dias.';
+      } else {
+        direito = false;
+        mensagemDireito = '❌ Para adotante autônomo, é necessário ter contribuído por 10 meses antes da adoção.';
+      }
+    } else if (tipo.value === 'desempregado') {
+      const tempo = document.querySelector('select[name="adocao_tempo"]')?.value;
+      const dezAnos = document.querySelector('input[name="adocao_10anos"]:checked')?.value === 'sim';
+      const comprova = document.querySelector('input[name="adocao_comprova"]:checked')?.value === 'sim';
+      if (!tempo) { alert('Responda todas as perguntas.'); return; }
+      let mesesParada = tempo === 'menos12' ? 6 : (tempo === 'entre12e24' ? 18 : 30);
+      let prazoMax = 12; if (dezAnos) prazoMax = 24;
+      if (dezAnos && comprova && tempo === 'entre12e24') prazoMax = 36;
+      if (mesesParada < prazoMax) {
+        direito = true;
+        mensagemDireito = `✅ Adotante desempregado ainda no período de graça (${prazoMax} meses) tem direito.`;
+      } else {
+        direito = false;
+        mensagemDireito = '❌ Período de graça expirado. Sem direito ao salário-maternidade.';
+      }
+    }
   }
+
   if (resultDiv) resultDiv.style.display = 'block';
   const direitoDiv = document.getElementById('resultadoDireito');
   const detalheDiv = document.getElementById('resultadoDetalhe');
@@ -1182,6 +1437,7 @@ setTimeout(() => { const stats = document.querySelector('.stats-bar'); if (stats
 updateShareLinks();
 initQuiz();
 renderQuiz();
+carregarRespostas();
 </script>
 </body>
 </html>
