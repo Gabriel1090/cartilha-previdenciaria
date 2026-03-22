@@ -40,41 +40,75 @@
     .blob-bg svg { width: 100%; height: 100%; }
 
     /* Barra de acessibilidade (vertical esquerda) */
-    .a11y-bar {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      padding: 10px 8px;
-      border-radius: 30px;
-      transition: var(--transition);
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: var(--shadow-sm);
-    }
-    .a11y-btn {
-      background: rgba(255,255,255,0.2);
-      border: none;
-      color: #fff;
-      border-radius: 40px;
-      padding: 8px 12px;
-      font-size: 0.85rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: var(--transition);
-      font-family: 'Nunito', sans-serif;
-      min-width: 44px;
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .a11y-btn:hover, .a11y-btn.active { background: var(--yellow); color: var(--text-dark); transform: scale(1.05); }
+.a11y-bar {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.4); /* mais translúcido */
+  backdrop-filter: blur(4px);
+  padding: 10px 6px;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0.7; /* leve transparência */
+}
+.a11y-bar:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+}
+.a11y-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  border-radius: 40px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Nunito', sans-serif;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.a11y-btn:hover,
+.a11y-btn.active {
+  background: var(--yellow);
+  color: var(--text-dark);
+  transform: scale(1.05);
+}
+
+/* Responsividade: no mobile, reposiciona para o canto inferior direito */
+@media (max-width: 768px) {
+  .a11y-bar {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    left: auto;
+    transform: none;
+    flex-direction: row;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 50px;
+    opacity: 0.8;
+  }
+  .a11y-btn {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
 
     /* Alerta superior */
     .alert-banner { position: relative; z-index: 15; background: var(--yellow); color: var(--text-dark); text-align: center; padding: 10px 50px; font-weight: 800; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
